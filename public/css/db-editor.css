@@ -1,0 +1,24 @@
+input, select {
+    width:100%;
+    box-sizing:border-box;
+    min-height: 21px;
+}
+
+.btn {
+    border: 0;
+    background: none;
+    height: 24px;
+    width: 24px;
+}
+
+.btn-icon {
+    height: 18px;
+    width: 18px;
+    display:block;
+    margin:auto;
+}
+
+.comment-col {
+    width: 30%;
+}
+
