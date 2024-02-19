@@ -42,7 +42,7 @@ class ProductMoveController extends Controller {
 
             if ($purchase === null) {
                 if (count($updated_cells) === $view_fields_count) {
-                    ProductMove::create(array_merge($updated_cells, ['operation_type' => 'purchase']));
+                    ProductMove::create(array_merge($updated_cells, ['product_move_type' => 'purchase']));
                 }
             } else {
                 $purchase->update($updated_cells);
@@ -61,7 +61,7 @@ class ProductMoveController extends Controller {
 
     public function show_totals_report(Request $request): View {
         $totals = ProductMove::
-            where('operation_type', 'purchase')->
+            where('product_move_type', 'purchase')->
             select(
                 'storage_id',
                 'product_id',

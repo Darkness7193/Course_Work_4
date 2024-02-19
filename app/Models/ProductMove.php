@@ -22,7 +22,7 @@ class ProductMove extends Model
         'id',
         'created_at',
         'updated_at',
-        'operation_type'
+        'product_move_type'
     ];
 
     protected $casts = [
@@ -34,7 +34,7 @@ class ProductMove extends Model
 
     protected $fillable = [
         'date',
-        'operation_type',
+        'product_move_type',
         'product_id',
         'quantity',
         'price',
