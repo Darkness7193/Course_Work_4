@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-include(app_path().'/helpers/all_fields_search.php');
+include(app_path().'/helpers/multi_fields_search.php');
 include(app_path().'/helpers/paginate.php');
-include(app_path().'/helpers/query_crud_records.php');
+include(app_path().'/helpers/search_order_paginate.php');
 
 
 use App\Models\Product;
@@ -24,7 +24,7 @@ class ProductMoveController extends Controller {
         }
 
         return view('purchases-crud', [
-            'purchases' => query_crud_records(ProductMove::class, $request),
+            'purchases' => search_order_paginate(ProductMove::query(), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),

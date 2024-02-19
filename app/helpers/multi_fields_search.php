@@ -1,12 +1,12 @@
 <?php
 
 
-function all_fields_search(&$query, $model, $target) {
+function multi_fields_search(&$query, $target) {
     if (empty($target)) {
         return $query;
     }
 
-    foreach ($model::view_fields() as $field) {
+    foreach ($query->getModel()->view_fields() as $field) {
         $is_foreing_id = str_contains($field, 'id');
 
         if ($is_foreing_id) {
