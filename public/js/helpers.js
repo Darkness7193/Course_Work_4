@@ -96,7 +96,7 @@ export function is_filled(tr) {
 }
 
 
-function remove_elements_included_in_both(set, json) {
+export function remove_elements_that_in_both(set, json) {
     set.forEach(element => {
         if (json.hasOwnProperty(element)) {
             delete json[element]
