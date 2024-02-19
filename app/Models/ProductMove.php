@@ -60,9 +60,4 @@ class ProductMove extends Model
     public function storage() {
         return $this->belongsTo(Storage::class, 'storage_id');
     }
-
-    private function setDateValue($value) {
-        $date_parts = explode('/', $value);
-        $this->attributes['date'] = $date_parts[2].'-'.$date_parts[0].'-'.$date_parts[1];
-    }
 }
