@@ -1,7 +1,7 @@
 <?php
 
 
-function search_order_paginate($product_moves, $request) {
+function filter_order_paginate($product_moves, $request) {
     multi_fields_search($product_moves, $request->search_target)->
     orderBy('created_at');
     paginate($product_moves,

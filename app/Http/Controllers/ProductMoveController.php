@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 include(app_path().'/helpers/multi_fields_search.php');
 include(app_path().'/helpers/paginate.php');
-include(app_path().'/helpers/search_order_paginate.php');
+include(app_path().'/helpers/filter_order_paginate.php');
 
 
 use App\Models\Product;
@@ -24,7 +24,7 @@ class ProductMoveController extends Controller {
         }
 
         return view('purchases-crud', [
-            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $request),
+            'purchases' => filter_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
@@ -40,7 +40,7 @@ class ProductMoveController extends Controller {
         }
 
         return view('cells-crud', [
-            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'celling'), $request),
+            'purchases' => filter_order_paginate(ProductMove::where('product_move_type', 'celling'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
