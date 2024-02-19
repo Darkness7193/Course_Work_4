@@ -12,13 +12,13 @@ use App\Models\ProductMove;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<ProductMove>
  */
-class PurchaseFactory extends Factory
+class ProductMoveFactory extends Factory
 {
     public function definition(): array
     {
         return [
             'date' => $this->faker->date(),
-            'operation_type' => 'purchase',
+            'product_move_type' => 'purchasing',
             'product_id' => Product::get()->random()->id,
             'quantity' => random_int(1, 1000),
             'price' => random_int(1, 1000),

@@ -24,23 +24,7 @@ class ProductMoveController extends Controller {
         }
 
         return view('purchases-crud', [
-            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'purchase'), $request),
-            'view_fields' => ProductMove::view_fields(),
-            'products' => Product::select('id', 'name')->get(),
-            'storages' => Storage::select('id', 'name')->get(),
-            'max_id' => ProductMove::max('id'),
-        ]);
-    }
-
-
-    public function cells_crud(Request $request): View
-    {
-        if ($request->per_page) {
-            $request->session()->put('per_page', $request->per_page);
-        }
-
-        return view('purchases-crud', [
-            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'cell'), $request),
+            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
@@ -58,7 +42,7 @@ class ProductMoveController extends Controller {
 
             if ($purchase === null) {
                 if (count($updated_cells) === $view_fields_count) {
-                    ProductMove::create(array_merge($updated_cells, ['product_move_type' => 'purchase']));
+                    ProductMove::create(array_merge($updated_cells, ['product_move_type' => 'purchasing']));
                 }
             } else {
                 $purchase->update($updated_cells);
@@ -77,7 +61,7 @@ class ProductMoveController extends Controller {
 
     public function show_totals_report(Request $request): View {
         $totals = ProductMove::
-            where('product_move_type', 'purchase')->
+            where('product_move_type', 'purchasing')->
             select(
                 'storage_id',
                 'product_id',
