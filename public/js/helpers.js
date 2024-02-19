@@ -94,3 +94,14 @@ export function is_filled(tr) {
 
     return true
 }
+
+
+function remove_elements_included_in_both(set, json) {
+    set.forEach(element => {
+        if (json.hasOwnProperty(element)) {
+            delete json[element]
+            set.delete(element)
+        }
+    });
+    return [set, json]
+}
