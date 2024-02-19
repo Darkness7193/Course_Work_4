@@ -27,7 +27,7 @@ function toggle_row_deleting(delete_btn) {
 }
 
 
-function submit_changes(update, bulk_delete) {
+function submit_changes(update_controller, bulk_delete_controller) {
     deleted_rows.forEach(deleted_row => {
         if (updated_rows.hasOwnProperty(deleted_row)) {
             delete updated_rows[deleted_row]
@@ -37,8 +37,8 @@ function submit_changes(update, bulk_delete) {
 
     console.log(updated_rows)
 
-    post(update, updated_rows)
-    post(bulk_delete, {'deleted_rows': Array.from(deleted_rows)})
+    post(update_controller, updated_rows)
+    post(bulk_delete_controller, {'deleted_rows': Array.from(deleted_rows)})
     location.reload();
 }
 

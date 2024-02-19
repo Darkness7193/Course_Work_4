@@ -24,7 +24,23 @@ class ProductMoveController extends Controller {
         }
 
         return view('purchases-crud', [
-            'purchases' => search_order_paginate(ProductMove::query(), $request),
+            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'purchase'), $request),
+            'view_fields' => ProductMove::view_fields(),
+            'products' => Product::select('id', 'name')->get(),
+            'storages' => Storage::select('id', 'name')->get(),
+            'max_id' => ProductMove::max('id'),
+        ]);
+    }
+
+
+    public function cells_crud(Request $request): View
+    {
+        if ($request->per_page) {
+            $request->session()->put('per_page', $request->per_page);
+        }
+
+        return view('purchases-crud', [
+            'purchases' => search_order_paginate(ProductMove::where('product_move_type', 'cell'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
