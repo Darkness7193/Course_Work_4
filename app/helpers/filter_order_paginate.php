@@ -9,6 +9,5 @@ function filter_order_paginate($product_moves, $request) {
         current_page: $request->current_page ?? 1,
     );
 
-
     return $product_moves;
 }
