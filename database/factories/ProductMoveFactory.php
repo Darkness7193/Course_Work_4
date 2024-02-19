@@ -18,7 +18,7 @@ class ProductMoveFactory extends Factory
     {
         return [
             'date' => $this->faker->date(),
-            'product_move_type' => 'purchasing',
+            'product_move_type' => ['purchasing', 'selling'][random_int(0, 1)],
             'product_id' => Product::get()->random()->id,
             'quantity' => random_int(1, 1000),
             'price' => random_int(1, 1000),

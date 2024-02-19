@@ -12,11 +12,12 @@ include(app_path().'/helpers/post_to_get_route.php');
 Route::get('product_moves/purchases_crud', [ProductMoveController::class, 'purchases_crud'])
     ->name('product_moves.purchases_crud');
 
-Route::get('product_moves/cells_crud', [ProductMoveController::class, 'cells_crud'])
-    ->name('product_moves.cells_crud');
+Route::get('product_moves/sales_crud', [ProductMoveController::class, 'sales_crud'])
+    ->name('product_moves.sales_crud');
 
 Route::get('product_moves/show_totals_report', [ProductMoveController::class, 'show_totals_report'])
     ->name('product_moves.show_totals_report');
+
 
 Route::post('product_moves/bulk_update_or_create', [ProductMoveController::class, 'bulk_update_or_create'])
     ->name('product_moves.bulk_update_or_create');

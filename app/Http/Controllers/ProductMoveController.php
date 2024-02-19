@@ -33,14 +33,14 @@ class ProductMoveController extends Controller {
     }
 
 
-    public function cells_crud(Request $request): View
+    public function sales_crud(Request $request): View
     {
         if ($request->per_page) {
             $request->session()->put('per_page', $request->per_page);
         }
 
-        return view('cells-crud', [
-            'purchases' => filter_order_paginate(ProductMove::where('product_move_type', 'celling'), $request),
+        return view('sales-crud', [
+            'sales' => filter_order_paginate(ProductMove::where('product_move_type', 'selling'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),

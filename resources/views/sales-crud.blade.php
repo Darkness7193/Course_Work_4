@@ -28,25 +28,25 @@
     </tr>
 
 
-    @foreach ($cells as $cell)
-        <tr data-row-id="{{ $cell->id }}">
+    @foreach ($sales as $sale)
+        <tr data-row-id="{{ $sale->id }}">
 
-            <td><input type="date" value="{{ $cell->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
+            <td><input type="date" value="{{ $sale->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
             <td>@include('foreign-cell', [
-                'selected_foreign_row' => $cell->product,
+                'selected_foreign_row' => $sale->product,
                 'foreign_rows' => $products
             ])</td>
 
-            <td><input type="number" value="{{ $cell->quantity }}" onchange="add_updated_rows(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $cell->price }}" onchange="add_updated_rows(this)"></td>
+            <td><input type="number" value="{{ $sale->quantity }}" onchange="add_updated_rows(this)"></td>
+            <td><input type="number" step="0.01" value="{{ $sale->price }}" onchange="add_updated_rows(this)"></td>
 
             <td>@include('foreign-cell', [
-                'selected_foreign_row' => $cell->storage,
+                'selected_foreign_row' => $sale->storage,
                 'foreign_rows' => $storages
             ])</td>
 
-            <td class="comment-col"><input type="text" value="{{ $cell->comment }}" onchange="add_updated_rows(this)"></td>
+            <td class="comment-col"><input type="text" value="{{ $sale->comment }}" onchange="add_updated_rows(this)"></td>
             <td>
                 <button
                     type="button"
@@ -57,7 +57,7 @@
             </td>
         </tr>
     @endforeach
-    @if ($cells->count() < $cells->perPage())
+    @if (($sales->count() < $sales->perPage()) || !$sales->hasPages())
         <script type="module">
             import { append_empty_tr, auto_new_tr } from '{{ asset('js/auto_new_tr.js') }}'
             let db_editor = document.getElementsByClassName('db-editor')[0]
@@ -69,7 +69,7 @@
 </table>
 
 <div>
-    {{ $cells->links('pagination::custom-bootstrap-5') }}
+    {{ $sales->links('pagination::custom-bootstrap-5') }}
 </div>
 <button
     id="save-btn"
