@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 include(app_path().'/helpers/multi_fields_search.php');
 include(app_path().'/helpers/paginate.php');
 include(app_path().'/helpers/filter_order_paginate.php');
+include(app_path().'/helpers/get_product_totals.php');
 
 
 use App\Models\Product;
@@ -50,20 +51,8 @@ class ProductMoveController extends Controller {
 
 
     public function show_totals_report(Request $request): View {
-        $totals = ProductMove::
-        where('product_move_type', 'purchasing')->
-        select(
-            'storage_id',
-            'product_id',
-            DB::raw('sum(quantity) as total_purchase_quantity'),
-            DB::raw('sum(price) as total_purchase_price'))->
-        groupBy('storage_id', 'product_id');
-        paginate($totals,
-            per_page: $request->session()->get('per_page') ?? 10,
-            current_page: $request->current_page ?? 1,
-        );
 
-        return view('totals_report', ['totals' => $totals]);
+        return view('totals_report', ['totals' => get_product_totals($request)]);
     }
 
 
