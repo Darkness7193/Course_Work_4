@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProductMoveController;
 include(app_path().'/helpers/post_to_get_route.php');
 
 /**
@@ -9,20 +9,20 @@ include(app_path().'/helpers/post_to_get_route.php');
  */
 
 
-Route::get('purchases/show_crud', [PurchaseController::class, 'show_crud'])
-    ->name('purchases.show_crud');
+Route::get('product_moves/purchases_crud', [ProductMoveController::class, 'purchases_crud'])
+    ->name('product_moves.purchases_crud');
 
-Route::get('purchases/show_totals_report', [PurchaseController::class, 'show_totals_report'])
-    ->name('purchases.show_totals_report');
+Route::get('product_moves/show_totals_report', [ProductMoveController::class, 'show_totals_report'])
+    ->name('product_moves.show_totals_report');
 
-Route::post('purchases/bulk_update_or_create', [PurchaseController::class, 'bulk_update_or_create'])
-    ->name('purchases.bulk_update_or_create');
+Route::post('product_moves/bulk_update_or_create', [ProductMoveController::class, 'bulk_update_or_create'])
+    ->name('product_moves.bulk_update_or_create');
 
-Route::post('purchases/create', [PurchaseController::class, 'create'])
-    ->name('purchases.create');
+Route::post('product_moves/create', [ProductMoveController::class, 'create'])
+    ->name('product_moves.create');
 
-Route::post('purchases/bulk_delete', [PurchaseController::class, 'bulk_delete'])
-    ->name('purchases.bulk_delete');
+Route::post('product_moves/bulk_delete', [ProductMoveController::class, 'bulk_delete'])
+    ->name('product_moves.bulk_delete');
 
 
 Route::post('post_to_get_route', $post_to_get_route)

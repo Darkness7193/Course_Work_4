@@ -14,7 +14,7 @@ use App\Models\Storage;
  *
  * @mixin Builder
  */
-class Purchase extends Model
+class ProductMove extends Model
 {
     use HasFactory;
 

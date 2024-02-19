@@ -4,7 +4,7 @@
 
 <!-- f($model_for_route) -->
 <form class="search-bar" method="post"
-    action="{{ route('post_to_get_route', ['target_route' => "$model_for_route.show_crud"]) }}"
+    action="{{ route('post_to_get_route', ['target_route' => Route::current()->getName()]) }}"
 >
     @csrf {{ csrf_field() }}
     <button type="submit" value="" class="icon anti-search-btn"></button>

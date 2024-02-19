@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Product;
-use App\Models\Purchase;
+use App\Models\ProductMove;
 use App\Models\Storage;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         Product::factory(100)->create();
         Storage::factory(100)->create();
-        Purchase::factory(100)->create();
+        ProductMove::factory(100)->create();
     }
 }

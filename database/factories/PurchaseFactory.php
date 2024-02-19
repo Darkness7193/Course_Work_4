@@ -7,10 +7,10 @@ use App\Models\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\Purchase;
+use App\Models\ProductMove;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<Purchase>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<ProductMove>
  */
 class PurchaseFactory extends Factory
 {

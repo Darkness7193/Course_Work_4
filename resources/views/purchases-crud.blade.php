@@ -62,7 +62,7 @@
             import { append_empty_tr, auto_new_tr } from '{{ asset('js/auto_new_tr.js') }}'
             let db_editor = document.getElementsByClassName('db-editor')[0]
             let last_tr = append_empty_tr(db_editor)
-            last_tr.onchange = () => {auto_new_tr('{{ route('purchases.create') }}')}
+            last_tr.onchange = () => {auto_new_tr('{{ route('product_moves.create') }}')}
         </script>
     @endif
 
@@ -75,14 +75,14 @@
     id="save-btn"
     type="button"
     onclick="submit_changes(
-        '{{ route('purchases.bulk_update_or_create') }}',
-        '{{ route('purchases.bulk_delete') }}'
+        '{{ route('product_moves.bulk_update_or_create') }}',
+        '{{ route('product_moves.bulk_delete') }}'
     )"
     > Сохранить
 </button>
 
 @include('search-bar', [
-    'model_for_route' => 'purchases.show_crud'
+    'model_for_route' => 'product_moves.purchases_crud'
 ])
 </body>
 </html>

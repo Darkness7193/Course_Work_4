@@ -12,37 +12,37 @@ use App\Models\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use App\Models\Purchase;
+use App\Models\ProductMove;
 
 
-class PurchaseController extends Controller {
+class ProductMoveController extends Controller {
 
-    public function show_crud(Request $request): View
+    public function purchases_crud(Request $request): View
     {
         if ($request->per_page) {
             $request->session()->put('per_page', $request->per_page);
         }
 
         return view('purchases-crud', [
-            'purchases' => query_crud_records(Purchase::class, $request),
-            'view_fields' => Purchase::view_fields(),
+            'purchases' => query_crud_records(ProductMove::class, $request),
+            'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
-            'max_id' => Purchase::max('id'),
+            'max_id' => ProductMove::max('id'),
         ]);
     }
 
 
     public function bulk_update_or_create(Request $request): void
     {
-        $view_fields_count = count(Purchase::view_fields());
+        $view_fields_count = count(ProductMove::view_fields());
 
         foreach ($request->all() as $row_id => $updated_cells) {
-            $purchase = Purchase::find($row_id);
+            $purchase = ProductMove::find($row_id);
 
             if ($purchase === null) {
                 if (count($updated_cells) === $view_fields_count) {
-                    Purchase::create(array_merge($updated_cells, ['operation_type' => 'purchase']));
+                    ProductMove::create(array_merge($updated_cells, ['operation_type' => 'purchase']));
                 }
             } else {
                 $purchase->update($updated_cells);
@@ -54,13 +54,13 @@ class PurchaseController extends Controller {
     public function bulk_delete(Request $request): void {
         $ids = $request->all()['deleted_rows'];
         foreach ($ids as $id) {
-            Purchase::find($id)->delete();
+            ProductMove::find($id)->delete();
         }
     }
 
 
     public function show_totals_report(Request $request): View {
-        $totals = Purchase::
+        $totals = ProductMove::
             where('operation_type', 'purchase')->
             select(
                 'storage_id',
