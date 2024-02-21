@@ -19,12 +19,12 @@
 >
 
     <tr>
-        <th> ПОСТУПИЛО </th>
-        <th> ТОВАР </th>
-        <th> КОЛ-ВО </th>
-        <th> ЦЕНА </th>
-        <th> СКЛАД </th>
-        <th> КОММЕНТАРИЙ </th>
+        <th> ПОСТУПИЛО</th>
+        <th> ТОВАР</th>
+        <th> КОЛ-ВО</th>
+        <th> ЦЕНА</th>
+        <th> СКЛАД</th>
+        <th> КОММЕНТАРИЙ</th>
     </tr>
 
 
@@ -46,23 +46,27 @@
                 'foreign_rows' => $storages
             ])</td>
 
-            <td class="comment-col"><input type="text" value="{{ $purchase->comment }}" onchange="add_updated_rows(this)"></td>
+            <td class="comment-col"><input type="text" value="{{ $purchase->comment }}"
+                                           onchange="add_updated_rows(this)"></td>
             <td>
                 <button
                     type="button"
                     class="delete-btn btn"
                     onclick="toggle_row_deleting(this)"
-                    ><img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
+                ><img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
                 </button>
             </td>
         </tr>
     @endforeach
     @if ($purchases->count() < $purchases->perPage())
         <script type="module">
-            import { append_empty_tr, auto_new_tr } from '{{ asset('js/auto_new_tr.js') }}'
+            import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
+
             let db_editor = document.getElementsByClassName('db-editor')[0]
             let last_tr = append_empty_tr(db_editor)
-            last_tr.onchange = () => {auto_new_tr('{{ route('product_moves.create') }}')}
+            last_tr.onchange = () => {
+                auto_new_tr('{{ route('product_moves.create') }}')
+            }
         </script>
     @endif
 
@@ -79,10 +83,10 @@
         '{{ route('product_moves.bulk_delete') }}',
         'purchasing'
     )"
-    > Сохранить
+> Сохранить
 </button>
 
-@include('search-bar', [
+@include('table-tools.search-bar', [
     'model_for_route' => 'product_moves.purchases_crud'
 ])
 </body>

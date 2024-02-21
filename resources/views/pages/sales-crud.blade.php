@@ -19,12 +19,12 @@
 >
 
     <tr>
-        <th> ПРОДАНО </th>
-        <th> ТОВАР </th>
-        <th> КОЛ-ВО </th>
-        <th> ЦЕНА </th>
-        <th> СКЛАД </th>
-        <th> КОММЕНТАРИЙ </th>
+        <th> ПРОДАНО</th>
+        <th> ТОВАР</th>
+        <th> КОЛ-ВО</th>
+        <th> ЦЕНА</th>
+        <th> СКЛАД</th>
+        <th> КОММЕНТАРИЙ</th>
     </tr>
 
 
@@ -46,7 +46,8 @@
                 'foreign_rows' => $storages
             ])</td>
 
-            <td class="comment-col"><input type="text" value="{{ $sale->comment }}" onchange="add_updated_rows(this)"></td>
+            <td class="comment-col"><input type="text" value="{{ $sale->comment }}" onchange="add_updated_rows(this)">
+            </td>
             <td>
                 <button
                     type="button"
@@ -59,10 +60,13 @@
     @endforeach
     @if (($sales->count() < $sales->perPage()) || !$sales->hasPages())
         <script type="module">
-            import { append_empty_tr, auto_new_tr } from '{{ asset('js/auto_new_tr.js') }}'
+            import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
+
             let db_editor = document.getElementsByClassName('db-editor')[0]
             let last_tr = append_empty_tr(db_editor)
-            last_tr.onchange = () => {auto_new_tr('{{ route('product_moves.create') }}')}
+            last_tr.onchange = () => {
+                auto_new_tr('{{ route('product_moves.create') }}')
+            }
         </script>
     @endif
 
@@ -82,7 +86,7 @@
 > Сохранить
 </button>
 
-@include('search-bar', [
+@include('table-tools.search-bar', [
     'model_for_route' => 'product_moves.purchases_crud'
 ])
 </body>
