@@ -22,7 +22,7 @@ export function append_empty_tr(table) {
 
 
 export function auto_new_tr() {
-    let db_editor = document.getElementsByClassName('db-editor')[0]
+    let db_editor = document.getElementsByClassName('crud-table')[0]
     let old_last_tr = db_editor.rows[db_editor.rows.length-1]
 
     if (is_filled(old_last_tr)) {

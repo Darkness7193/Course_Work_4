@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta id="csrf-token" content="{{ csrf_token() }}">
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
-    <link rel="stylesheet" href="{{ asset('css/db-editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 </head>
 <body
@@ -13,7 +13,7 @@
 >
 
 <table
-    class="db-editor"
+    class="crud-table"
     data-view-fields="{{ implode(',', $view_fields) }}"
     data-max-id="{{ $max_id }}"
 >
@@ -62,7 +62,7 @@
         <script type="module">
             import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
 
-            let db_editor = document.getElementsByClassName('db-editor')[0]
+            let db_editor = document.getElementsByClassName('crud-table')[0]
             let last_tr = append_empty_tr(db_editor)
             last_tr.onchange = () => {
                 auto_new_tr('{{ route('product_moves.create') }}')

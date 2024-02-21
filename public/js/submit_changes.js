@@ -3,7 +3,7 @@ import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements
 
 window.updated_rows = {}
 window.deleted_rows = new Set([])
-window.view_fields = document.getElementsByClassName('db-editor')[0].dataset.viewFields.split(',')
+window.view_fields = document.getElementsByClassName('crud-table')[0].dataset.viewFields.split(',')
 
 
 function add_updated_rows(editor) {
