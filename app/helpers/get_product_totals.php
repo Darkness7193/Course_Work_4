@@ -6,57 +6,43 @@ use Illuminate\Support\Facades\DB;
 
 
 function query_totals() {
-    $purchase_totals = "
-    select
-        storage_id,
-        product_id,
-        sum(quantity) as total_purchases_quantity,
-        sum(price) as total_purchases_price
-    from
-        product_moves
-    where
-        product_move_type = 'purchasing'
-    group by storage_id, product_id
-";
+    $purchases = "
+    select *
+    from product_moves
+    where product_move_type = 'purchasing' ";
 
 
-    $selling_totals = "
-    select
-        storage_id,
-        product_id,
-        sum(quantity) as total_sales_quantity,
-        sum(price) as total_sales_price
-    from
-        product_moves
-    where
-        product_move_type = 'selling'
-    group by storage_id, product_id
-";
+    $sales = "
+    select *
+    from product_moves
+    where product_move_type = 'selling' ";
 
 
     $totals = "
-    select *
-    from ($purchase_totals) as p
-    inner join ($selling_totals) as s
-    on
-        p.storage_id = s.storage_id and
-        p.product_id = s.product_id
-";
+    select
+        (select name from storages where id = p.storage_id) as storage_name,
+        (select name from products where id = p.product_id) as product_name,
+        sum(p.quantity)         as total_purchases_quantity,
+        sum(p.quantity*p.price) as total_purchases_price,
+        sum(s.quantity)         as total_sales_quantity,
+        sum(s.quantity*s.price) as total_sales_price
+    from
+        ($purchases)        as p
+        inner join ($sales) as s
+            on  p.storage_id = s.storage_id
+            and p.product_id = s.product_id
+    group by
+        p.storage_id, p.product_id
+    ";
 
     return $totals;
 }
 
 
 function get_product_totals($request) {
-    $totals = ProductMove::
-    where('product_move_type', 'purchasing')->
-    select(
-        'storage_id',
-        'product_id',
-        DB::raw('sum(quantity) as total_purchase_quantity'),
-        DB::raw('sum(price) as total_purchase_price'))->
-    groupBy('storage_id', 'product_id');
-    paginate($totals,
+    $totals = DB::select(query_totals());
+
+    $totals = paginate_array($totals,
         per_page: $request->session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );

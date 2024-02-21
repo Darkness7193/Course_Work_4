@@ -11,18 +11,22 @@
     <tr>
         <th> СКЛАД </th>
         <th> ТОВАР </th>
-        <th> КОЛ-ВО </th>
-        <th> ЦЕНА </th>
+        <th> КОЛ-ВО ЗАКУПКИ </th>
+        <th> ЦЕНА ЗАКУПКИ </th>
+        <th> ЦЕНА ПРОДАЖИ </th>
+        <th> ЦЕНА ПРОДАЖИ </th>
     </tr>
 
 
     @foreach ($totals as $total)
         <tr>
 
-            <td> {{ $total->storage->name }}</td>
-            <td> {{ $total->product->name }}</td>
-            <td> {{ $total->total_purchase_quantity }}</td>
-            <td> {{ $total->total_purchase_price }}</td>
+            <td>{{ $total->storage_name }}</td>
+            <td>{{ $total->product_name }}</td>
+            <td>{{ $total->total_purchases_quantity }}</td>
+            <td>{{ $total->total_purchases_price }}</td>
+            <td>{{ $total->total_sales_quantity }}</td>
+            <td>{{ $total->total_sales_price }}</td>
 
         </tr>
     @endforeach
