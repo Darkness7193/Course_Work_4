@@ -11,7 +11,6 @@ function query_totals() {
     from product_moves
     where product_move_type = 'purchasing' ";
 
-
     $sales = "
     select *
     from product_moves
@@ -42,10 +41,8 @@ function query_totals() {
 function get_product_totals($request) {
     $totals = DB::select(query_totals());
 
-    $totals = paginate_array($totals,
+    return paginate_array($totals,
         per_page: $request->session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );
-
-    return $totals;
 }

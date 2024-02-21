@@ -13,7 +13,7 @@ function paginate(&$query, $per_page=null, $columns=['*'], $page_name = 'page', 
 }
 
 
-function paginate_array(array $items, $per_page=10, $current_page=1)
+function paginate_array(array &$items, $per_page=10, $current_page=1)
 {
     $last_page = intdiv(count($items), $per_page) + 1;
     $current_page = min($current_page, $last_page);
