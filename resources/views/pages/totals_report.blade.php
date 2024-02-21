@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ asset('css/beautiful-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
 </head>
 <body>
 
-<table class="beautiful-table">
+<table class="tile-table">
 
     <tr>
         <th> СКЛАД </th>
