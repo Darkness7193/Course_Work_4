@@ -1,4 +1,4 @@
-import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both } from "./helpers.js"
+import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both, msleep} from "./helpers.js"
 
 
 window.updated_rows = {}
@@ -36,7 +36,9 @@ function submit_changes(update_controller, bulk_delete_controller, product_move_
     })
     post(bulk_delete_controller, {'deleted_rows': Array.from(deleted_rows)})
 
-    location.reload();
+    msleep(100).then(() => {
+        location.reload();
+    })
 }
 
 

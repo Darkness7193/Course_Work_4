@@ -49,6 +49,11 @@ export function create(parent, tag) {
 }
 
 
+export function msleep (mtime) {
+    return new Promise((resolve) => setTimeout(resolve, mtime));
+}
+
+
 export function get_tr_values(tr) {
     let values = []
     for (let i=0; i<tr.cells.length; i++) {
