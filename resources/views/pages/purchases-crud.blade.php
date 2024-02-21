@@ -30,37 +30,14 @@
         <th> КОММЕНТАРИЙ</th>
     </tr>
 
-
     @foreach ($purchases as $purchase)
-        <tr data-row-id="{{ $purchase->id }}">
-
-            <td><input type="date" value="{{ $purchase->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
-
-            <td>@include('foreign-cell', [
-                'selected_foreign_row' => $purchase->product,
-                'foreign_rows' => $products
-            ])</td>
-
-            <td><input type="number" value="{{ $purchase->quantity }}" onchange="add_updated_rows(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $purchase->price }}" onchange="add_updated_rows(this)"></td>
-
-            <td>@include('foreign-cell', [
-                'selected_foreign_row' => $purchase->storage,
-                'foreign_rows' => $storages
-            ])</td>
-
-            <td class="comment-col"><input type="text" value="{{ $purchase->comment }}"
-                                           onchange="add_updated_rows(this)"></td>
-            <td>
-                <button
-                    type="button"
-                    class="delete-btn btn"
-                    onclick="toggle_row_deleting(this)"
-                ><img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
-                </button>
-            </td>
-        </tr>
+        @include('product-move-crud-tr', [
+            'row' => $purchase,
+            'products' => $products,
+            'storages' => $storages
+        ])
     @endforeach
+
     @if ($purchases->count() < $purchases->perPage())
         <script type="module">
             import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
@@ -75,9 +52,8 @@
 
 </table>
 
-<div>
-    {{ $purchases->links('pagination::my-pagination-links') }}
-</div>
+<div>{{ $purchases->links('pagination::my-pagination-links') }}</div>
+
 <button
     id="save-btn"
     type="button"
@@ -86,7 +62,7 @@
         '{{ route('product_moves.bulk_delete') }}',
         'purchasing'
     )"
-> Сохранить
+    > Сохранить
 </button>
 
 @include('table-tools.search-bar', [
