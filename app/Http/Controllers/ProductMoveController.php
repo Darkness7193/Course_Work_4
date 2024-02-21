@@ -24,7 +24,7 @@ class ProductMoveController extends Controller {
             $request->session()->put('per_page', $request->per_page);
         }
 
-        return view('purchases-crud', [
+        return view('pages/purchases-crud', [
             'purchases' => filter_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
@@ -40,7 +40,7 @@ class ProductMoveController extends Controller {
             $request->session()->put('per_page', $request->per_page);
         }
 
-        return view('sales-crud', [
+        return view('pages/sales-crud', [
             'sales' => filter_order_paginate(ProductMove::where('product_move_type', 'selling'), $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
@@ -52,7 +52,7 @@ class ProductMoveController extends Controller {
 
     public function show_totals_report(Request $request): View {
 
-        return view('totals_report', ['totals' => get_product_totals($request)]);
+        return view('pages/totals_report', ['totals' => get_product_totals($request)]);
     }
 
 
