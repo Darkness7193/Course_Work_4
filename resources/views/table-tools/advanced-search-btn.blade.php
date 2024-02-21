@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="{{ asset('css/search-bar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
 

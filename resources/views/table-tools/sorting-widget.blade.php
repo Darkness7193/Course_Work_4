@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}">
-<link rel="stylesheet" href="{{ asset('css/sorting-btn.css') }}">
+<link rel="stylesheet" href="{{ asset('css/table-tools/sorting-btn.css') }}">
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
 

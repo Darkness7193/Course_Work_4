@@ -14,16 +14,16 @@
 }
 
 .anti-search-btn {
-    background-image: url('./../images/anti-search-icon.png');
+    background-image: url('../../images/anti-search-icon.png');
 
 }
 
 .search-btn {
-    background-image: url('./../images/search-icon.png');
+    background-image: url('../../images/search-icon.png');
     margin-right: 2px;
 }
 
 
 .advanced-search-btn {
-    background-image: url('./../images/advanced-search-icon.png');
+    background-image: url('../../images/advanced-search-icon.png');
 }
