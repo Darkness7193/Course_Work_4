@@ -20,10 +20,15 @@ function query_totals() {
     select
         (select name from storages where id = p.storage_id) as storage_name,
         (select name from products where id = p.product_id) as product_name,
-        sum(p.quantity)         as total_purchases_quantity,
-        sum(p.quantity*p.price) as total_purchases_price,
-        sum(s.quantity)         as total_sales_quantity,
-        sum(s.quantity*s.price) as total_sales_price
+
+        sum(p.quantity)                                     as total_purchases_quantity,
+        sum(s.quantity)                                     as total_sales_quantity,
+        sum(p.quantity) - sum(s.quantity)                   as total_quantity,
+
+        sum(p.quantity*p.price)                             as total_purchases_price,
+        sum(s.quantity*s.price)                             as total_sales_price,
+        sum(p.quantity*p.price) - sum(s.quantity*s.price)   as income
+
     from
         ($purchases)        as p
         inner join ($sales) as s
