@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<!-- imports: -->
+    <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
+    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+
+
 <html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta id="csrf-token" content="{{ csrf_token() }}">
-    <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
-    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 </head>
 <body
     data-img-delete-on="{{ asset('images/delete-on.png') }}"

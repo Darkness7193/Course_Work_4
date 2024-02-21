@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
+<!-- imports: -->
+    <link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
 
 
 <!-- f($model_for_route) -->

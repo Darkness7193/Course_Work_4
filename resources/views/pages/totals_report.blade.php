@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+<!-- imports: -->
+    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
+
+
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
 </head>
 <body>
 

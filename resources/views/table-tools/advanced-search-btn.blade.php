@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
-<script src="{{ asset('js/dropdown.js') }}" type="module"></script>
+<!-- imports: -->
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
 
 
 <!-- f($model_for_route) -->
