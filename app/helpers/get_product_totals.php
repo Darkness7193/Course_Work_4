@@ -29,8 +29,7 @@ function query_totals() {
         sum(s.quantity*s.price)                             as total_sales_price,
         sum(p.quantity*p.price) - sum(s.quantity*s.price)   as income
 
-    from
-        ($purchases)        as p
+    from ($purchases) as p
         inner join ($sales) as s
             on p.storage_id = s.storage_id
             or p.product_id = s.product_id
