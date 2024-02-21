@@ -15,4 +15,5 @@
     border: 3px solid transparent;
     background: #3b3b3b;
     overflow: hidden;
+    vertical-align: top;
 }
