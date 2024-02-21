@@ -36,6 +36,8 @@ function query_totals() {
             or p.product_id = s.product_id
     group by
         p.storage_id, p.product_id
+    order by
+        p.storage_id
     ";
 
     return $totals;
