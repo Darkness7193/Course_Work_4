@@ -1,7 +1,6 @@
 <?php
 
 
-use App\Models\ProductMove;
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,8 +27,8 @@ function query_totals() {
     from
         ($purchases)        as p
         inner join ($sales) as s
-            on  p.storage_id = s.storage_id
-            and p.product_id = s.product_id
+            on p.storage_id = s.storage_id
+            or p.product_id = s.product_id
     group by
         p.storage_id, p.product_id
     ";
