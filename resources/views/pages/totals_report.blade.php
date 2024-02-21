@@ -40,7 +40,7 @@
 </table>
 
 <div>
-    {{ $totals->links('pagination::custom-bootstrap-5') }}
+    {{ $totals->links('pagination::my-pagination-links') }}
 </div>
 
 

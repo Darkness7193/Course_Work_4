@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/pagination-links.css') }}">
+<link rel="stylesheet" href="{{ asset('css/my-pagination-links.css') }}">
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 

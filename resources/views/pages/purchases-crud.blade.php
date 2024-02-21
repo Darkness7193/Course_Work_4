@@ -73,7 +73,7 @@
 </table>
 
 <div>
-    {{ $purchases->links('pagination::custom-bootstrap-5') }}
+    {{ $purchases->links('pagination::my-pagination-links') }}
 </div>
 <button
     id="save-btn"

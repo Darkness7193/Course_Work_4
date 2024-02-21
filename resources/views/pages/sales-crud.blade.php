@@ -73,7 +73,7 @@
 </table>
 
 <div>
-    {{ $sales->links('pagination::custom-bootstrap-5') }}
+    {{ $sales->links('pagination::my-pagination-links') }}
 </div>
 <button
     id="save-btn"
