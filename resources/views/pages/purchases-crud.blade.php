@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- imports: -->
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
+    <script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -39,14 +40,17 @@
     @endforeach
 
     @if ($purchases->count() < $purchases->perPage())
+        @include('product-move-crud-tr', [
+            'row' => $emptyRow,
+            'products' => $products,
+            'storages' => $storages,
+            'is_create_tr' => true,
+        ])
         <script type="module">
-            import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
-
-            let db_editor = document.getElementsByClassName('crud-table')[0]
-            let last_tr = append_empty_tr(db_editor)
-            last_tr.onchange = () => {
-                auto_new_tr('{{ route('product_moves.create') }}')
-            }
+            let crud_table = document.getElementsByClassName('crud-table')[0]
+            let last_tr = crud_table.rows[crud_table.rows.length-1]
+            last_tr.onchange = ()=>{ auto_new_tr() }
+            set_next_row_id(last_tr)
         </script>
     @endif
 

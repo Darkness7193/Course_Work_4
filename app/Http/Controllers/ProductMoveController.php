@@ -6,11 +6,12 @@ include(app_path().'/helpers/multi_fields_search.php');
 include(app_path().'/helpers/paginate.php');
 include(app_path().'/helpers/filter_order_paginate.php');
 include(app_path().'/helpers/get_product_totals.php');
+include(app_path().'/helpers/EmptyRow.php');
 
 
 use App\Models\Product;
 use App\Models\Storage;
-use Illuminate\Support\Facades\DB;
+use App\helpers\EmptyRow;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\ProductMove;
@@ -30,6 +31,7 @@ class ProductMoveController extends Controller {
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),
+            'emptyRow' => new EmptyRow()
         ]);
     }
 

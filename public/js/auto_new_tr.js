@@ -1,7 +1,8 @@
 import { is_filled, set_editors_to_empty } from "./helpers.js"
 
 
-function set_next_row_id(tr, db_editor) {
+function set_next_row_id(tr) {
+    let db_editor = document.getElementsByClassName('crud-table')[0]
     tr.dataset['rowId'] = String(Number(db_editor.dataset.maxId) + 1)
     db_editor.dataset.maxId = tr.dataset.rowId
 }
@@ -13,7 +14,7 @@ export function append_empty_tr(table) {
     let delete_btn = new_last_tr.getElementsByClassName('delete-btn')[0]
 
     set_editors_to_empty(new_last_tr)
-    set_next_row_id(new_last_tr, table)
+    set_next_row_id(new_last_tr)
     delete_btn.style.display = 'none'
 
     table.getElementsByTagName('tbody')[0].appendChild(new_last_tr)
@@ -37,5 +38,6 @@ export function auto_new_tr() {
 }
 
 
-window.auto_new_row = auto_new_tr
+window.auto_new_tr = auto_new_tr
+window.set_next_row_id = set_next_row_id
 
