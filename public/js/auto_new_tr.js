@@ -26,8 +26,6 @@ export function auto_new_tr() {
     let db_editor = document.getElementsByClassName('crud-table')[0]
     let old_last_tr = db_editor.rows[db_editor.rows.length-1]
     let page_is_full = window.page_count >= window.per_page
-    console.log(window.page_count)
-    console.log(window.per_page)
 
     if (is_filled(old_last_tr) && !page_is_full) {
 
@@ -45,7 +43,6 @@ export function auto_new_tr() {
         let delete_btn = old_last_tr.getElementsByClassName('delete-btn')[0]
         delete_btn.style.display = 'block'
     }
-
 }
 
 
