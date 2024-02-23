@@ -12,7 +12,7 @@ function suppress_context_menu_once() {
 }
 
 
-function activate_by_hold_cursor_entering(element) {
+function delete_btn_bulk_activation(element) {
     element.addEventListener("mouseenter", (event) => {
         if (is_mouse_down) {
             element.click()
@@ -24,7 +24,7 @@ function activate_by_hold_cursor_entering(element) {
 
 
 [...document.getElementsByClassName('delete-btn')].forEach((delete_btn)=>{
-    activate_by_hold_cursor_entering(delete_btn)
+    delete_btn_bulk_activation(delete_btn)
 })
 
 
