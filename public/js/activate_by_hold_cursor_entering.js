@@ -11,6 +11,7 @@ function suppress_context_menu_once() {
     })
 }
 
+
 function activate_by_hold_cursor_entering(element) {
     element.addEventListener("mouseenter", (event) => {
         if (is_mouse_down) {
