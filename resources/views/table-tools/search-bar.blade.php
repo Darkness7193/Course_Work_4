@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
 
 
-<!-- f($model_for_route) -->
+<!-- f($model_for_route): -->
 <form class="search-bar" method="post"
     action="{{ route('post_to_get_route', ['target_route' => Route::current()->getName()]) }}"
 >

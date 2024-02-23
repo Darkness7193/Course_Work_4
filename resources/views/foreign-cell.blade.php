@@ -2,7 +2,7 @@
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
 
-<!-- f($selected_foreign_row, $foreign_rows) -->
+<!-- f($selected_foreign_row, $foreign_rows): -->
 <select class="foreign-cell" data-foreign-id="{{ $selected_foreign_row->id }}" onchange="add_updated_rows(this)">
 
     @foreach ($foreign_rows as $foreign_row)

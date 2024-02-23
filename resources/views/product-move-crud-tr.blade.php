@@ -2,7 +2,7 @@
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
 
-<!-- f($row, $products, $storages) -->
+<!-- f($row, $products, $storages): -->
 <tr data-row-id="{{ $row->id}}">
 
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
