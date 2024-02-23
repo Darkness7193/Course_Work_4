@@ -23,6 +23,4 @@ function activate_by_hold_cursor_entering(elements) {
 }
 
 
-let btns = document.getElementsByClassName('delete-btn')
-console.log(btns)
-activate_by_hold_cursor_entering(btns)
+activate_by_hold_cursor_entering(document.getElementsByClassName('delete-btn'))
