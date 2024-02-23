@@ -1,7 +1,7 @@
 import { msleep, set_is_mouse_down } from './helpers.js'
 
-function disable_context_menu(event) { event.preventDefault() }
 set_is_mouse_down()
+function disable_context_menu(event) { event.preventDefault() }
 
 
 function suppress_context_menu_once() {
