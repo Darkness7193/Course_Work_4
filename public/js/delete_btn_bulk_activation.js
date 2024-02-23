@@ -23,7 +23,7 @@ function delete_btn_bulk_activation(element) {
 }
 
 
-[...document.getElementsByClassName('delete-btn')].forEach((delete_btn)=>{
+;[...document.getElementsByClassName('delete-btn')].forEach((delete_btn)=>{
     delete_btn_bulk_activation(delete_btn)
 })
 
