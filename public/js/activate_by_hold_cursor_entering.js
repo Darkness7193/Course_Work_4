@@ -17,7 +17,6 @@ function activate_by_hold_cursor_entering(elements) {
             if (is_mouse_down) {
                 elements[i].click()
             }
-            console.log('after_down')
         })
     }
 }
