@@ -1,37 +1,29 @@
-import { msleep } from './helpers.js'
-
-
-var is_mouse_down = false
-
-document.addEventListener('mousedown', function(event) {
-    is_mouse_down = true
-    console.log('mouse_is_down')
-}, true)
-
-document.addEventListener('mouseup', function(event) {
-    is_mouse_down = false
-}, true)
+import { msleep, set_is_mouse_down } from './helpers.js'
 
 function disable_context_menu(event) { event.preventDefault() }
+set_is_mouse_down()
+
+
+function suppress_context_menu_once() {
+    document.addEventListener('mouseup', function activate_context_menu(event) {
+        event.currentTarget.removeEventListener(event.type, activate_context_menu)
+        msleep(50).then(()=>{ window.removeEventListener(`contextmenu`, disable_context_menu) })
+    })
+}
 
 function activate_by_hold_cursor_entering(element) {
-
-    element.addEventListener("mouseenter", (event) => { if (is_mouse_down) {
-        element.click()
-        window.addEventListener(`contextmenu`, disable_context_menu)
-        document.addEventListener('mouseup', function activate_context_menu(event) {
-            event.currentTarget.removeEventListener(event.type, activate_context_menu)
-            msleep(200).then(()=>{
-                window.removeEventListener(`contextmenu`, disable_context_menu)
-            })
-        })
-    } })
+    element.addEventListener("mouseenter", (event) => {
+        if (is_mouse_down) {
+            element.click()
+            window.addEventListener(`contextmenu`, disable_context_menu)
+            suppress_context_menu_once()
+        }
+    })
 }
 
 
-let delete_btns = document.getElementsByClassName('delete-btn')
-for (let i=0, n=delete_btns.length; i<n; i++) {
-    activate_by_hold_cursor_entering(delete_btns[i])
-}
+[...document.getElementsByClassName('delete-btn')].forEach((delete_btn)=>{
+    activate_by_hold_cursor_entering(delete_btn)
+})
 
 

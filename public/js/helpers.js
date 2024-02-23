@@ -110,3 +110,17 @@ export function remove_elements_that_in_both(set, json) {
     });
     return [set, json]
 }
+
+
+export function set_is_mouse_down() {
+    window.is_mouse_down = false
+
+    document.addEventListener('mousedown', function(event) {
+        window.is_mouse_down = true
+    }, true)
+
+    document.addEventListener('mouseup', function(event) {
+        window.is_mouse_down = false
+    }, true)
+}
+
