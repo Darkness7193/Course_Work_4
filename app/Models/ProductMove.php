@@ -42,6 +42,14 @@ class ProductMove extends Model
         'comment',
     ];
 
+    public static function product_move_types() {
+        return ['purchasing', 'selling', 'liquidating', 'inventory', 'transfering'];
+    }
+
+    public static function inner_move_types() {
+        return ['liquidating', 'inventory', 'transfering'];
+    }
+
     public static function view_fields() {
          return [
             'date',

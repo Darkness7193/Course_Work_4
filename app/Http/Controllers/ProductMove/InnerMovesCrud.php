@@ -15,16 +15,26 @@ use App\Models\Storage;
 use App\helpers\EmptyRow;
 
 
+function get_inner_moves($product_moves) {
+    return $product_moves->where( function($query) {
+        $query->orWhere('product_move_type', 'liquidating')
+            ->orWhere('product_move_type', 'inventory')
+            ->orWhere('product_move_type', 'transfering');
+    });
+}
+
+
 class InnerMovesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $purchases = ProductMove::where('product_move_type', 'purchasing');
+        $inner_moves = get_inner_moves(ProductMove::query());
 
         return view('pages/inner-moves-crud', [
-            'purchases' => filter_order_paginate($purchases, $request),
+            'inner_moves' => filter_order_paginate($inner_moves, $request),
             'view_fields' => ProductMove::view_fields(),
+            'inner_move_types' => ProductMove::inner_move_types(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),

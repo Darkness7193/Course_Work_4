@@ -65,7 +65,7 @@
 
 </table>
 
-<div>{{ $purchases->links('pagination::my-pagination-links') }}</div>
+<div>{{ $inner_moves->links('pagination::my-pagination-links') }}</div>
 
 <button
     id="save-btn"
