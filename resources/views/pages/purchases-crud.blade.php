@@ -78,9 +78,11 @@
     'search_target' => $search_target
 ])
 
-@include('table-tools.ordering-menu', [
+@include('table-tools.advanced-search-btn', [
     'model_for_route' => 'product_moves.purchases_crud'
 ])
+
+
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 <!-- imports: -->
+    <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
 
