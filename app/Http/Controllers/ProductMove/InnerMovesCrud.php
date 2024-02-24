@@ -22,7 +22,7 @@ class InnerMovesCrud extends Controller
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
         $purchases = ProductMove::where('product_move_type', 'purchasing');
 
-        return view('pages/purchases-crud', [
+        return view('pages/inner-moves-crud', [
             'purchases' => filter_order_paginate($purchases, $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
