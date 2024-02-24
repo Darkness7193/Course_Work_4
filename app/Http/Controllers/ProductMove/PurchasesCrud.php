@@ -15,7 +15,7 @@ use App\Models\Storage;
 use App\helpers\EmptyRow;
 
 
-class PurchasesCrudController extends Controller
+class PurchasesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {

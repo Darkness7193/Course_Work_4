@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductMove;
 
 
-class BulkUpdateOrCreateController extends Controller
+class UpdateOrCreateInBulk extends Controller
 {
     public function __invoke(Request $request): void
     {
