@@ -1,5 +1,6 @@
 <?php
 
+include_once(app_path().'/helpers/paginate.php');
 
 use Illuminate\Support\Facades\DB;
 

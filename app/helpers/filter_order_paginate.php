@@ -1,6 +1,10 @@
 <?php
 
 
+include_once(app_path().'/helpers/multi_fields_search.php');
+include_once(app_path().'/helpers/paginate.php');
+
+
 function filter_order_paginate($product_moves, $request) {
     multi_fields_search($product_moves, $request->search_target)->
     orderBy('created_at');
