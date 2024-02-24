@@ -18,9 +18,7 @@ class SalesCrudController extends Controller
 {
     public function __invoke(Request $request): View
     {
-        if ($request->per_page) {
-            $request->session()->put('per_page', $request->per_page);
-        }
+        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
 
         return view('pages/sales-crud', [
             'sales' => filter_order_paginate(ProductMove::where('product_move_type', 'selling'), $request),

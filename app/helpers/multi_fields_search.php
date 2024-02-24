@@ -2,9 +2,7 @@
 
 
 function multi_fields_search(&$query, $target) {
-    if (empty($target)) {
-        return $query;
-    }
+    if (empty($target)) { return $query; }
 
     foreach ($query->getModel()->view_fields() as $field) {
         $is_foreing_id = str_contains($field, 'id');
