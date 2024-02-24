@@ -3,6 +3,8 @@ export function get_value(element) {
         return element.value
     } else if (element.className === 'foreign-cell') {
         return Number(element.children[element.selectedIndex].dataset.foreignId)
+    } else if (element.tagName === 'SELECT') {
+        return element.children[element.selectedIndex].value
     } else {
         alert("get_value() was get element, that is not input or foreign-cell")
     }

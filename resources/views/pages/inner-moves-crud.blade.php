@@ -46,7 +46,7 @@
     @endforeach
 
     @if ($inner_moves->count() < $inner_moves->perPage())
-        @include('product-move-crud-tr', [
+        @include('inner-move-crud-tr', [
             'row' => $emptyRow,
             'inner_move_types' => $inner_move_types,
             'products' => $products,

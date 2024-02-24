@@ -6,7 +6,14 @@
 <tr data-row-id="{{ $row->id}}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
-    <td>@include('foreign-cell', ['selected_foreign_row' => $row->inner_move_type, 'foreign_rows' => $inner_move_types])</td>
+    <td><select class="" onchange="add_updated_rows(this)">
+        <option value="liquidation"> Ликвидация </option>
+        <option value="inventory"> Инвенторизация </option>
+        <option value="transfering"> Перевоз </option>
+
+        <option value="{{ $row->product_move_type }}" selected="selected" hidden="hidden">{{ $row->product_move_type }}</option>
+    </select></td>
+
     <td>@include('foreign-cell', ['selected_foreign_row' => $row->start_storage, 'foreign_rows' => $storages])</td>
     <td>@include('foreign-cell', ['selected_foreign_row' => $row->end_storage, 'foreign_rows' => $storages])</td>
 
