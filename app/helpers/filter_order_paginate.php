@@ -1,6 +1,5 @@
 <?php
 
-
 include_once(app_path().'/helpers/multi_fields_search.php');
 include_once(app_path().'/helpers/paginate.php');
 

@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 include(app_path().'/helpers/post_to_get_route.php');
+
+use Illuminate\Support\Facades\Route;
 
 /**
  * @var string $post_to_get_route

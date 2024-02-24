@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
