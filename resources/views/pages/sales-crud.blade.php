@@ -61,15 +61,14 @@
             </td>
         </tr>
     @endforeach
+
     @if (($sales->count() < $sales->perPage()) || !$sales->hasPages())
         <script type="module">
             import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
 
             let crud_table = document.getElementsByClassName('crud-table')[0]
             let last_tr = append_empty_tr(crud_table)
-            last_tr.onchange = () => {
-                auto_new_tr('{{ route('product_moves.create') }}')
-            }
+            last_tr.onchange = ()=>{ auto_new_tr() }
         </script>
     @endif
 
@@ -90,7 +89,7 @@
 </button>
 
 @include('table-tools.search-bar', [
-    'model_for_route' => 'product_moves.purchases_crud'
+    'model_for_route' => 'product_moves.sales_crud'
 ])
 </body>
 </html>

@@ -20,9 +20,10 @@ class PurchasesCrud extends Controller
     public function __invoke(Request $request): View
     {
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
+        $purchases = ProductMove::where('product_move_type', 'purchasing');
 
         return view('pages/purchases-crud', [
-            'purchases' => filter_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $request),
+            'purchases' => filter_order_paginate($purchases, $request),
             'view_fields' => ProductMove::view_fields(),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
