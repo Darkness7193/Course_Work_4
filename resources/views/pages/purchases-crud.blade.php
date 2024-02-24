@@ -74,7 +74,8 @@
 </button>
 
 @include('table-tools.search-bar', [
-    'model_for_route' => 'product_moves.purchases_crud'
+    'model_for_route' => 'product_moves.purchases_crud',
+    'search_target' => $search_target
 ])
 
 @include('table-tools.ordering-menu', [

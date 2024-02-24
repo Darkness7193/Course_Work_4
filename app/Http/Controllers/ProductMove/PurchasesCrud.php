@@ -27,7 +27,8 @@ class PurchasesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),
-            'emptyRow' => new EmptyRow()
+            'emptyRow' => new EmptyRow(),
+            'search_target' => $request->search_target
         ]);
     }
 }

@@ -14,3 +14,24 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0;
     vertical-align: middle;
 }
+
+
+.vertical-arrange {
+    display:flex;
+    flex-direction: row;
+}
+
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+
+
