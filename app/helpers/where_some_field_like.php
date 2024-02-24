@@ -1,7 +1,7 @@
 <?php
 
 
-function multi_fields_search(&$query, $target) {
+function where_some_field_like(&$query, $target) {
     if (empty($target)) { return $query; }
     $target = "%$target%";
 
