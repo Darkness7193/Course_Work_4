@@ -17,12 +17,10 @@ class UpdateOrCreateInBulk extends Controller
         foreach ($request->updated_rows as $row_id => $updated_cells) {
             $purchase = ProductMove::find($row_id);
 
-            if ($purchase === null) {
-                if (count($updated_cells) === $view_fields_count) {
-                    ProductMove::create(array_merge($updated_cells, ['product_move_type' => $request->product_move_type]));
-                }
-            } else {
+            if ($purchase) {
                 $purchase->update($updated_cells);
+            } else if (count($updated_cells) === $view_fields_count) {
+                ProductMove::create(array_merge($updated_cells, ['product_move_type' => $request->product_move_type]));
             }
         }
     }
