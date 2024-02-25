@@ -20,7 +20,6 @@
     data-view-fields="{{ implode(',', $view_fields) }}"
     data-max-id="{{ $max_id }}"
 >
-
     <tr>
         <th> ПРОДАНО </th>
 
@@ -78,16 +77,7 @@
 
 <div>{{ $sales->links('pagination::my-pagination-links') }}</div>
 
-<button
-    id="save-btn"
-    type="button"
-    onclick="submit_changes(
-        '{{ route('product_moves.bulk_update_or_create') }}',
-        '{{ route('product_moves.bulk_delete') }}',
-        'selling'
-    )"
-> Сохранить
-</button>
+@include('crud-components.save-btn', ['product_move_type' => 'selling'])
 
 @include('table-tools.search-bar', ['model_for_route' => 'product_moves.sales_crud'])
 
