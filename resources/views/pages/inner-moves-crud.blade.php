@@ -39,7 +39,7 @@
     @foreach ($inner_moves as $inner_move)
         @include('inner-move-crud-tr', [
             'row' => $inner_move,
-            'inner_move_types' => $inner_move_types,
+            'ProductMove' => $ProductMove,
             'products' => $products,
             'storages' => $storages,
         ])
@@ -48,7 +48,7 @@
     @if ($inner_moves->count() < $inner_moves->perPage())
         @include('inner-move-crud-tr', [
             'row' => $emptyRow,
-            'inner_move_types' => $inner_move_types,
+            'ProductMove' => $ProductMove,
             'products' => $products,
             'storages' => $storages,
             'is_create_tr' => true,

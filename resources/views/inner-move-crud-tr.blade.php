@@ -2,16 +2,18 @@
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
 
-<!-- f($row, $products, $storages, $inner_move_types): -->
-<tr data-row-id="{{ $row->id}}">
+<!-- f($row, $products, $storages, $ProductMove): -->
+<tr data-row-id="{{ $row->id }}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
     <td><select class="" onchange="add_updated_rows(this)">
-        <option value="liquidation"> Ликвидация </option>
-        <option value="inventory"> Инвенторизация </option>
-        <option value="transfering"> Перевоз </option>
+        @foreach($ProductMove::inner_move_types_ru() as $inner_move_type => $inner_move_type_ru)
+            <option value="{{ $inner_move_type }}"> {{ $inner_move_type_ru }} </option>
+        @endforeach
 
-        <option value="{{ $row->product_move_type }}" selected="selected" hidden="hidden">{{ $row->product_move_type }}</option>
+        <option value="{{ $row->product_move_type }}" selected="selected" hidden="hidden">
+            {{ $ProductMove::inner_move_types_ru()[$row->product_move_type] }}
+        </option>
     </select></td>
 
     <td>@include('foreign-cell', ['selected_foreign_row' => $row->start_storage, 'foreign_rows' => $storages])</td>

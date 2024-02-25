@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Product;
-use App\Models\Storage;
-use voku\helper\ASCII;
 
 /**
  * Post
@@ -55,6 +53,14 @@ class ProductMove extends Model
         return ['liquidating', 'inventory', 'transfering'];
     }
 
+    public static function inner_move_types_ru() {
+        return [
+            'liquidating' => 'Ликвидация',
+            'inventory' => 'Инвентаризация',
+            'transfering' => 'Перевоз'
+        ];
+    }
+
     public static function view_fields() {
          return [
             'date',
@@ -70,7 +76,11 @@ class ProductMove extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function storage() {
-        return $this->belongsTo(Storage::class, 'storage_id');
+    public function start_storage() {
+        return $this->belongsTo(Storage::class, 'start_storage_id');
+    }
+
+    public function end_storage() {
+        return $this->belongsTo(Storage::class, 'end_storage_id');
     }
 }
