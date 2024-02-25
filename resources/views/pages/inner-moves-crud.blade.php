@@ -37,7 +37,7 @@
     </tr>
 
     @foreach ($inner_moves as $inner_move)
-        @include('inner-move-crud-tr', [
+        @include('crud-components.inner-move-crud-tr', [
             'row' => $inner_move,
             'ProductMove' => $ProductMove,
             'products' => $products,
@@ -46,7 +46,7 @@
     @endforeach
 
     @if ($inner_moves->count() < $inner_moves->perPage())
-        @include('inner-move-crud-tr', [
+        @include('crud-components.inner-move-crud-tr', [
             'row' => $emptyRow,
             'ProductMove' => $ProductMove,
             'products' => $products,

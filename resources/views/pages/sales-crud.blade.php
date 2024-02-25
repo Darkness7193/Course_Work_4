@@ -36,7 +36,7 @@
 
             <td><input type="date" value="{{ $sale->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
-            <td>@include('foreign-cell', [
+            <td>@include('crud-components.foreign-cell', [
                 'selected_foreign_row' => $sale->product,
                 'foreign_rows' => $products
             ])</td>
@@ -44,7 +44,7 @@
             <td><input type="number" value="{{ $sale->quantity }}" onchange="add_updated_rows(this)"></td>
             <td><input type="number" step="0.01" value="{{ $sale->price }}" onchange="add_updated_rows(this)"></td>
 
-            <td>@include('foreign-cell', [
+            <td>@include('crud-components.foreign-cell', [
                 'selected_foreign_row' => $sale->storage,
                 'foreign_rows' => $storages
             ])</td>

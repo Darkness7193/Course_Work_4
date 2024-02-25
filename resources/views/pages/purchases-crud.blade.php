@@ -32,7 +32,7 @@
     </tr>
 
     @foreach ($purchases as $purchase)
-        @include('product-move-crud-tr', [
+        @include('crud-components.product-move-crud-tr', [
             'row' => $purchase,
             'products' => $products,
             'storages' => $storages
@@ -40,7 +40,7 @@
     @endforeach
 
     @if ($purchases->count() < $purchases->perPage())
-        @include('product-move-crud-tr', [
+        @include('crud-components.product-move-crud-tr', [
             'row' => $emptyRow,
             'products' => $products,
             'storages' => $storages,
