@@ -2,7 +2,7 @@
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
 
-<!-- f($row, $products, $storages, $ProductMove): -->
+<!-- f($row, $products, $storages, $ProductMove, $is_create_tr=undefined): -->
 <tr data-row-id="{{ $row->id }}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
@@ -25,7 +25,5 @@
 
     <td class="comment-col"><input type="text" value="{{ $row->comment }}" onchange="add_updated_rows(this)"></td>
 
-    <td><button type="button" @isset($is_create_tr) style="display:none;" @endif class="delete-btn btn" onclick="toggle_row_deleting(this)">
-        <img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
-    </button></td>
+    <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
 </tr>
