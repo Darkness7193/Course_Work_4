@@ -4,11 +4,10 @@
 
 <!-- f($selected_foreign_row, $foreign_rows): -->
 <select class="foreign-cell" data-foreign-id="{{ $selected_foreign_row->id }}" onchange="add_updated_rows(this)">
-
     @foreach ($foreign_rows as $foreign_row)
         <option data-foreign-id="{{ $foreign_row->id }}">{{ $foreign_row->name }}</option>
     @endforeach
-    <option selected="selected" hidden="hidden">{{ $selected_foreign_row->name }}</option>
 
+    <option selected="selected" hidden="hidden">{{ $selected_foreign_row->name }}</option>
 </select>
 

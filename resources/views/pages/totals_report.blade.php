@@ -42,9 +42,7 @@
 
 </table>
 
-<div>
-    {{ $totals->links('pagination::my-pagination-links') }}
-</div>
+<div>{{ $totals->links('pagination::my-pagination-links') }}</div>
 
 
 </body>

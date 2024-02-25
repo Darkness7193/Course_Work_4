@@ -23,9 +23,11 @@
 
     <tr>
         <th> ПРОДАНО </th>
+
         <th> ТОВАР </th>
         <th> КОЛ-ВО </th>
         <th> ЦЕНА </th>
+
         <th> СКЛАД </th>
         <th> КОММЕНТАРИЙ </th>
     </tr>
@@ -74,9 +76,8 @@
 
 </table>
 
-<div>
-    {{ $sales->links('pagination::my-pagination-links') }}
-</div>
+<div>{{ $sales->links('pagination::my-pagination-links') }}</div>
+
 <button
     id="save-btn"
     type="button"
@@ -88,8 +89,7 @@
 > Сохранить
 </button>
 
-@include('table-tools.search-bar', [
-    'model_for_route' => 'product_moves.sales_crud'
-])
+@include('table-tools.search-bar', ['model_for_route' => 'product_moves.sales_crud'])
+
 </body>
 </html>
