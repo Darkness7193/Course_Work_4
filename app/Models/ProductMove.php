@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Product;
 use App\Models\Storage;
+use voku\helper\ASCII;
 
 /**
  * Post
@@ -34,11 +35,15 @@ class ProductMove extends Model
 
     protected $fillable = [
         'date',
+
         'product_move_type',
+        'start_storage_id',
+        'end_storage_id',
+
         'product_id',
         'quantity',
         'price',
-        'storage_id',
+
         'comment',
     ];
 
