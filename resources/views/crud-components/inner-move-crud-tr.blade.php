@@ -1,5 +1,5 @@
 <!-- imports: -->
-<script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
+    <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
 
 <!-- f($row, $products, $storages, $ProductMove): -->

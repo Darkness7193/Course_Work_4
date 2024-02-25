@@ -78,7 +78,6 @@
 <div>{{ $sales->links('pagination::my-pagination-links') }}</div>
 
 @include('crud-components.save-btn', ['product_move_type' => 'selling'])
-
 @include('table-tools.search-bar', ['model_for_route' => 'product_moves.sales_crud'])
 
 </body>

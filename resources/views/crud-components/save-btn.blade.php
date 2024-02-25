@@ -1,6 +1,6 @@
 
 
-<!-- f($fields_defaults): -->
+<!-- f($product_move_type): -->
 <button
     id="save-btn"
     type="button"
@@ -9,5 +9,5 @@
         '{{ route('product_moves.bulk_delete') }}',
         '{{ $product_move_type }}'
     )"
-> Сохранить
+    > Сохранить
 </button>
