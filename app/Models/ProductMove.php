@@ -57,7 +57,7 @@ class ProductMove extends Model
         return [
             'liquidating' => 'Ликвидация',
             'inventory' => 'Инвентаризация',
-            'transfering' => 'Перевоз'
+            'transfering' => 'Перевоз',
         ];
     }
 
@@ -76,11 +76,11 @@ class ProductMove extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function start_storage() {
-        return $this->belongsTo(Storage::class, 'start_storage_id');
+    public function storage() {
+        return $this->belongsTo(Storage::class, 'storage_id');
     }
 
-    public function end_storage() {
-        return $this->belongsTo(Storage::class, 'end_storage_id');
+    public function new_storage() {
+        return $this->belongsTo(Storage::class, 'new_storage_id');
     }
 }

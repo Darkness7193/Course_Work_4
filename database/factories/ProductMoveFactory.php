@@ -17,9 +17,9 @@ class ProductMoveFactory extends Factory
         return [
             'date' => $this->faker->date(),
 
-            'product_move_type' => ProductMove::inner_move_types()[random_int(0, 4)],
-            'start_storage_id' => Storage::get()->random()->id,
-            'end_storage_id' => Storage::get()->random()->id,
+            'product_move_type' => ProductMove::product_move_types()[random_int(0, 4)],
+            'storage_id' => Storage::get()->random()->id,
+            'new_storage_id' => Storage::get()->random()->id,
 
             'product_id' => Product::get()->random()->id,
             'quantity' => random_int(1, 1000),
