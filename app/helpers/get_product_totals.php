@@ -5,46 +5,6 @@ include_once(app_path().'/helpers/paginate.php');
 use Illuminate\Support\Facades\DB;
 
 
-function query_totals_2() {
-    $purchases = "
-    select *
-    from product_moves
-    where product_move_type = 'purchasing' ";
-
-    $sales = "
-    select *
-    from product_moves
-    where product_move_type = 'selling' ";
-
-
-    $totals = "
-    select
-        (select name from storages where id = p.storage_id) as storage_name,
-        (select name from products where id = p.product_id) as product_name,
-
-        sum(p.quantity)                                     as total_purchases_quantity,
-        sum(s.quantity)                                     as total_sales_quantity,
-        sum(p.quantity) - sum(s.quantity)                   as total_quantity,
-
-        sum(p.quantity*p.price)                             as total_purchases_price,
-        sum(s.quantity*s.price)                             as total_sales_price,
-        sum(p.quantity*p.price) - sum(s.quantity*s.price)   as income
-
-    from ($purchases) as p
-        inner join ($sales) as s
-            on p.storage_id = s.storage_id
-            or p.product_id = s.product_id
-
-    group by
-        p.storage_id, p.product_id
-    order by
-        p.storage_id
-    ";
-
-    return $totals;
-}
-
-
 function get_product_totals($request) {
     $totals = DB::select("
     select
@@ -64,10 +24,10 @@ function get_product_totals($request) {
             when 'inventory'   then  quantity*price
             when 'transfering' then -quantity*price
             end) as income,
-        sum(if(product_move_type = 'purchasing', price, 0))          as total_purchases_price,
-        sum(if(product_move_type = 'purchasing', price*quantity, 0)) as total_purchases_quantity,
-        sum(if(product_move_type = 'selling', price, 0))             as total_sales_price,
-        sum(if(product_move_type = 'selling', price*quantity, 0))    as total_sales_quantity
+        sum(if(product_move_type = 'purchasing', quantity, 0))          as total_purchases_quantity,
+        sum(if(product_move_type = 'purchasing', price*quantity, 0))    as total_purchases_cost,
+        sum(if(product_move_type = 'selling', quantity, 0))             as total_sales_quantity,
+        sum(if(product_move_type = 'selling', price*quantity, 0))       as total_sales_cost
     from product_moves
     group by storage_id, product_id
     ");

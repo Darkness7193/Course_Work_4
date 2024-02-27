@@ -30,8 +30,8 @@
             <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
-            <td>{{ $total->total_purchases_price }}</td>
-            <td>{{ $total->total_sales_price }}</td>
+            <td>{{ $total->total_purchases_cost }}</td>
+            <td>{{ $total->total_sales_cost }}</td>
             <td>{{ $total->income }}</td>
 
             <td>{{ $total->total_purchases_quantity }}</td>
