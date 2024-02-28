@@ -6,7 +6,7 @@
 <tr data-row-id="{{ $row->id }}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="update_cell_of(this)"></td>
 
-    <td><select class="product-move-type-select" onchange="update_cell_of(this)">
+    <td><select class="foreign-cell product-move-type-select" onchange="update_cell_of(this)">
         @foreach($ProductMove::inner_move_types_ru() as $inner_move_type => $inner_move_type_ru)
             <option value="{{ $inner_move_type }}"> {{ $inner_move_type_ru }} </option>
         @endforeach

@@ -1,12 +1,12 @@
 export function get_value(element) {
     if (element.tagName === 'INPUT') {
         return element.value
-    } else if (element.className === 'foreign-cell') {
+    } else if (element.className.includes('foreign-cell')) {
         return Number(element.children[element.selectedIndex].dataset.foreignId)
     } else if (element.tagName === 'SELECT') {
         return element.children[element.selectedIndex].value
     } else {
-        alert("get_value() was get element, that is not input or foreign-cell")
+        alert("get_value() got element, that is not input or foreign-cell")
     }
 }
 
@@ -14,7 +14,7 @@ export function get_value(element) {
 export function set_value(element, value) {
     if (element.tagName === 'INPUT') {
         element.value = value['value']
-    } else if (element.className === 'foreign-cell') {
+    } else if (element.className.includes('foreign-cell')) {
         element.children[element.children.length-1].text = value['value']
         element.children[element.selectedIndex].dataset.foreignId = value['id']
     } else {
