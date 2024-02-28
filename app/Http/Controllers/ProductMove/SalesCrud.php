@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ProductMove;
 include_once(app_path().'/helpers/filter_order_paginate.php');
 include_once(app_path().'/helpers/EmptyRow.php');
 
+use App\helpers\EmptyRow;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class SalesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),
+            'emptyRow' => new EmptyRow(),
         ]);
     }
 }

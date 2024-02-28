@@ -32,44 +32,28 @@
     </tr>
 
 
-    @foreach ($sales as $sale)
-        <tr data-row-id="{{ $sale->id }}">
-
-            <td><input type="date" value="{{ $sale->date->toDateString() }}" onchange="update_cell_of(this)"></td>
-
-            <td>@include('crud-components.foreign-cell', [
-                'selected_foreign_row' => $sale->product,
-                'foreign_rows' => $products
-            ])</td>
-
-            <td><input type="number" value="{{ $sale->quantity }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $sale->price }}" onchange="update_cell_of(this)"></td>
-
-            <td>@include('crud-components.foreign-cell', [
-                'selected_foreign_row' => $sale->storage,
-                'foreign_rows' => $storages
-            ])</td>
-
-            <td class="comment-col"><input type="text" value="{{ $sale->comment }}" onchange="update_cell_of(this)">
-            </td>
-            <td>
-                <button
-                    type="button"
-                    class="delete-btn btn"
-                    onclick="toggle_row_deleting(this)"
-                    ><img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
-                </button>
-            </td>
-        </tr>
+    @foreach ($sales as $sale    )
+        @include('crud-components.product-move-crud-tr', [
+            'row' => $sale,
+            'products' => $products,
+            'storages' => $storages
+        ])
     @endforeach
 
     @if (($sales->count() < $sales->perPage()) || !$sales->hasPages())
+        @include('crud-components.product-move-crud-tr', [
+            'row' => $emptyRow,
+            'products' => $products,
+            'storages' => $storages,
+            'is_create_tr' => true,
+        ])
         <script type="module">
-            import {append_empty_tr, auto_new_tr} from '{{ asset('js/auto_new_tr.js') }}'
-
+            window.per_page = Number('{{ $sales->perPage() }}')
+            window.page_count = Number('{{ $sales->count() }}')
             let crud_table = document.getElementsByClassName('crud-table')[0]
-            let last_tr = append_empty_tr(crud_table)
+            let last_tr = crud_table.rows[crud_table.rows.length - 1]
             last_tr.onchange = ()=>{ auto_new_tr() }
+            set_next_row_id(last_tr)
         </script>
     @endif
 </table>
@@ -85,3 +69,6 @@
 
 </body>
 </html>
+
+
+<script src="{{ asset('js/delete_btn_bulk_activation.js') }}" type="module"></script>
