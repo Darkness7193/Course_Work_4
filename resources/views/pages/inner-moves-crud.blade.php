@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+    <script>
+        window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
+        window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
+    </script>
+
+
 <!-- imports: -->
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
     <script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
