@@ -12,8 +12,6 @@ class UpdateOrCreateInBulk extends Controller
 {
     public function __invoke(Request $request): void
     {
-        $view_fields_count = count(ProductMove::view_fields());
-
         foreach ($request->updated_rows as $row_id => $updated_cells) {
             $exist_purchase = ProductMove::find($row_id);
 
