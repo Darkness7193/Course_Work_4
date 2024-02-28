@@ -20,7 +20,7 @@
         @if ("$row->product_move_type" === 'transfering')
             @include('crud-components.foreign-cell', ['selected_foreign_row' => $row->new_storage, 'foreign_rows' => $storages])
         @else
-            <select disabled="true"><option></option></select>
+            @include('crud-components.foreign-cell', ['foreign_rows' => $storages, 'parameters' => 'disabled="true"'])
         @endif
     </td>
 
