@@ -27,15 +27,13 @@ function toggle_row_deleting(delete_btn) {
 }
 
 
-function submit_changes(update_controller, bulk_delete_controller, product_move_type) {
+function submit_changes(update_controller, bulk_delete_controller, no_view_fields) {
     [deleted_rows, updated_rows] = remove_elements_that_in_both(deleted_rows, updated_rows)
 
-    post(update_controller, {'updated_rows': updated_rows, 'product_move_type': product_move_type})
+    post(update_controller, {'updated_rows': updated_rows, 'no_view_fields': JSON.parse(no_view_fields)})
     post(bulk_delete_controller, {'deleted_rows': Array.from(deleted_rows)})
 
-    msleep(100).then(() => {
-        location.reload();
-    })
+    msleep(100).then(() => { location.reload(); })
 }
 
 

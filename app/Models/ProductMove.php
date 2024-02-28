@@ -35,7 +35,7 @@ class ProductMove extends Model
         'date',
 
         'product_move_type',
-        'start_storage_id',
+        'storage_id',
         'end_storage_id',
 
         'product_id',
