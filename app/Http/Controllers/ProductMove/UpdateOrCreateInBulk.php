@@ -20,7 +20,7 @@ class UpdateOrCreateInBulk extends Controller
             if ($purchase) {
                 $purchase->update($updated_cells);
             } else {
-                ProductMove::create(array_merge($updated_cells, $request->no_view_fields));
+                ProductMove::create(array_merge($request->no_view_fields, $updated_cells));
             }
         }
     }
