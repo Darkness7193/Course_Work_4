@@ -19,10 +19,10 @@ function toggle_row_deleting(delete_btn) {
 
     if (is_add_to_delete) {
         deleted_rows.delete(row_id)
-        img.src = document.body.dataset.imgDeleteOff
+        img.src = window.img_delete_off
     } else {
         deleted_rows.add(row_id)
-        img.src = document.body.dataset.imgDeleteOn
+        img.src = window.img_delete_on
     }
 }
 

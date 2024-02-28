@@ -2,6 +2,8 @@
     <script>
         window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
         window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
+        window.img_delete_on = "{{ asset('images/delete-on.png') }}"
+        window.img_delete_off = "{{ asset('images/delete-off.png') }}"
     </script>
 
 
@@ -16,10 +18,7 @@
     <meta charset="utf-8">
     <meta id="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body
-    data-img-delete-on="{{ asset('images/delete-on.png') }}"
-    data-img-delete-off="{{ asset('images/delete-off.png') }}"
->
+<body>
 
 <table
     class="crud-table"
