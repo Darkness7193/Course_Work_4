@@ -6,7 +6,6 @@
 
 
 <!-- imports: -->
-    <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
