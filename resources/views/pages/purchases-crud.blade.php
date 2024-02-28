@@ -58,8 +58,8 @@
             set_next_row_id(last_tr)
         </script>
     @endif
-
 </table>
+
 
 <div>{{ $purchases->links('pagination::my-pagination-links') }}</div>
 

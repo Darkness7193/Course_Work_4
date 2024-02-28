@@ -10,7 +10,6 @@
 <body>
 
 <table class="tile-table">
-
     <tr>
         <th> СКЛАД </th>
         <th> ТОВАР </th>
@@ -39,11 +38,10 @@
             <td>{{ $total->total_quantity }}</td>
         </tr>
     @endforeach
-
 </table>
 
-<div>{{ $totals->links('pagination::my-pagination-links') }}</div>
 
+<div>{{ $totals->links('pagination::my-pagination-links') }}</div>
 
 </body>
 </html>

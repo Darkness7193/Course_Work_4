@@ -72,8 +72,8 @@
             last_tr.onchange = ()=>{ auto_new_tr() }
         </script>
     @endif
-
 </table>
+
 
 <div>{{ $sales->links('pagination::my-pagination-links') }}</div>
 

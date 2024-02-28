@@ -61,8 +61,8 @@
             set_next_row_id(last_tr)
         </script>
     @endif
-
 </table>
+
 
 <div>{{ $inner_moves->links('pagination::my-pagination-links') }}</div>
 
