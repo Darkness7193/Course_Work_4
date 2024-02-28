@@ -24,7 +24,7 @@
     <tr>
         <th> ДАТА </th>
 
-        <th> ОПЕРАЦИЯ </th>
+        <th> ТИП </th>
         <th> СКЛАД (начальный) </th>
         <th> СКЛАД (конечный) </th>
 
@@ -84,4 +84,5 @@
 </html>
 
 
+<script src="{{ asset('js/new_storage_select_disabling.js') }}" type="module"></script>
 <script src="{{ asset('js/delete_btn_bulk_activation.js') }}" type="module"></script>

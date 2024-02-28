@@ -18,6 +18,10 @@ input, select {
     margin:auto;
 }
 
-.comment-col {
+.product-move-type-select {
+    min-width: 124px;
+}
+
+.comment-td {
     width: 30%;
 }
