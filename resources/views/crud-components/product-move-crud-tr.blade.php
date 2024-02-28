@@ -4,7 +4,6 @@
 
 <!-- f($row, $products, $storages, $is_create_tr=undefined): -->
 <tr data-row-id="{{ $row->id}}">
-
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
 
     <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $row->product, 'foreign_rows' => $products])</td>
@@ -15,5 +14,4 @@
     <td class="comment-col"><input type="text" value="{{ $row->comment }}" onchange="add_updated_rows(this)"></td>
 
     <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
-
 </tr>
