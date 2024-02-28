@@ -6,7 +6,7 @@ window.deleted_rows = new Set([])
 window.view_fields = document.getElementsByClassName('crud-table')[0].dataset.viewFields.split(',')
 
 
-function add_updated_rows(editor) {
+function update_cell_of(editor) {
     let [row_id, cl] = get_row_id_and_cl(editor)
     set_by_double_keys(updated_rows, [row_id, view_fields[cl]], get_value(editor))
 }
@@ -39,6 +39,6 @@ function submit_changes(update_controller, bulk_delete_controller, product_move_
 }
 
 
-window.add_updated_rows = add_updated_rows
+window.update_cell_of = update_cell_of
 window.toggle_row_deleting = toggle_row_deleting
 window.submit_changes = submit_changes
