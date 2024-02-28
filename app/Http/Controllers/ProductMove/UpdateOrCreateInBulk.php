@@ -15,10 +15,10 @@ class UpdateOrCreateInBulk extends Controller
         $view_fields_count = count(ProductMove::view_fields());
 
         foreach ($request->updated_rows as $row_id => $updated_cells) {
-            $purchase = ProductMove::find($row_id);
+            $exist_purchase = ProductMove::find($row_id);
 
-            if ($purchase) {
-                $purchase->update($updated_cells);
+            if ($exist_purchase) {
+                $exist_purchase->update($updated_cells);
             } else {
                 ProductMove::create(array_merge($request->no_view_fields, $updated_cells));
             }
