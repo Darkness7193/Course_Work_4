@@ -2,7 +2,7 @@ export function get_value(element) {
     if (element.tagName === 'INPUT') {
         return element.value
     } else if (element.className.includes('foreign-cell')) {
-        return Number(element.children[element.selectedIndex].dataset.foreignId)
+        return element.children[element.selectedIndex].value
     } else if (element.tagName === 'SELECT') {
         return element.children[element.selectedIndex].value
     } else {
@@ -15,8 +15,8 @@ export function set_value(element, value) {
     if (element.tagName === 'INPUT') {
         element.value = value['value']
     } else if (element.className.includes('foreign-cell')) {
-        element.children[element.children.length-1].text = value['value']
-        element.children[element.selectedIndex].dataset.foreignId = value['id']
+        element.children[element.children.length-1].text = value['text']
+        element.children[element.selectedIndex].value = value['value']
     } else {
         alert("set_value() was get element, that is not input or foreign-cell")
     }
