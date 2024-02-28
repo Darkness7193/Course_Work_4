@@ -11,7 +11,7 @@
     <td><input type="number" step="0.01" value="{{ $row->price }}" onchange="update_cell_of(this)"></td>
 
     <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $row->storage, 'foreign_rows' => $storages])</td>
-    <td class="comment-col"><input type="text" value="{{ $row->comment }}" onchange="update_cell_of(this)"></td>
+    <td class="comment-td"><input type="text" value="{{ $row->comment }}" onchange="update_cell_of(this)"></td>
 
     <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
 </tr>

@@ -86,7 +86,7 @@ export function set_editors_to_empty(tr) {
         if (editor === undefined) {
             continue
         }
-        set_value(editor, {'value': '', 'id': null})
+        set_value(editor, {'text': '', 'value': ''})
     }
 }
 
