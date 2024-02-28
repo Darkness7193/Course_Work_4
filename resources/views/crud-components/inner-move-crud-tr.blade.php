@@ -1,6 +1,7 @@
 <!-- imports: -->
     <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
 
+
 <!-- f($row, $products, $storages, $ProductMove, $is_create_tr=undefined): -->
 <tr data-row-id="{{ $row->id }}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="add_updated_rows(this)"></td>
@@ -13,6 +14,7 @@
             {{ "$row" ? $ProductMove::inner_move_types_ru()[$row->product_move_type] : '' }}
         </option>
     </select></td>
+
     <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $row->storage, 'foreign_rows' => $storages])</td>
     <td>
         @if ("$row->product_move_type" === 'transfering'  )
@@ -21,8 +23,6 @@
             <select disabled="true"><option></option></select>
         @endif
     </td>
-
-
 
     <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $row->product, 'foreign_rows' => $products])</td>
     <td><input type="number" value="{{ $row->quantity }}" onchange="add_updated_rows(this)"></td>
