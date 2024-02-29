@@ -61,7 +61,7 @@
 
 @include('table-tools.search-bar', ['search_target' => $search_target])
 
-@include('table-tools.advanced-search-btn')
+@include('table-tools.advanced-search-btn', ['view_fields' => $view_fields, 'headers' => $headers])
 
 </body>
 </html>
