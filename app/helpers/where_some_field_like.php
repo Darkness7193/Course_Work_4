@@ -6,7 +6,7 @@ function where_some_field_like(&$query, $target) {
     $target = "%$target%";
 
     return $query->where( function($query) use($target) {
-        foreach ($query->getModel()->view_fields() as $field) {
+        foreach (array_keys($query->first()->toArray()) as $field) {
             $is_foreing_id = str_contains($field, 'id');
 
             if ($is_foreing_id) {
