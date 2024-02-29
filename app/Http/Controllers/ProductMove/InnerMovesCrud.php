@@ -16,10 +16,14 @@ use App\Models\Storage;
 use App\helpers\EmptyRow;
 
 
+
+
 class InnerMovesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
+        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
+        $inner_moves = get_inner_moves(ProductMove::query());
         [$view_fields, $headers] = get_columns([
             ['date', 'ДАТА'],
 
@@ -33,9 +37,6 @@ class InnerMovesCrud extends Controller
 
             ['comment', 'КОММЕНТАРИЙ'],
         ]);
-
-        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $inner_moves = get_inner_moves(ProductMove::query());
 
         return view('pages/inner-moves-crud', [
             'inner_moves' => filter_order_paginate($inner_moves, $view_fields, $request),

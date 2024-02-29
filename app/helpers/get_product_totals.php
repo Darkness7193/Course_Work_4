@@ -77,10 +77,10 @@ function get_product_totals($request) {
             when 'inventory'   then  quantity*price
             when 'transfering' then -quantity*price
             end) as income,
-        sum(if(product_move_type = 'purchasing', quantity, 0))          as total_purchases_quantity,
-        sum(if(product_move_type = 'purchasing', price*quantity, 0))    as total_purchases_cost,
-        sum(if(product_move_type = 'selling', quantity, 0))             as total_sales_quantity,
-        sum(if(product_move_type = 'selling', price*quantity, 0))       as total_sales_cost
+        sum(if(product_move_type = 'purchasing', quantity, 0))       as total_purchases_quantity,
+        sum(if(product_move_type = 'purchasing', price*quantity, 0)) as total_purchases_cost,
+        sum(if(product_move_type = 'selling', quantity, 0))          as total_sales_quantity,
+        sum(if(product_move_type = 'selling', price*quantity, 0))    as total_sales_cost
     from product_moves
     group by storage_id, product_id
     ";

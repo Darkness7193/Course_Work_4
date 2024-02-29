@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\ProductMove;
 
 
+
+
 class DeleteInBulk extends Controller
 {
     public function __invoke(Request $request): void

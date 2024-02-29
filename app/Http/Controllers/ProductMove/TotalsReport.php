@@ -9,6 +9,8 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 
+
+
 class TotalsReport extends Controller
 {
     public function __invoke(Request $request): View {
