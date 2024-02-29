@@ -17,7 +17,7 @@
 <table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
         @foreach($headers as $header)
-            <th>{{ $header }}</th>
+            <th>{{ mb_strtoupper($header) }}</th>
         @endforeach
 
         <th>@include('crud-components.activate-delete-btns-btn')</th>

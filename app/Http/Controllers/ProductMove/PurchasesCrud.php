@@ -25,14 +25,14 @@ class PurchasesCrud extends Controller
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
         $purchases = ProductMove::where('product_move_type', 'purchasing');
         [$view_fields, $headers] = get_columns([
-            ['date', 'ПОСТУПИЛО'],
+            ['date', 'Поступило'],
 
-            ['product_id', 'ТОВАР'],
-            ['quantity', 'КОЛ-ВО'],
-            ['price', 'ЦЕНА'],
+            ['product_id', 'Товар'],
+            ['quantity', 'Кол-во'],
+            ['price', 'Цена'],
 
-            ['storage_id', 'СКЛАД'],
-            ['comment', 'КОММЕНТАРИЙ']
+            ['storage_id', 'Склад'],
+            ['comment', 'Комментарий']
         ]);
 
         return view('pages/purchases-crud', [

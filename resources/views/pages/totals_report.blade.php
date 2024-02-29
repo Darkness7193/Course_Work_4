@@ -7,7 +7,7 @@
 <table class="tile-table" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
         @foreach($headers as $header)
-            <th>{{ $header }}</th>
+            <th>{{ mb_strtoupper($header) }}</th>
         @endforeach
     </tr>
 
