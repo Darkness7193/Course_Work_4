@@ -126,3 +126,11 @@ export function set_is_mouse_down() {
     }, true)
 }
 
+
+export function get_view_fields(element) {
+    let view_fields = []
+    ;[...element.getElementsByTagName('th')].forEach((th)=>{
+        view_fields.push(th.dataset.viewField)
+    })
+    return view_fields
+}

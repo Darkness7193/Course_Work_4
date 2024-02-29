@@ -4,7 +4,6 @@
         window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
         window.img_delete_on = "{{ asset('images/delete-on.png') }}"
         window.img_delete_off = "{{ asset('images/delete-off.png') }}"
-        window.view_fields = {{ implode(',', $view_fields) }}.split(',')
     </script>
 
 
@@ -21,19 +20,17 @@
 </head>
 <body>
 
-<table
-    class="crud-table"
-    data-max-id="{{ $max_id }}"
->
+
+<table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
-        <th> ПОСТУПИЛО </th>
+        <th data-view-field="date">       ПОСТУПИЛО </th>
 
-        <th> ТОВАР </th>
-        <th> КОЛ-ВО </th>
-        <th> ЦЕНА </th>
+        <th data-view-field="product_id"> ТОВАР </th>
+        <th data-view-field="quantity">   КОЛ-ВО </th>
+        <th data-view-field="price">      ЦЕНА </th>
 
-        <th> СКЛАД </th>
-        <th> КОММЕНТАРИЙ </th>
+        <th data-view-field="storage_id"> СКЛАД </th>
+        <th data-view-field="comment">    КОММЕНТАРИЙ </th>
     </tr>
 
     @foreach ($purchases as $purchase)

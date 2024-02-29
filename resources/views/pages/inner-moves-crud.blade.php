@@ -4,7 +4,6 @@
         window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
         window.img_delete_on = "{{ asset('images/delete-on.png') }}"
         window.img_delete_off = "{{ asset('images/delete-off.png') }}"
-        window.view_fields = ['date', 'product_move_type', 'storage_id', 'new_storage_id', 'product_id', 'quantity', 'price', 'comment']
     </script>
 
 
@@ -21,22 +20,20 @@
 </head>
 <body>
 
-<table
-    class="crud-table"
-    data-max-id="{{ $max_id }}"
->
+
+<table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
-        <th> ДАТА </th>
+        <th data-view-field="date">              ДАТА </th>
 
-        <th> ТИП </th>
-        <th> СКЛАД (начальный) </th>
-        <th> СКЛАД (конечный) </th>
+        <th data-view-field="product_move_type"> ТИП </th>
+        <th data-view-field="storage_id">        СКЛАД (начальный) </th>
+        <th data-view-field="new_storage_id">    СКЛАД (конечный) </th>
 
-        <th> ТОВАР </th>
-        <th> КОЛ-ВО </th>
-        <th> ЦЕНА </th>
+        <th data-view-field="product_id">        ТОВАР </th>
+        <th data-view-field="quantity">          КОЛ-ВО </th>
+        <th data-view-field="price">             ЦЕНА </th>
 
-        <th> КОММЕНТАРИЙ </th>
+        <th data-view-field="comment">           КОММЕНТАРИЙ </th>
     </tr>
 
     @foreach ($inner_moves as $inner_move)

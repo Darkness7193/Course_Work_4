@@ -1,8 +1,9 @@
-import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both, msleep} from "./helpers.js"
+import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both, msleep, get_view_fields} from "./helpers.js"
 
 
 window.updated_rows = {}
 window.deleted_rows = new Set([])
+window.view_fields = get_view_fields(document.getElementsByClassName('crud-table')[0])
 
 
 function update_cell_of(editor) {
