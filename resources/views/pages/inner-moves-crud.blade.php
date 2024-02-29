@@ -1,32 +1,32 @@
-<!DOCTYPE html><html lang="ru">@include('head')
-    <script>
-        window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
-        window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
-        window.img_delete_on = "{{ asset('images/delete-on.png') }}"
-        window.img_delete_off = "{{ asset('images/delete-off.png') }}"
-    </script>
+<!DOCTYPE html><html lang="ru">@include('global-head')
+<script>
+    window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
+    window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
+    window.img_delete_on = "{{ asset('images/delete-on.png') }}"
+    window.img_delete_off = "{{ asset('images/delete-off.png') }}"
+</script>
 
 
 <!-- imports: -->
-    <script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
-    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+<script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
+<link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
 <body>
 <table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
-        <th data-view-field="date">              ДАТА </th>
+        <th data-view-field="date"> ДАТА</th>
 
-        <th data-view-field="product_move_type"> ТИП </th>
-        <th data-view-field="storage_id">        СКЛАД (начальный) </th>
-        <th data-view-field="new_storage_id">    СКЛАД (конечный) </th>
+        <th data-view-field="product_move_type"> ТИП</th>
+        <th data-view-field="storage_id"> СКЛАД (начальный)</th>
+        <th data-view-field="new_storage_id"> СКЛАД (конечный)</th>
 
-        <th data-view-field="product_id">        ТОВАР </th>
-        <th data-view-field="quantity">          КОЛ-ВО </th>
-        <th data-view-field="price">             ЦЕНА </th>
+        <th data-view-field="product_id"> ТОВАР</th>
+        <th data-view-field="quantity"> КОЛ-ВО</th>
+        <th data-view-field="price"> ЦЕНА</th>
 
-        <th data-view-field="comment">           КОММЕНТАРИЙ </th>
+        <th data-view-field="comment"> КОММЕНТАРИЙ</th>
     </tr>
 
     @foreach ($inner_moves as $inner_move)
@@ -51,7 +51,9 @@
             window.page_count = Number('{{ $inner_moves->count() }}')
             let crud_table = document.getElementsByClassName('crud-table')[0]
             let last_tr = crud_table.rows[crud_table.rows.length - 1]
-            last_tr.onchange = ()=>{ auto_new_tr() }
+            last_tr.onchange = () => {
+                auto_new_tr()
+            }
             set_next_row_id(last_tr)
         </script>
     @endif

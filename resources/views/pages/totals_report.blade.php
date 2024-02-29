@@ -1,21 +1,22 @@
-<!DOCTYPE html><html lang="ru">@include('head')
+<!DOCTYPE html>
+<html lang="ru">@include('global-head')
 <!-- imports: -->
-    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
 
 
 <body>
 <table class="tile-table">
     <tr>
-        <th> СКЛАД </th>
-        <th> ТОВАР </th>
+        <th> СКЛАД</th>
+        <th> ТОВАР</th>
 
-        <th> СТОИМОСТЬ ЗАКУПКИ </th>
-        <th> СТОИМОСТЬ ПРОДАЖИ </th>
-        <th> ДОХОД </th>
+        <th> СТОИМОСТЬ ЗАКУПКИ</th>
+        <th> СТОИМОСТЬ ПРОДАЖИ</th>
+        <th> ДОХОД</th>
 
-        <th> КОЛ-ВО ЗАКУПКИ </th>
-        <th> КОЛ-ВО ПРОДАЖИ </th>
-        <th> КОЛ-ВО ОСТАТКА </th>
+        <th> КОЛ-ВО ЗАКУПКИ</th>
+        <th> КОЛ-ВО ПРОДАЖИ</th>
+        <th> КОЛ-ВО ОСТАТКА</th>
     </tr>
 
     @foreach ($totals as $total)
