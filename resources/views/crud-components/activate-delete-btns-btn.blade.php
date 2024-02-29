@@ -1,7 +1,8 @@
 <script>
     function activate_all_delete_btn() {
         ;[...document.getElementsByClassName('delete-btn')].forEach((delete_btn)=>{
-            delete_btn.click()
+            let img = delete_btn.getElementsByTagName('img')[0]
+            if (img.src === window.img_delete_off){ delete_btn.click() }
         })
     }
 </script>
