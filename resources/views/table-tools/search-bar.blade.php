@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
-<!-- f($model_for_route, $search_target): -->
+<!-- f($search_target): -->
 <div class="vertical-arrange">
     <form class="vertical-center"
         method="post"

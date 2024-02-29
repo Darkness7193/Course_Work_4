@@ -72,14 +72,9 @@
     'new_storage_id' => null
 ]])
 
-@include('table-tools.search-bar', [
-    'model_for_route' => 'product_moves.purchases_crud',
-    'search_target' => $search_target
-])
+@include('table-tools.search-bar', ['search_target' => $search_target])
 
-@include('table-tools.advanced-search-btn', [
-    'model_for_route' => 'product_moves.purchases_crud'
-])
+@include('table-tools.advanced-search-btn')
 
 </body>
 </html>

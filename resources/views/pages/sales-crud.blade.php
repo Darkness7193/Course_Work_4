@@ -65,7 +65,10 @@
     'product_move_type' => 'selling',
     'new_storage_id' => null
 ]])
-@include('table-tools.search-bar', ['model_for_route' => 'product_moves.sales_crud'])
+
+@include('table-tools.search-bar', ['search_target' => $search_target])
+
+@include('table-tools.advanced-search-btn')
 
 </body>
 </html>
