@@ -15,14 +15,14 @@
 <body>
 <table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
-        <th data-view-field="date"> ПРОДАНО</th>
+        <th data-view-field="date"> ПРОДАНО </th>
 
-        <th data-view-field="product_id"> ТОВАР</th>
-        <th data-view-field="quantity"> КОЛ-ВО</th>
-        <th data-view-field="price"> ЦЕНА</th>
+        <th data-view-field="product_id"> ТОВАР </th>
+        <th data-view-field="quantity"> КОЛ-ВО </th>
+        <th data-view-field="price"> ЦЕНА </th>
 
-        <th data-view-field="storage_id"> СКЛАД</th>
-        <th data-view-field="comment"> КОММЕНТАРИЙ</th>
+        <th data-view-field="storage_id"> СКЛАД </th>
+        <th data-view-field="comment"> КОММЕНТАРИЙ </th>
     </tr>
 
     @foreach ($sales as $sale)
