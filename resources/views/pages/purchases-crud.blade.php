@@ -4,6 +4,7 @@
         window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
         window.img_delete_on = "{{ asset('images/delete-on.png') }}"
         window.img_delete_off = "{{ asset('images/delete-off.png') }}"
+        window.view_fields = {{ implode(',', $view_fields) }}.split(',')
     </script>
 
 
@@ -22,7 +23,6 @@
 
 <table
     class="crud-table"
-    data-view-fields="{{ implode(',', $view_fields) }}"
     data-max-id="{{ $max_id }}"
 >
     <tr>
