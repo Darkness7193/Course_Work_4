@@ -23,6 +23,7 @@
 
         <th data-view-field="storage_id"> СКЛАД </th>
         <th data-view-field="comment">    КОММЕНТАРИЙ </th>
+        <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
     @foreach ($sales as $sale)

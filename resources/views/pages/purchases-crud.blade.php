@@ -14,16 +14,13 @@
 
 
 <body>
-<table class="crud-table" data-max-id="{{ $max_id }}">
+<table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
-        <th data-view-field="date">       ПОСТУПИЛО </th>
+        @foreach($headers as $header)
+            <th>{{ $header }}</th>
+        @endforeach
 
-        <th data-view-field="product_id"> ТОВАР </th>
-        <th data-view-field="quantity">   КОЛ-ВО </th>
-        <th data-view-field="price">      ЦЕНА </th>
-
-        <th data-view-field="storage_id"> СКЛАД </th>
-        <th data-view-field="comment">    КОММЕНТАРИЙ </th>
+        <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
     @foreach ($purchases as $purchase)
