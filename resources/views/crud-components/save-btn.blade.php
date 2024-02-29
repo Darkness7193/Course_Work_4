@@ -1,5 +1,4 @@
-<!-- imports: -->
-    <script src="{{ asset('js/submit_changes.js') }}" type="module"></script>
+
 
 
 <!-- f($no_view_fields): -->

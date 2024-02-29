@@ -24,6 +24,7 @@ function get_inner_moves($product_moves) {
 }
 
 
+
 class InnerMovesCrud extends Controller
 {
     public function __invoke(Request $request): View
