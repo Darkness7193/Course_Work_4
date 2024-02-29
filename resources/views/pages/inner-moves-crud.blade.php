@@ -14,19 +14,12 @@
 
 
 <body>
-<table class="crud-table" data-max-id="{{ $max_id }}">
+<table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
-        <th data-view-field="date">              ДАТА </th>
+        @foreach($headers as $header)
+            <th>{{ $header }}</th>
+        @endforeach
 
-        <th data-view-field="product_move_type"> ТИП </th>
-        <th data-view-field="storage_id">        СКЛАД (начальный) </th>
-        <th data-view-field="new_storage_id">    СКЛАД (конечный) </th>
-
-        <th data-view-field="product_id">        ТОВАР </th>
-        <th data-view-field="quantity">          КОЛ-ВО </th>
-        <th data-view-field="price">             ЦЕНА </th>
-
-        <th data-view-field="comment">           КОММЕНТАРИЙ </th>
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 

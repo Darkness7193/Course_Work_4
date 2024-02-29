@@ -28,12 +28,27 @@ class InnerMovesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
+        [$view_fields, $headers] = get_columns([
+            ['date', 'ДАТА'],
+
+            ['product_move_type', 'ТИП'],
+            ['storage_id', 'СКЛАД'],
+            ['new_storage_id', 'СКЛАД'],
+
+            ['product_id', 'ТОВАР'],
+            ['quantity', 'КОЛ-ВО'],
+            ['price', 'ЦЕНА'],
+
+            ['comment', 'КОММЕНТАРИЙ'],
+        ]);
+
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
         $inner_moves = get_inner_moves(ProductMove::query());
 
         return view('pages/inner-moves-crud', [
             'inner_moves' => filter_order_paginate($inner_moves, $request),
-            'view_fields' => ProductMove::view_fields(),
+            'view_fields' => $view_fields,
+            'headers' => $headers,
             'ProductMove' => ProductMove::class,
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),

@@ -19,12 +19,24 @@ class SalesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
+        [$view_fields, $headers] = get_columns([
+            ['date', 'ПРОДАНО'],
+
+            ['product_id', 'ТОВАР'],
+            ['quantity', 'КОЛ-ВО'],
+            ['price', 'ЦЕНА'],
+
+            ['storage_id', 'СКЛАД'],
+            ['comment', 'КОММЕНТАРИЙ']
+        ]);
+
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
         $sales = ProductMove::where('product_move_type', 'selling');
 
         return view('pages/sales-crud', [
             'sales' => filter_order_paginate($sales, $request),
-            'view_fields' => ProductMove::view_fields(),
+            'view_fields' => $view_fields,
+            'headers' => $headers,
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),
