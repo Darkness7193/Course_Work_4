@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="ru">@include('head')
     <script>
         window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
         window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
@@ -11,9 +11,6 @@
     <script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-
-
-@include('head')
 
 
 <body>

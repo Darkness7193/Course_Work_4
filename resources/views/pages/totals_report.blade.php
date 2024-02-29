@@ -1,9 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="ru">@include('head')
 <!-- imports: -->
     <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
-
-
-@include('head')
 
 
 <body>

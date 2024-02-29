@@ -4,7 +4,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-
 .icon {
     background-color: transparent;
     background-repeat: no-repeat;
@@ -15,18 +14,15 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
 }
 
-
 .vertical-arrange {
     display:flex;
     flex-direction: row;
 }
 
-
 .vertical-center {
     display: flex;
     align-items: center;
 }
-
 
 .vertical-center {
     display: flex;
