@@ -8,7 +8,7 @@
 
 
 <!-- imports: -->
-<script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
+    <script src="{{ asset('js/auto_new_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
