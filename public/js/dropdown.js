@@ -1,6 +1,13 @@
 import { get_parents } from "./helpers.js"
 
 
+function hide_dropdowns() {
+    ;[...document.getElementsByClassName("dropdown-content")].forEach((dropdown)=>{
+        dropdown.style.display = 'none'
+    })
+}
+
+
 function toggle_dropdown_content(drop_btn) {
     let dropdown_content = drop_btn.parentNode.getElementsByClassName('dropdown-content')[0]
     let is_dropdown_hidden = ['', 'none'].includes(dropdown_content.style.display)
@@ -11,11 +18,7 @@ function toggle_dropdown_content(drop_btn) {
 
 function hide_dropdowns_by_outside_click(event) {
     let is_outside = !event.target.closest('.dropdown')
-    if (is_outside) {
-        ;[...document.getElementsByClassName("dropdown-content")].forEach((dropdown)=>{
-            dropdown.style.display = 'none'
-        })
-    }
+    if (is_outside) { hide_dropdowns() }
 }
 
 
