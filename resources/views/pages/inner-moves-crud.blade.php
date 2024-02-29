@@ -27,6 +27,7 @@
         <th data-view-field="price">             ЦЕНА </th>
 
         <th data-view-field="comment">           КОММЕНТАРИЙ </th>
+        <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
     @foreach ($inner_moves as $inner_move)
