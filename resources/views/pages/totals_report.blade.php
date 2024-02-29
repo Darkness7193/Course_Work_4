@@ -4,18 +4,11 @@
 
 
 <body>
-<table class="tile-table">
+<table class="tile-table" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
-        <th> СКЛАД </th>
-        <th> ТОВАР </th>
-
-        <th> СТОИМОСТЬ ЗАКУПКИ </th>
-        <th> СТОИМОСТЬ ПРОДАЖИ </th>
-        <th> ДОХОД </th>
-
-        <th> КОЛ-ВО ЗАКУПКИ </th>
-        <th> КОЛ-ВО ПРОДАЖИ </th>
-        <th> КОЛ-ВО ОСТАТКА </th>
+        @foreach($headers as $header)
+            <th>{{ $header }}</th>
+        @endforeach
     </tr>
 
     @foreach ($totals as $total)
@@ -36,6 +29,10 @@
 
 
 <div>{{ $totals->links('pagination::my-pagination-links') }}</div>
+
+@include('table-tools.search-bar', ['search_target' => $search_target])
+
+@include('table-tools.advanced-search-btn')
 
 </body>
 </html>
