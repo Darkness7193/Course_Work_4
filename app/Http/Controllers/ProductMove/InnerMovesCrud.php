@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/helpers/filter_order_paginate.php');
 include_once(app_path().'/helpers/EmptyRow.php');
+include_once(app_path().'/helpers/get_inner_moves.php');
 
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
@@ -13,15 +14,6 @@ use App\Models\ProductMove;
 use App\Models\Product;
 use App\Models\Storage;
 use App\helpers\EmptyRow;
-
-
-function get_inner_moves($product_moves) {
-    return $product_moves->where( function($query) {
-        $query->orWhere('product_move_type', 'liquidating')
-            ->orWhere('product_move_type', 'inventory')
-            ->orWhere('product_move_type', 'transfering');
-    });
-}
 
 
 class InnerMovesCrud extends Controller
