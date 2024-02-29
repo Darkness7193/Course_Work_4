@@ -13,14 +13,10 @@
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta id="csrf-token" content="{{ csrf_token() }}">
-</head>
+@include('head')
+
+
 <body>
-
-
 <table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
         <th data-view-field="date">       ПОСТУПИЛО </th>
@@ -70,7 +66,6 @@
 @include('table-tools.search-bar', ['search_target' => $search_target])
 
 @include('table-tools.advanced-search-btn')
-
 
 </body>
 </html>

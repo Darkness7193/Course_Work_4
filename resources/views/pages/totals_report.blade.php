@@ -3,12 +3,10 @@
     <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
 
 
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
+@include('head')
 
+
+<body>
 <table class="tile-table">
     <tr>
         <th> СКЛАД </th>
@@ -22,7 +20,6 @@
         <th> КОЛ-ВО ПРОДАЖИ </th>
         <th> КОЛ-ВО ОСТАТКА </th>
     </tr>
-
 
     @foreach ($totals as $total)
         <tr>
