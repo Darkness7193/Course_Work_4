@@ -10,7 +10,6 @@ export function get_value(element) {
     }
 }
 
-
 export function set_value(element, value) {
     if (element.tagName === 'INPUT') {
         element.value = value['value']
@@ -21,7 +20,6 @@ export function set_value(element, value) {
         alert("set_value() was get element, that is not input or foreign-cell")
     }
 }
-
 
 export function post(url, data) {
     let csrf = document.querySelector('meta[id="csrf-token"]').content
@@ -36,13 +34,11 @@ export function post(url, data) {
     })
 }
 
-
 export function get_row_id_and_cl(element) {
     let td = element.parentNode
     let tr = td.parentNode
     return [Number(tr.dataset.rowId), td.cellIndex]
 }
-
 
 export function create(parent, tag) {
     let element = document.createElement(tag)
@@ -50,11 +46,9 @@ export function create(parent, tag) {
     return element
 }
 
-
 export function msleep (mtime) {
     return new Promise((resolve) => setTimeout(resolve, mtime));
 }
-
 
 export function get_tr_values(tr) {
     let values = []
@@ -65,7 +59,6 @@ export function get_tr_values(tr) {
 
     return values
 }
-
 
 export function set_by_double_keys(json, keys, value) {
     try {
@@ -79,7 +72,6 @@ export function set_by_double_keys(json, keys, value) {
     }
 }
 
-
 export function set_editors_to_empty(tr) {
     for (let i=0; i<tr.cells.length; i++) {
         let editor = tr.cells[i].querySelectorAll('input,select')[0]
@@ -89,7 +81,6 @@ export function set_editors_to_empty(tr) {
         set_value(editor, {'text': '', 'value': ''})
     }
 }
-
 
 export function is_filled(tr) {
     for (let i=0; i<tr.cells.length; i++) {
@@ -102,7 +93,6 @@ export function is_filled(tr) {
     return true
 }
 
-
 export function remove_elements_that_in_both(set, json) {
     set.forEach(element => {
         if (json.hasOwnProperty(element)) {
@@ -112,7 +102,6 @@ export function remove_elements_that_in_both(set, json) {
     });
     return [set, json]
 }
-
 
 export function set_is_mouse_down() {
     window.is_mouse_down = false
@@ -125,7 +114,6 @@ export function set_is_mouse_down() {
         window.is_mouse_down = false
     }, true)
 }
-
 
 export function get_view_fields(element) {
     let view_fields = []
