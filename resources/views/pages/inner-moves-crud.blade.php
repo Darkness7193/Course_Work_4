@@ -16,17 +16,17 @@
 <body>
 <table class="crud-table" data-max-id="{{ $max_id }}">
     <tr>
-        <th data-view-field="date"> ДАТА </th>
+        <th data-view-field="date">              ДАТА </th>
 
         <th data-view-field="product_move_type"> ТИП </th>
-        <th data-view-field="storage_id"> СКЛАД (начальный) </th>
-        <th data-view-field="new_storage_id"> СКЛАД (конечный) </th>
+        <th data-view-field="storage_id">        СКЛАД (начальный) </th>
+        <th data-view-field="new_storage_id">    СКЛАД (конечный) </th>
 
-        <th data-view-field="product_id"> ТОВАР </th>
-        <th data-view-field="quantity"> КОЛ-ВО </th>
-        <th data-view-field="price"> ЦЕНА </th>
+        <th data-view-field="product_id">        ТОВАР </th>
+        <th data-view-field="quantity">          КОЛ-ВО </th>
+        <th data-view-field="price">             ЦЕНА </th>
 
-        <th data-view-field="comment"> КОММЕНТАРИЙ </th>
+        <th data-view-field="comment">           КОММЕНТАРИЙ </th>
     </tr>
 
     @foreach ($inner_moves as $inner_move)
