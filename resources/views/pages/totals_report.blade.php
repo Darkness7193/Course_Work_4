@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">@include('global-head')
 <!-- imports: -->
-<link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
 
 
 <body>

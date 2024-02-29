@@ -8,8 +8,8 @@
 
 
 <!-- imports: -->
-<link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
 <body>
