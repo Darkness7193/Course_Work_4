@@ -34,7 +34,7 @@ class SalesCrud extends Controller
         $sales = ProductMove::where('product_move_type', 'selling');
 
         return view('pages/sales-crud', [
-            'sales' => filter_order_paginate($sales, $request),
+            'sales' => filter_order_paginate($sales, $view_fields, $request),
             'view_fields' => $view_fields,
             'headers' => $headers,
             'products' => Product::select('id', 'name')->get(),
