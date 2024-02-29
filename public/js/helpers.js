@@ -122,3 +122,12 @@ export function get_view_fields(element) {
     })
     return view_fields
 }
+
+export function get_parents(element) {
+    let parents = [];
+    while(element.parentNode && element.parentNode.tagName.toLowerCase() != 'body') {
+        element = element.parentNode;
+        parents.push(element);
+    }
+    return parents;
+}
