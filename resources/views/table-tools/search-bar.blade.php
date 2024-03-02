@@ -5,10 +5,11 @@
 
 <!-- f($search_target, $view_fields, $headers): -->
 
-<form class="search-bar"
+<form class="search-bar vertical-arrange"
     method="post"
     action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf {{ csrf_field() }}
+
 
     @include('table-tools.advanced-search-btn', [
         'view_fields' => $view_fields,

@@ -64,7 +64,7 @@
 @include('table-tools.search-bar', [
     'search_targets' => $search_targets,
     'view_fields' => $view_fields,
-    'headers' => $header
+    'headers' => $headers
 ])
 
 </body>
