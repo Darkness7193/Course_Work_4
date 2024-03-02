@@ -61,9 +61,11 @@
     'new_storage_id' => null
 ]])
 
-@include('table-tools.search-bar', ['search_targets' => $search_targets])
-
-@include('table-tools.advanced-search-btn', ['view_fields' => $view_fields, 'headers' => $headers])
+@include('table-tools.search-bar', [
+    'search_targets' => $search_targets,
+    'view_fields' => $view_fields,
+    'headers' => $header
+])
 
 </body>
 </html>

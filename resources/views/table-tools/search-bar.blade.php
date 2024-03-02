@@ -1,17 +1,34 @@
 <!-- imports: -->
     <link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <script src="{{ asset('js/submit_search_targets.js') }}" type="module"></script>
 
 
-<!-- f($search_target): -->
+<!-- f($search_target, $view_fields, $headers): -->
 
-<div>
-    <button class="icon anti-search-btn" type="submit" value=""></button>
-    <button class="icon search-btn" onclick="submit_search_targets()" type="submit"></button>
-    <input class="search-input" type="text" placeholder="Фильтр" autofocus
-        value="{{ $search_targets['tablewise'] ?? '' }}"
+<form class="search-bar"
+    method="post"
+    action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
+>   @csrf {{ csrf_field() }}
+
+    @include('table-tools.advanced-search-btn', [
+        'view_fields' => $view_fields,
+        'headers' => $headers
+    ])
+    <button class="icon anti-search-btn"
+        type="submit"
+        name="action"
+        value="un_search">
+    </button>
+    <button class="icon search-btn"
+        type="submit"
+        name="action"
+        value="search">
+    </button>
+
+    <input class="search-input"
+        name="tablewise_search_target"
+        type="text"
+        placeholder="Фильтр"
+        autofocus
     >
-</div>
-
-
+</form>

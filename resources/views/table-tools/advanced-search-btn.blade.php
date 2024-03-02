@@ -9,25 +9,18 @@
 <div class="advanced-search-btn dropdown icon">
     <button class="drop-btn icon" type="button" onclick="toggle_dropdown_content(this)"></button>
     <div class="advanced-search-menu dropdown-content">
-        <form method="POST">
-            @csrf {{ csrf_field() }}
-            <table>
-                @foreach($view_fields as $rw => $view_field)
-                    <tr>
-                        <td>
-                            {{ $headers[$rw] }}:
-                        </td>
-
-                        <td>
-                        <input class="advanced-search-input"
-                            name="search_target"
-                            type="text"
-                            @isset($search_target) value="{{ $search_target }}" @endif
-                            autofocus
-                        >
-                    </td></tr>
-                @endforeach
-            </table>
-        </form>
+        @csrf {{ csrf_field() }}
+        <table>
+            @foreach($view_fields as $rw => $view_field)
+                <tr>
+                    <td>{{ $headers[$rw] }}:</td>
+                    <td><input class="advanced-search-input"
+                        name="{{ $view_field }}_search_target"
+                        type="text"
+                        autofocus
+                    ></td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 </div>
