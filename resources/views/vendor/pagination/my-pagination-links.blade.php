@@ -6,11 +6,10 @@
     <nav class="d-flex justify-items-center justify-content-between">
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
             <form method="POST"
-                  action="{{ route('post_to_get_route', ['target_route' => Route::current()->getName()]) }}"
-                  class="search-form"
-                  autocomplete="off"
-            >
-                @csrf {{ csrf_field() }}
+                action="{{ route('post_to_get_route', ['target_route' => Route::current()->getName()]) }}"
+                class="search-form"
+                autocomplete="off"
+            >   @csrf
 
                 <p class="small text-muted">
                     {!! __('Показать') !!}

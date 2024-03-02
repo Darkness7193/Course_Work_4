@@ -8,18 +8,17 @@
 <form class="search-bar vertical-arrange"
     method="post"
     action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
->   @csrf {{ csrf_field() }}
+>   @csrf
 
-
-    @include('table-tools.advanced-search-btn', [
-        'view_fields' => $view_fields,
-        'headers' => $headers
-    ])
     <button class="icon anti-search-btn"
         type="submit"
         name="action"
         value="un_search">
     </button>
+    @include('table-tools.advanced-search-btn', [
+        'view_fields' => $view_fields,
+        'headers' => $headers
+    ])
     <button class="icon search-btn"
         type="submit"
         name="action"
