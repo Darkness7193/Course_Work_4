@@ -4,15 +4,15 @@ include_once(app_path().'/helpers/where_some_field_like.php');
 include_once(app_path().'/helpers/paginate.php');
 
 
-function filter($rows, $search_target, $search_fields) {
-    if (empty($search_target)) { return $rows; }
+function filter($rows, $search_targets, $search_fields) {
+    if (empty($search_targets)) { return $rows; }
 
-    return where_some_field_like($rows, $search_target, $search_fields);
+    return where_some_field_like($rows, $search_targets['tablewise'], $search_fields);
 }
 
 
 function filter_order_paginate($product_moves, $search_fields, $request) {
-    filter($product_moves, $request->search_target, $search_fields)
+    filter($product_moves, $request->search_targets, $search_fields)
         ->orderBy('created_at');
 
     return paginate($product_moves,
