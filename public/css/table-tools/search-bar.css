@@ -1,3 +1,12 @@
+.anti-search-btn {
+    background-image: url('../../images/anti-search-icon.png');
+}
+
+.search-btn {
+    background-image: url('../../images/search-icon.png');
+    margin-right: 2px;
+}
+
 .search-bar{
     width: 95%;
     margin-right: 1%;
@@ -10,18 +19,4 @@
     border: 0;
     outline: none;
     width: 85%;
-}
-
-.anti-search-btn {
-    background-image: url('../../images/anti-search-icon.png');
-
-}
-
-.search-btn {
-    background-image: url('../../images/search-icon.png');
-    margin-right: 2px;
-}
-
-.advanced-search-btn {
-    background-image: url('../../images/advanced-search-icon.png');
 }

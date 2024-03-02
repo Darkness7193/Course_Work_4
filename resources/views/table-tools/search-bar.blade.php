@@ -17,7 +17,7 @@
         action="{{ route('post_to_get_route', ['target_route' => Route::current()->getName()]) }}"
     >   @csrf {{ csrf_field() }}
         <button class="icon search-btn" type="submit"></button>
-        <input class="search-input" type="text" placeholder="Поиск" name="search_target" autofocus
+        <input class="search-input" type="text" placeholder="Фильтр" name="search_target" autofocus
             @isset($search_target) value="{{ $search_target }}" @endif>
     </form>
 </div>
