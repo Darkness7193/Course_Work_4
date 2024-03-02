@@ -1,19 +1,12 @@
 .advanced-search-btn {
     background-image: url('../../images/advanced-search-icon.png');
+    margin-right: 4px;
 }
 
 .advanced-search-menu {
     width: 250px;
     background: #3b3b3b;
     border-radius: 2px;
-}
-
-.advanced-search-input {
-    margin-bottom: 0px;
-}
-
-.advanced-search-input:last-of-type {
-    margin-bottom: 0px;
 }
 
 .advanced-search-input::-webkit-inner-spin-button,
