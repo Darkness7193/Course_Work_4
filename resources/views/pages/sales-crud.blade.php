@@ -2,6 +2,8 @@
 <script>
     window.update_or_create_in_bulk_route = '{{ route('product_moves.bulk_update_or_create') }}'
     window.delete_in_bulk_route = '{{ route('product_moves.bulk_delete') }}'
+    window.post_to_get_route_route = '{{ route('post_to_get_route') }}'
+    window.current_route = '{{ Route::current()->getName() }}'
     window.img_delete_on = "{{ asset('images/delete-on.png') }}"
     window.img_delete_off = "{{ asset('images/delete-off.png') }}"
 </script>
