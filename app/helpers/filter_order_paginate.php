@@ -1,6 +1,6 @@
 <?php
 
-include_once(app_path().'/helpers/where_some_field_like.php');
+include_once(app_path().'/helpers/filter_helpers.php');
 include_once(app_path().'/helpers/paginate.php');
 
 
