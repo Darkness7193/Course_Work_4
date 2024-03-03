@@ -16,7 +16,7 @@
 .search-input {
     font-size: 15px;
     height: 36px;
-    background-color: white;
+    background-color: transparent;
     border: 0;
     outline: none;
     width: 85%;
