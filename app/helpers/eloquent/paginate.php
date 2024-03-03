@@ -3,6 +3,7 @@
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+
 function paginate(&$query, $per_page=null, $columns=['*'], $page_name = 'page', $current_page=1)
 {
     $last_page = intdiv($query->count(), $per_page) + 1;

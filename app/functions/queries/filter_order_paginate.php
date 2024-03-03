@@ -1,7 +1,8 @@
 <?php
 
-include_once(app_path().'/helpers/eloquent_helpers.php');
-include_once(app_path().'/helpers/paginate.php');
+include_once(app_path().'/helpers/eloquent/where_field_like.php');
+include_once(app_path().'/helpers/eloquent/where_some_field_like.php');
+include_once(app_path().'/helpers/eloquent/paginate.php');
 
 
 function filter($rows, $search_targets, $view_fields) {
