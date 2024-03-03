@@ -7,6 +7,7 @@ include_once(app_path().'/helpers/paginate.php');
 function filter($rows, $search_targets, $view_fields) {
     if (empty($search_targets)) { return $rows; }
 
+    dd($search_targets);
     $rows = where_some_field_like($rows, $search_targets['tablewise'] ?? null, $view_fields);
     unset($search_targets['tablewise']);
 
