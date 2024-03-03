@@ -7,21 +7,31 @@
 
 
 <!-- f($view_fields, $headers): -->
-<div class="dropdown">
-    <button type="button" onclick="toggle_dropdown_content(this)" class="icon ordering-btn drop-btn"></button>
-    <button type="button" onclick="clear_number_checkboxes()" class="icon un-ordering-btn drop-btn"></button>
-    <div class="dropdown-content number-check-box-container">
-        <table>
-            @foreach($view_fields as $rw => $view_field)
+<form class="vertical-arrange vertical-center"
+    method="post"
+    action="{{ route('product_moves.set_order', ['target_route' => Route::current()->getName()]) }}"
+>   @csrf
+    <div class="dropdown">
+        <button class="icon ordering-btn drop-btn" type="button" name="action" value="is_ordering" onclick="toggle_dropdown_content(this)"></button>
+        <button class="icon un-ordering-btn drop-btn" type="button" name="action" value="is_un_ordering" onclick="clear_number_checkboxes()"></button>
+        <div class="dropdown-content number-check-box-container">
+            <table>
+                @foreach($view_fields as $rw => $view_field)
+                    <tr>
+                        <td>{{ $headers[$rw] }}:</td>
+                        <td><input class="number-checkbox-input"
+                            name="{{ $view_field }}_input_data"
+                            type="number"
+                            readonly
+                        ></td>
+                    </tr>
+                @endforeach
                 <tr>
-                    <td>{{ $headers[$rw] }}:</td>
-                    <td><input class="number-checkbox-input"
-                        name="{{ $view_field }}_search_target"
-                        type="number"
-                        readonly
-                    ></td>
+                    <td></td>
+                    <td><button class="ok-ordering-btn icon" type="submit"></button></td>
                 </tr>
-            @endforeach
-        </table>
+            </table>
+        </div>
     </div>
-</div>
+</form>
+

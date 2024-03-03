@@ -18,6 +18,7 @@ Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
     Route::post('product_moves/bulk_update_or_create', 'UpdateOrCreateInBulk')->name('product_moves.bulk_update_or_create');
     Route::post('product_moves/bulk_delete', 'DeleteInBulk')->name('product_moves.bulk_delete');
     Route::post('product_moves/set_filter', 'SetFilter')->name('product_moves.set_filter');
+    Route::post('product_moves/set_order', 'SetOrder')->name('product_moves.set_order');
 });
 
 
