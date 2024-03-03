@@ -10,5 +10,5 @@
 
 <!-- f(): -->
 <button type="button" class="btn" onclick="activate_all_delete_btn()">
-    <img class='btn-icon' src="{{ asset('images/delete-off.png') }}"/>
+    <img class='btn-icon' src="{{ asset('images/trash-can-icon.jpg') }}"/>
 </button>
