@@ -9,6 +9,10 @@
     action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf
 
+    <div class="default-input-wrapper">
+        <button name="action" value="search"></button>
+    </div>
+
     <button class="icon anti-search-btn"
         type="submit"
         name="action"

@@ -47,7 +47,7 @@ class InnerMovesCrud extends Controller
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),
             'emptyRow' => new EmptyRow(),
-            'search_target' => $request->search_target
+            'search_targets' => $request->search_targets
         ]);
     }
 }

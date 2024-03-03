@@ -29,7 +29,7 @@ class TotalsReport extends Controller
 
         return view('pages/totals_report', [
             'totals' => get_product_totals($request),
-            'search_target' => $request->search_target,
+            'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers
         ]);
