@@ -123,11 +123,11 @@ export function get_view_fields(element) {
     return view_fields
 }
 
-export function get_parents(element) {
-    let parents = [];
-    while(element.parentNode && element.parentNode.tagName.toLowerCase() != 'body') {
-        element = element.parentNode;
-        parents.push(element);
-    }
-    return parents;
+function disable_context_menu(event) { event.preventDefault() }
+export function suppress_context_menu_once() {
+    document.addEventListener(`contextmenu`, disable_context_menu)
+    document.addEventListener('mouseup', function activate_context_menu(event) {
+        event.currentTarget.removeEventListener(event.type, activate_context_menu)
+        msleep(50).then(()=>{ document.removeEventListener(`contextmenu`, disable_context_menu) })
+    })
 }
