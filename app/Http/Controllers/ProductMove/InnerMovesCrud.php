@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/helpers/filter_order_paginate.php');
+include_once(app_path().'/functions/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/EmptyRow.php');
-include_once(app_path().'/helpers/get_inner_moves.php');
+include_once(app_path().'/functions/queries/get_inner_moves.php');
 
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
