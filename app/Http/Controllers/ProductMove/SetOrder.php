@@ -22,14 +22,21 @@ function get_input_data($request, $postfix='_input_data')
 }
 
 
+function get_ordering_order($request) {
+    $arr = get_input_data($request);
+    $arr = array_filter($arr, function($value){return $value !== null;} );
+    asort($arr);
+    return array_keys($arr);
+}
+
+
 class SetOrder extends Controller
 {
     public function __invoke(Request $request){
         $is_ordering = $request->action === 'is_ordering';
-        dd(get_input_data($request));
 
         return to_route($request->target_route, [
-            'ordering_order' => $is_ordering ? get_input_data($request) : null
+            'ordering_order' => $is_ordering ? get_ordering_order($request) : null
         ]);
     }
 }
