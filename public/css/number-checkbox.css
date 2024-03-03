@@ -5,3 +5,9 @@
     width:22px;
     text-align: right;
 }
+
+.number-checkbox::-webkit-inner-spin-button,
+.number-checkbox::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
