@@ -3,7 +3,7 @@
 
 
 <!-- f($row, $products, $storages, $is_create_tr=undefined): -->
-<tr data-row-id="{{ $row->id}}">
+<tr data-row-id="{{ $row->id }}">
     <td><input type="date" value="{{ $row->date->toDateString() }}" onchange="update_cell_of(this)"></td>
 
     <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $row->product, 'foreign_rows' => $products])</td>
