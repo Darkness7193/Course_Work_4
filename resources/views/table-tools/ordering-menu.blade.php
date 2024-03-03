@@ -10,7 +10,7 @@
     <button type="button" onclick="toggle_dropdown_content(this)" class="icon ordering-btn drop-btn"></button>
     <div class="dropdown-content">
         <form method="POST">
-            @csrf {{ csrf_field() }}
+            @csrf
             <p> 1234 </p>
         </form>
     </div>

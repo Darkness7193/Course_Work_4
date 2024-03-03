@@ -9,7 +9,6 @@
 <div class="advanced-search-btn dropdown icon">
     <button class="drop-btn icon" type="button" onclick="toggle_dropdown_content(this)"></button>
     <div class="advanced-search-menu dropdown-content">
-        @csrf {{ csrf_field() }}
         <table>
             @foreach($view_fields as $rw => $view_field)
                 <tr>

@@ -9,24 +9,11 @@
     action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf
 
-    <div class="default-input-wrapper">
-        <button name="action" value="search"></button>
-    </div>
+    <div class="default-input-wrapper"><button name="action" value="search"></button></div>
 
-    <button class="icon anti-search-btn"
-        type="submit"
-        name="action"
-        value="un_search">
-    </button>
-    @include('table-tools.advanced-search-btn', [
-        'view_fields' => $view_fields,
-        'headers' => $headers
-    ])
-    <button class="icon search-btn"
-        type="submit"
-        name="action"
-        value="search">
-    </button>
+    @include('table-tools.advanced-search-btn', ['view_fields' => $view_fields,'headers' => $headers])
+    <button class="icon anti-search-btn" type="submit" name="action" value="un_search"></button>
+    <button class="icon search-btn" type="submit" name="action" value="search"></button>
 
     <input class="search-input"
         name="tablewise_search_target"
