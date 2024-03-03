@@ -6,8 +6,7 @@
     text-align: right;
     outline: none;
 
-    color: transparent;
-    text-shadow: 0 0 0 gray;
+    caret-color: transparent;
 }
 
 .number-checkbox::-webkit-inner-spin-button,
