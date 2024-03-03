@@ -17,7 +17,7 @@
                     <td><input class="advanced-search-input"
                         name="{{ $view_field }}_search_target"
                         type="text"
-                        autofocus
+                        onfocus="this.select();"
                     ></td>
                 </tr>
             @endforeach

@@ -13,9 +13,9 @@
 
                 <p class="small text-muted">
                     {!! __('Показать') !!}
-                    <input type="number" class="count-input" name='per_page' value="{{ $paginator->perPage() }}" onchange="this.form.submit()">
+                    <input type="number" class="count-input" onfocus="this.select();" name='per_page' value="{{ $paginator->perPage() }}" onchange="this.form.submit()">
                     {!! __('строк') !!}
-                    <input type="number" class="page-input" name='current_page' value="{{ $paginator->currentPage() }}" onchange="this.form.submit()">
+                    <input type="number" class="page-input" onfocus="this.select();" name='current_page' value="{{ $paginator->currentPage() }}" onchange="this.form.submit()">
                     {!! __('страницы из') !!}
                     <span class="fw-semibold">{{ $paginator->lastPage() }}</span>
                 </p>

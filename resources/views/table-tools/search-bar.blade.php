@@ -32,6 +32,7 @@
         name="tablewise_search_target"
         type="text"
         placeholder="Фильтр"
+        onfocus="this.select();"
         autofocus
     >
 </form>
