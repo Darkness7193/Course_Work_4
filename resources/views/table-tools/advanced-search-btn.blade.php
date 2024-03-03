@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/table-tools/advanced-search-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/abstract/dropdown.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
+    <script src="{{ asset('js/of_abstract/of_dropdown.js') }}" type="module"></script>
 
 
 <!-- f($view_fields, $headers): -->

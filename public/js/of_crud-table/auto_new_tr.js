@@ -1,4 +1,4 @@
-import { is_filled, set_editors_to_empty } from "./helpers.js"
+import { is_filled, set_editors_to_empty } from "../helpers.js"
 
 
 function set_next_row_id(tr) {

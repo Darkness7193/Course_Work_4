@@ -1,4 +1,4 @@
-import { set_is_mouse_down, suppress_context_menu_once } from './helpers.js'
+import { set_is_mouse_down, suppress_context_menu_once } from '../helpers.js'
 
 set_is_mouse_down()
 

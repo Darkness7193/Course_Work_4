@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/abstract/dropdown.css') }}">
     <link rel="stylesheet" href="{{ asset('css/abstract/number-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/table-tools/ordering-menu.css') }}">
-    <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
+    <script src="{{ asset('js/of_abstract/of_dropdown.js') }}" type="module"></script>
 
 
 <!-- f($view_fields, $headers): -->

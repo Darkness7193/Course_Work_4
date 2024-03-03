@@ -75,4 +75,4 @@
 </html>
 
 
-<script src="{{ asset('js/delete_btn_bulk_activation.js') }}" type="module"></script>
+<script src="{{ asset('js/of_crud-table/delete_btn_bulk_activation.js') }}" type="module"></script>

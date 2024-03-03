@@ -1,4 +1,4 @@
-import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both, msleep, get_view_fields} from "./helpers.js"
+import { get_value, post, get_row_id_and_cl, set_by_double_keys, remove_elements_that_in_both, msleep} from "../helpers.js"
 
 
 window.updated_rows = {}
