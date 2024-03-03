@@ -1,4 +1,3 @@
-import { get_parents } from "./helpers.js"
 
 
 function hide_dropdowns() {
