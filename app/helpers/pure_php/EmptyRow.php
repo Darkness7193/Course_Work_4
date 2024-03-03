@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\helpers;
+namespace App\helpers\pure_php;
 
 
 class EmptyRow
