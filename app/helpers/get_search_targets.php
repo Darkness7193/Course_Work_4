@@ -2,7 +2,6 @@
 
 
 function get_search_targets($request) {
-    $targets = ['tablewise' => $request->tablewise_search_target];
     $postfix_len = strlen('_search_target');
 
     $fieldwise_targets = [];
@@ -12,5 +11,9 @@ function get_search_targets($request) {
             $fieldwise_targets[$target_field] = $target;
         }
     }
-    return array_merge($targets, $fieldwise_targets);
+
+    return [
+        'tablewise' => $request->tablewise_search_target,
+        'fieldwise' => $fieldwise_targets
+    ];
 }
