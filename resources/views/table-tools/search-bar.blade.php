@@ -1,6 +1,6 @@
 <!-- imports: -->
-<link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
+
 
 
 <!-- f($search_target, $view_fields, $headers): -->
