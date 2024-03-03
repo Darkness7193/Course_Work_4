@@ -1,6 +1,6 @@
 <?php
 
-include_once(app_path().'/helpers/filter_helpers.php');
+include_once(app_path().'/helpers/eloquent_helpers.php');
 include_once(app_path().'/helpers/paginate.php');
 
 

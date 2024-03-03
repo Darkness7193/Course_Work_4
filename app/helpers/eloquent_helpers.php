@@ -13,7 +13,6 @@ function or_where_field_like(&$rows, $target, $search_field) {
         : $rows->orWhere($search_field, 'like', "%$target%");
 }
 
-
 function where_field_like(&$rows, $target, $search_field) {
     if (empty($target)) { return $rows; }
 
@@ -21,7 +20,6 @@ function where_field_like(&$rows, $target, $search_field) {
         ? $rows->WhereRelation(get_foreign_name($search_field), 'name', 'like', "%$target%")
         : $rows->Where($search_field, 'like', "%$target%");
 }
-
 
 function where_some_field_like(&$rows, $target, $search_fields) {
     if (empty($target)) { return $rows; }
@@ -32,4 +30,14 @@ function where_some_field_like(&$rows, $target, $search_fields) {
             or_where_field_like($rows, $target, $field);
         }
     });
+}
+
+
+function bulk_order_by(&$rows, $orders)
+{
+    foreach ($orders as $field_name => $direction) {
+        $rows = $rows->orderBy($field_name, $direction);
+    }
+
+    return $rows;
 }
