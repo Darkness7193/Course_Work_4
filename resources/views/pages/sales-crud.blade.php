@@ -66,6 +66,11 @@
     'headers' => $headers
 ])
 
+@include('table-tools.ordering-menu', [
+    'view_fields' => $view_fields,
+    'headers' => $headers
+])
+
 </body>
 </html>
 
