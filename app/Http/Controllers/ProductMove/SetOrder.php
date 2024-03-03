@@ -2,28 +2,14 @@
 
 namespace App\Http\Controllers\ProductMove;
 
+include_once(app_path().'/helpers/get_form_data.php');
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 
-function get_input_data($request, $postfix='_input_data')
-{
-    $postfix_len = strlen($postfix);
-
-    $input_datas = [];
-    foreach ($request->all() as $maybe_input_name => $input_value) {
-        if (str_contains($maybe_input_name, $postfix)) {
-            $input_name = substr($maybe_input_name, 0, -$postfix_len);
-            $input_datas[$input_name] = $input_value;
-        }
-    }
-
-    return $input_datas;
-}
-
-
 function get_ordering_order($request) {
-    $arr = get_input_data($request);
+    $arr = get_form_data($request);
     $arr = array_filter($arr, function($value){return $value !== null;} );
     asort($arr);
     return array_keys($arr);
