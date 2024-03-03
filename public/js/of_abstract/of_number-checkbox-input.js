@@ -20,6 +20,7 @@ function asdf(number_checkbox) {
 }
 
 
+window.clear_number_checkboxes = clear_number_checkboxes
 ;[...document.getElementsByClassName('number-checkbox-input')].forEach((number_checkbox)=>{
     asdf(number_checkbox)
 })

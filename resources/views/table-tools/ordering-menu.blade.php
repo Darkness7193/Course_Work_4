@@ -9,6 +9,7 @@
 <!-- f($view_fields, $headers): -->
 <div class="dropdown">
     <button type="button" onclick="toggle_dropdown_content(this)" class="icon ordering-btn drop-btn"></button>
+    <button type="button" onclick="clear_number_checkboxes()" class="icon un-ordering-btn drop-btn"></button>
     <div class="dropdown-content number-check-box-container">
         <table>
             @foreach($view_fields as $rw => $view_field)

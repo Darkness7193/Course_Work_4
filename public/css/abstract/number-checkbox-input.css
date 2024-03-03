@@ -2,10 +2,9 @@
 }
 
 .number-checkbox-input {
-    width:22px;
+    width:21px;
     text-align: right;
     outline: none;
-
     caret-color: transparent;
 }
 
@@ -13,10 +12,4 @@
 .number-checkbox::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-
-
-.number-checkbox-input:focus {
-     outline: none;
 }

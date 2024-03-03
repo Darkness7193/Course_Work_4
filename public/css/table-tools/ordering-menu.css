@@ -2,3 +2,8 @@
     background-image: url('../../images/ordering-icon.png');
     background-size: 100% 100% ;
 }
+
+.un-ordering-btn {
+    background-image: url('../../images/un-ordering-icon.png');
+    background-size: 100% 100% ;
+}
