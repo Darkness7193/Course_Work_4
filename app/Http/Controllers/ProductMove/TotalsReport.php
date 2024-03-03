@@ -15,16 +15,16 @@ class TotalsReport extends Controller
 {
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
-            ['storage_id', 'СКЛАД'],
-            ['product_id', 'ТОВАР'],
+            ['storage_id', 'Склад'],
+            ['product_id', 'Товар'],
 
-            ['total_purchases_cost', 'СТОИМОСТЬ ЗАКУПКИ'],
-            ['total_sales_cost', 'СТОИМОСТЬ ПРОДАЖИ'],
-            ['income', 'ДОХОД'],
+            ['total_purchases_cost', 'Стоимость закупки'],
+            ['total_sales_cost', 'Стоимость продажи'],
+            ['income', 'Доход'],
 
-            ['total_purchases_quantity', 'КОЛ-ВО ЗАКУПКИ'],
-            ['total_purchases_quantity', 'КОЛ-ВО ПРОДАЖИ'],
-            ['total_quantity', 'КОЛ-ВО ОСТАТКА'],
+            ['total_purchases_quantity', 'Кол-во закупки'],
+            ['total_purchases_quantity', 'Кол-во продажи'],
+            ['total_quantity', 'Кол-во остатка'],
         ]);
 
         return view('pages/totals_report', [
