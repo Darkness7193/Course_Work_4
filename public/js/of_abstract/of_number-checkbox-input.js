@@ -12,11 +12,9 @@ let largest_rank = 1
 
 function asdf(number_checkbox) {
     number_checkbox.addEventListener('mouseup', ()=>{
-        if (number_checkbox.value === '') {
+        if (!number_checkbox.value) {
             number_checkbox.value = largest_rank
             largest_rank++
-        } else {
-            number_checkbox.value = largest_rank
         }
     })
 }

@@ -17,6 +17,7 @@
                     <td><input class="number-checkbox-input"
                         name="{{ $view_field }}_search_target"
                         type="number"
+                        readonly
                     ></td>
                 </tr>
             @endforeach

@@ -4,10 +4,20 @@
 .number-checkbox-input {
     width:22px;
     text-align: right;
+    outline: none;
+
+    color: transparent;
+    text-shadow: 0 0 0 gray;
 }
 
 .number-checkbox::-webkit-inner-spin-button,
 .number-checkbox::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+
+
+.number-checkbox-input:focus {
+     outline: none;
 }
