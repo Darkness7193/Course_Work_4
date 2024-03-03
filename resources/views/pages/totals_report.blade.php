@@ -6,7 +6,7 @@
 
 
 <!-- imports: -->
-    <link rel="stylesheet" href="{{ asset('css/tile-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
 
 
 <body>

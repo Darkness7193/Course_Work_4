@@ -1,8 +1,8 @@
 <!-- imports: -->
-    <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/table-tools/ordering-menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/number-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/abstract/dropdown.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/abstract/number-checkbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table-tools/ordering-menu.css') }}">
     <script src="{{ asset('js/dropdown.js') }}" type="module"></script>
 
 
