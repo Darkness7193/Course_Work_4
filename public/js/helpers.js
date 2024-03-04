@@ -87,7 +87,7 @@ export function is_filled(tr) {
         let editor = tr.cells[i].querySelectorAll('input,select')[0]
         if (editor === undefined) { continue }
 
-        if (get_value(editor) === '') { return false }
+        if (get_value(editor) === '' && !editor.disabled) { return false }
     }
 
     return true
