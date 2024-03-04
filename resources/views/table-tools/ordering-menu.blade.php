@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/table-tools/ordering-menu.css') }}">
     <script src="{{ asset('js/of_abstract/of_dropdown.js') }}" type="module"></script>
     <script src="{{ asset('js/of_abstract/of_number-checkbox-input.js') }}" type="module"></script>
+    <script src="{{ asset('js/of_ordering-menu/of_order-direction-btn.js') }}" type="module"></script>
 
 
 <!-- f($view_fields, $headers): -->
@@ -24,6 +25,10 @@
                             type="number"
                             readonly
                         ></td>
+
+                        <td>
+                            <button class="icon order-direction-btn" type="button" value="asc" onclick="toggle_ordering_direction(this)"></button>
+                        </td>
                     </tr>
                 @endforeach
                 <tr>
@@ -34,4 +39,3 @@
         </div>
     </div>
 </form>
-

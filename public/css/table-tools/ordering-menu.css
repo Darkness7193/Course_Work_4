@@ -12,3 +12,8 @@
     background-image: url('../../images/ok-ordering-icon.png');
     background-size: 100% 100% ;
 }
+
+.order-direction-btn {
+    background-image: url('../../images/up-ordering-icon.png');
+    background-size: 100% 100% ;
+}
