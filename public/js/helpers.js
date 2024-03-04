@@ -50,16 +50,6 @@ export function msleep (mtime) {
     return new Promise((resolve) => setTimeout(resolve, mtime));
 }
 
-export function get_tr_values(tr) {
-    let values = []
-    for (let i=0; i<tr.cells.length; i++) {
-        let editor = tr.cells[i].querySelectorAll('input,select')[0]
-        values[i] = get_value(editor)
-    }
-
-    return values
-}
-
 export function set_by_double_keys(json, keys, value) {
     try {
         json[keys[0]][keys[1]] = value
@@ -113,14 +103,6 @@ export function set_is_mouse_down() {
     document.addEventListener('mouseup', function(event) {
         window.is_mouse_down = false
     }, true)
-}
-
-export function get_view_fields(element) {
-    let view_fields = []
-    ;[...element.getElementsByTagName('th')].forEach((th)=>{
-        view_fields.push(th.dataset.viewField)
-    })
-    return view_fields
 }
 
 function disable_context_menu(event) { event.preventDefault() }
