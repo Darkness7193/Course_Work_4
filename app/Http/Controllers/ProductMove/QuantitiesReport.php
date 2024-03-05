@@ -15,6 +15,7 @@ class QuantitiesReport extends Controller
 {
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
+            ['storage_id', 'Склад'],
             ['product_id', 'Товар'],
 
             ['cost', 'Стоимость'],
@@ -33,8 +34,12 @@ class QuantitiesReport extends Controller
             ['quantity_month_12', 'Декабрь',]
         ]);
 
+        $totals = query_quantity_totals($request, 1061, 2024);
+
+        //dd($totals);
+
         return view('pages/quantities-report', [
-            'totals' => query_quantity_totals($request, 1061, 2024),
+            'totals' => $totals,
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers,

@@ -20,13 +20,14 @@
 
     @foreach ($totals as $total)
         <tr>
+            <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
             <td>{{ $total->cost }}</td>
             <td>{{ $total->quantity }}</td>
 
             @for ($i=1; $i<13; $i++)
-                <td>{{ $totals["quantity_month_$i"] }}</td>
+                <td>{{ $total->{"quantity_by_month_$i"} }}</td>
             @endfor
         </tr>
     @endforeach
