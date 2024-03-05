@@ -58,7 +58,7 @@ function test_query() {
 }
 
 
-function get_product_totals($request) {
+function query_product_totals($request) {
     $totals = "
     select
         (select name from storages where id = storage_id) as storage_name,

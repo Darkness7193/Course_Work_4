@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/functions/queries/get_product_totals.php');
+include_once(app_path().'/functions/queries/query_product_totals.php');
 
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
@@ -28,7 +28,7 @@ class TotalsReport extends Controller
         ]);
 
         return view('pages/totals_report', [
-            'totals' => get_product_totals($request),
+            'totals' => query_product_totals($request),
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers
