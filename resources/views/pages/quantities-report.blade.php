@@ -47,6 +47,8 @@
 
 @include('report-components.report-storage-select', ['$Storage' => $Storage, 'storage_id_of_report' => $storage_id_of_report])
 
+@include('report-components.report-year-select', ['$used_years' => $used_years, 'year_of_report' => $year_of_report])
+
 
 <div style="height: 500px"></div>
 </body>
