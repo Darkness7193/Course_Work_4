@@ -27,7 +27,7 @@ export function auto_new_tr() {
     let old_last_tr = crud_table.rows[crud_table.rows.length-1]
     let page_is_full = window.page_count >= window.per_page
 
-    if (is_filled(old_last_tr) && !page_is_full) {
+    if (is_filled(old_last_tr) && !page_is_full) { // FIXME when you'll refactor auto_new_tr() conditions?
 
         let new_last_tr = append_empty_tr(crud_table)
         let delete_btn = old_last_tr.getElementsByClassName('delete-btn')[0]
@@ -36,7 +36,7 @@ export function auto_new_tr() {
         old_last_tr.onchange = ''
         delete_btn.style.display = 'block'
 
-        window.page_count += 1
+        window.page_count += 1 // FIXME what is window.page_count += 1?
     }
 
     if (page_is_full) {

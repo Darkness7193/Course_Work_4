@@ -19,10 +19,10 @@ function toggle_row_deleting(delete_btn) {
 
     if (is_add_to_delete) {
         deleted_rows.delete(row_id)
-        img.src = window.img_delete_off
+        img.src = window.php_vars['img_delete_off']
     } else {
         deleted_rows.add(row_id)
-        img.src = window.img_delete_on
+        img.src = window.php_vars['img_delete_on']
     }
 }
 
@@ -30,8 +30,8 @@ function toggle_row_deleting(delete_btn) {
 function submit_changes(no_view_fields) {
     ;[deleted_rows, updated_rows] = remove_elements_that_in_both(deleted_rows, updated_rows)
 
-    post(window.update_or_create_in_bulk_route, {'updated_rows': updated_rows, 'no_view_fields': JSON.parse(no_view_fields)})
-    post(window.delete_in_bulk_route, {'deleted_rows': Array.from(deleted_rows)})
+    post(window.php_vars['update_or_create_in_bulk_route'], {'updated_rows': updated_rows, 'no_view_fields': JSON.parse(no_view_fields)})
+    post(window.php_vars['delete_in_bulk_route'], {'deleted_rows': Array.from(deleted_rows)})
 
     msleep(100).then(() => { location.reload(); })
 }
