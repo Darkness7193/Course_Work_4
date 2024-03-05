@@ -4,8 +4,8 @@ include_once(app_path().'/helpers/eloquent/paginate.php');
 
 use Illuminate\Support\Facades\DB;
 
-//sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity))             as total_quantity,
-//sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as income,
+
+
 
 function query_quantity_totals($request, $storage_id, $year) {
     $total_quantities_by_months = "";
