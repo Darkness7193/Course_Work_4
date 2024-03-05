@@ -14,16 +14,15 @@ function query_quantity_totals($request, $storage_id, $year) {
     }
 
     $totals = DB::select("
-    select
-        (select name from storages where id = storage_id) as storage_name,
-        (select name from products where id = product_id) as product_name,
-        $total_quantities_by_months
-        sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity,
-        sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as cost
-    from product_moves
-    where year(date) = ?
-    group by storage_id, product_id, month(date)
-    order by storage_id
+        select
+            (select name from products where id = product_id) as product_name,
+            $total_quantities_by_months
+            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity,
+            sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as cost
+        from product_moves
+        where year(date) = ?
+        group by storage_id, product_id, month(date)
+        order by storage_id
     ", [$year]);
 
     return paginate_array($totals,

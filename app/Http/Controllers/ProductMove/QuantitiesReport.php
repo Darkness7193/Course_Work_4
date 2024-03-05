@@ -15,7 +15,6 @@ class QuantitiesReport extends Controller
 {
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
-            ['storage_id', 'Склад'],
             ['product_id', 'Товар'],
 
             ['cost', 'Стоимость'],

@@ -8,10 +8,11 @@
 <!-- imports: -->
     <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/abstract/report.css') }}">
 
 
 <body>
-<table class="tile-table" data-view-fields="{{ implode(',', $view_fields) }}">
+<table class="tile-table report" data-view-fields="{{ implode(',', $view_fields) }}">
     <tr>
         @foreach($headers as $header)
             <th>{{ mb_strtoupper($header) }}</th>
@@ -20,14 +21,14 @@
 
     @foreach ($totals as $total)
         <tr>
-            <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
             <td>{{ $total->cost }}</td>
             <td>{{ $total->quantity }}</td>
 
+            @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
-                <td>{{ $total->{"quantity_by_month_$i"} ?: '' }}</td>
+                <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"quantity_by_month_$i"} ?: '' }}</td>
             @endfor
         </tr>
     @endforeach
