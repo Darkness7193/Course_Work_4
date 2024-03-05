@@ -45,5 +45,9 @@
     'headers' => $headers
 ])
 
+@include('report-components.report-storage-select', ['$Storage' => $Storage, 'storage_id_of_report' => $storage_id_of_report])
+
+
+<div style="height: 500px"></div>
 </body>
 </html>

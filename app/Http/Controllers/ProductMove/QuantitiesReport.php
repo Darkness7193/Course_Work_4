@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/functions/queries/query_quantity_totals.php');
 
+use App\Models\Storage;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -33,15 +34,15 @@ class QuantitiesReport extends Controller
             ['quantity_month_12', 'Дек',]
         ]);
 
-        $totals = query_quantity_totals($request, 1061, 2024);
-
-        //dd($totals);
+        $totals = query_quantity_totals($request, $request->storage_id_of_report, 2024);
 
         return view('pages/quantities-report', [
             'totals' => $totals,
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers,
+            'Storage' => Storage::class,
+            'storage_id_of_report' => $request->storage_id_of_report
         ]);
     }
 }

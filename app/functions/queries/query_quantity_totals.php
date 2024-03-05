@@ -2,6 +2,7 @@
 
 include_once(app_path().'/helpers/eloquent/paginate.php');
 
+use App\Models\Storage;
 use Illuminate\Support\Facades\DB;
 
 
@@ -20,10 +21,11 @@ function query_quantity_totals($request, $storage_id, $year) {
             sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity,
             sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as cost
         from product_moves
-        where year(date) = ?
+        where storage_id = ?
+            and year(date) = ?
         group by storage_id, product_id, month(date)
         order by storage_id
-    ", [$year]);
+    ", [$storage_id ?? Storage::first()->id, $year]);
 
     return paginate_array($totals,
         per_page: $request->session()->get('per_page') ?? 10,
