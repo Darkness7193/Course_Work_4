@@ -21,3 +21,9 @@
     outline: none;
     width: 85%;
 }
+
+.search-input::-webkit-inner-spin-button,
+.search-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
