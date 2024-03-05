@@ -113,3 +113,13 @@ export function suppress_context_menu_once() {
         msleep(50).then(()=>{ document.removeEventListener(`contextmenu`, disable_context_menu) })
     })
 }
+
+set_is_mouse_down()
+export function activation_by_hold_mouse(element) {
+    element.addEventListener("mouseenter", (event) => {
+        if (is_mouse_down) {
+            element.click()
+            suppress_context_menu_once()
+        }
+    })
+}
