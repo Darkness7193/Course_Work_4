@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
     Route::get('product_moves/purchases_crud', 'PurchasesCrud')->name('product_moves.purchases_crud');
     Route::get('product_moves/sales_crud', 'SalesCrud')->name('product_moves.sales_crud');
-    Route::get('product_moves/show_totals_report', 'TotalsReport')->name('product_moves.show_totals_report');
     Route::get('product_moves/inner_moves_crud', 'InnerMovesCrud')->name('product_moves.inner_moves_crud');
+    Route::get('product_moves/show_totals_report', 'TotalsReport')->name('product_moves.show_totals_report');
+    Route::get('product_moves/quantities_report', 'QuantitiesReport')->name('product_moves.quantities_report');
 
     Route::post('product_moves/bulk_update_or_create', 'UpdateOrCreateInBulk')->name('product_moves.bulk_update_or_create');
     Route::post('product_moves/bulk_delete', 'DeleteInBulk')->name('product_moves.bulk_delete');
