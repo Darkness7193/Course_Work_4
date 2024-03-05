@@ -22,7 +22,7 @@ class QuantitiesReport extends Controller
         ]);
 
         return view('pages/quantities-report', [
-            'totals' => query_quantity_totals($request, 841, 2024),
+            'totals' => query_quantity_totals($request, 1061, 2024),
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers
