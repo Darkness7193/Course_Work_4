@@ -12,12 +12,12 @@ function query_product_totals($request) {
         select
             (select name from storages where id = storage_id) as storage_name,
             (select name from products where id = product_id) as product_name,
-            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as total_quantity,
-            sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as income,
-            sum(if(product_move_type = 'purchasing', quantity, 0))       as total_purchases_quantity,
-            sum(if(product_move_type = 'purchasing', price*quantity, 0)) as total_purchases_cost,
-            sum(if(product_move_type = 'selling', quantity, 0))          as total_sales_quantity,
-            sum(if(product_move_type = 'selling', price*quantity, 0))    as total_sales_cost
+            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity,
+            sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as cost,
+            sum(if(product_move_type = 'purchasing', quantity, 0))       as purchases_quantity,
+            sum(if(product_move_type = 'purchasing', price*quantity, 0)) as purchases_cost,
+            sum(if(product_move_type = 'selling', quantity, 0))          as sales_quantity,
+            sum(if(product_move_type = 'selling', price*quantity, 0))    as sales_cost
         from product_moves
         group by storage_id, product_id
     ");

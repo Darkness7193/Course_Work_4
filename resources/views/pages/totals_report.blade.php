@@ -23,13 +23,13 @@
             <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
-            <td>{{ $total->total_purchases_cost }}</td>
-            <td>{{ $total->total_sales_cost }}</td>
-            <td>{{ $total->income }}</td>
+            <td>{{ $total->purchases_cost }}</td>
+            <td>{{ $total->sales_cost }}</td>
+            <td>{{ $total->cost }}</td>
 
-            <td>{{ $total->total_purchases_quantity }}</td>
-            <td>{{ $total->total_sales_quantity }}</td>
-            <td>{{ $total->total_quantity }}</td>
+            <td>{{ $total->purchases_quantity }}</td>
+            <td>{{ $total->sales_quantity }}</td>
+            <td>{{ $total->quantity }}</td>
         </tr>
     @endforeach
 </table>

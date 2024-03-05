@@ -18,13 +18,13 @@ class TotalsReport extends Controller
             ['storage_id', 'Склад'],
             ['product_id', 'Товар'],
 
-            ['total_purchases_cost', 'Стоимость закупки'],
-            ['total_sales_cost', 'Стоимость продажи'],
-            ['income', 'Доход'],
+            ['purchases_cost', 'Стоимость закупки'],
+            ['sales_cost', 'Стоимость продажи'],
+            ['cost', 'Доход'],
 
-            ['total_purchases_quantity', 'Кол-во закупки'],
-            ['total_purchases_quantity', 'Кол-во продажи'],
-            ['total_quantity', 'Кол-во остатка'],
+            ['purchases_quantity', 'Кол-во закупки'],
+            ['purchases_quantity', 'Кол-во продажи'],
+            ['quantity', 'Кол-во остатка'],
         ]);
 
         return view('pages/totals_report', [
