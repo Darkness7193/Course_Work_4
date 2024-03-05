@@ -17,9 +17,9 @@
         <button class="icon un-ordering-btn drop-btn" type="submit" name="action" value="is_un_ordering" onclick="clear_number_checkboxes()"></button>
         <div class="dropdown-content number-check-box-container">
             <table>
-                @foreach($view_fields as $rw => $view_field)
+                @foreach(array_merge($view_fields, ['created_at', 'updated_at']) as $rw => $view_field)
                     <tr>
-                        <td>{{ $headers[$rw] }}:</td>
+                        <td>{{ array_merge($headers, ['# по созданию', '# по изменению'])[$rw] }}:</td>
                         <td><input class="number-checkbox-input"
                             name="{{ $view_field }}_order_priority"
                             type="number"
@@ -32,13 +32,11 @@
                                     onclick="toggle_ordering_direction(this)">
                             </button>
                         </td>
-                        <td>
-                            <input class="order-direction-input"
+                        <td><input class="order-direction-input"
                                    hidden="hidden"
                                    name="{{ $view_field }}_order_direction"
                                    value="asc"
-                            >
-                        </td>
+                            ></td>
                     </tr>
                 @endforeach
                 <tr>
