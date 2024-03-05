@@ -3,8 +3,8 @@
 
 function multi_order_by(&$rows, $orders)
 {
-    foreach ($orders as $field_name) {
-        $rows = $rows->orderBy($field_name);
+    foreach ($orders as [$field, $direction]) {
+        $rows = $rows->orderBy($field, $direction);
     }
 
     return $rows;

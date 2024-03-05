@@ -1,10 +1,11 @@
 function toggle_ordering_direction(element) {
-    if (element.value === 'asc') {
+    let direction_input = element.parentNode.parentNode.getElementsByClassName('order-direction-input')[0]
+    if (direction_input.value === 'asc') {
         element.style.backgroundImage = 'url(../../images/down-ordering-icon.png)'
-        element.value = 'desc'
+        direction_input.value = 'desc'
     } else {
         element.style.backgroundImage = 'url(../../images/up-ordering-icon.png)'
-        element.value = 'asc'
+        direction_input.value = 'asc'
     }
 }
 
