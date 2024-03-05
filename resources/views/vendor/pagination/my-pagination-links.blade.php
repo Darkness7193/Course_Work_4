@@ -17,7 +17,7 @@
                     {!! __('строк') !!}
                     <input type="number" class="page-input" onfocus="this.select();" name='current_page' value="{{ $paginator->currentPage() }}" onchange="this.form.submit()">
                     {!! __('страницы из') !!}
-                    <span class="fw-semibold">{{ $paginator->lastPage() }}</span>
+                    <span class="last-page-indicator fw-semibold">{{ $paginator->lastPage() }}</span>
                 </p>
             </form>
         </div>
