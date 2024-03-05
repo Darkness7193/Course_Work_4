@@ -27,7 +27,7 @@
             <td>{{ $total->quantity }}</td>
 
             @for ($i=1; $i<13; $i++)
-                <td>{{ $total->{"quantity_by_month_$i"} }}</td>
+                <td>{{ $total->{"quantity_by_month_$i"} ?: '' }}</td>
             @endfor
         </tr>
     @endforeach

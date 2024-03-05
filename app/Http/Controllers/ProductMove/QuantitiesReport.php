@@ -20,18 +20,18 @@ class QuantitiesReport extends Controller
 
             ['cost', 'Стоимость'],
             ['quantity', 'Кол-во'],
-            ['quantity_month_1', 'Январь',],
-            ['quantity_month_2', 'Февраль',],
-            ['quantity_month_3', 'Март',],
-            ['quantity_month_4', 'Апрель',],
+            ['quantity_month_1', 'Янв',],
+            ['quantity_month_2', 'Фев',],
+            ['quantity_month_3', 'Мар',],
+            ['quantity_month_4', 'Апр',],
             ['quantity_month_5', 'Май',],
-            ['quantity_month_6', 'Июнь',],
-            ['quantity_month_7', 'Июль',],
-            ['quantity_month_8', 'Август',],
-            ['quantity_month_9', 'Сентябрь',],
-            ['quantity_month_10', 'Октябрь',],
-            ['quantity_month_11', 'Ноябрь',],
-            ['quantity_month_12', 'Декабрь',]
+            ['quantity_month_6', 'Июн',],
+            ['quantity_month_7', 'Июл',],
+            ['quantity_month_8', 'Авг',],
+            ['quantity_month_9', 'Сен',],
+            ['quantity_month_10', 'Окт',],
+            ['quantity_month_11', 'Ноя',],
+            ['quantity_month_12', 'Дек',]
         ]);
 
         $totals = query_quantity_totals($request, 1061, 2024);

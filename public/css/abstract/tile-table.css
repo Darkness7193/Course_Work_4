@@ -7,7 +7,6 @@
 .tile-table th {
     padding: 5px;
     border: 3px solid transparent;
-    min-width: 70px;
 }
 
 .tile-table td {
