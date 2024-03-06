@@ -44,18 +44,19 @@ class QuantitiesReport extends Controller
             ['product_id', 'Товар'],
             ['quantity', 'Кол-во'],
 
-            ['quantity_month_1', 'Янв',],
-            ['quantity_month_2', 'Фев',],
-            ['quantity_month_3', 'Мар',],
-            ['quantity_month_4', 'Апр',],
-            ['quantity_month_5', 'Май',],
-            ['quantity_month_6', 'Июн',],
-            ['quantity_month_7', 'Июл',],
-            ['quantity_month_8', 'Авг',],
-            ['quantity_month_9', 'Сен',],
-            ['quantity_month_10', 'Окт',],
-            ['quantity_month_11', 'Ноя',],
-            ['quantity_month_12', 'Дек',]
+            ['totals_by_year', 'Год',],
+            ['totals_by_month_1', 'Янв',],
+            ['totals_by_month_2', 'Фев',],
+            ['totals_by_month_3', 'Мар',],
+            ['totals_by_month_4', 'Апр',],
+            ['totals_by_month_5', 'Май',],
+            ['totals_by_month_6', 'Июн',],
+            ['totals_by_month_7', 'Июл',],
+            ['totals_by_month_8', 'Авг',],
+            ['totals_by_month_9', 'Сен',],
+            ['totals_by_month_10', 'Окт',],
+            ['totals_by_month_11', 'Ноя',],
+            ['totals_by_month_12', 'Дек',]
         ]);
 
         $used_years = get_used_years();

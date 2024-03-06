@@ -21,6 +21,7 @@
             <td>{{ $total->product_name }}</td>
             <td>{{ $total->quantity }}</td>
 
+            <td>{{ $total->totals_by_year ?: '' }}</td>
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
                 <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"totals_by_month_$i"} ?: '' }}</td>
