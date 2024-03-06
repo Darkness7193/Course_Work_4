@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function query_quantity_totals($request, $storage_id, $year) {
+function query_totals_of($request, $report_field, $storage_id, $year) {
     $total_quantities_by_months = "";
     for ($i=1; $i<13; $i++) {
-        $total_quantities_by_months .= "sum(if(month(date) = $i, quantity, 0)) as quantity_by_month_$i,\n";
+        $total_quantities_by_months .= "sum(if(month(date) = $i, $report_field, 0)) as totals_by_month_$i,\n";
     }
 
     $totals = DB::select("
@@ -25,7 +25,9 @@ function query_quantity_totals($request, $storage_id, $year) {
             and year(date) = ?
         group by storage_id, product_id, month(date)
         order by storage_id
-    ", [$storage_id ?? Storage::first()->id, $year]);
+        ",
+        [$storage_id ?? Storage::first()->id, $year]
+    );
 
     return paginate_array($totals,
         per_page: $request->session()->get('per_page') ?? 10,

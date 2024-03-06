@@ -25,7 +25,7 @@
 
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
-                <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"quantity_by_month_$i"} ?: '' }}</td>
+                <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"totals_by_month_$i"} ?: '' }}</td>
             @endfor
         </tr>
     @endforeach

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/functions/queries/query_quantity_totals.php');
+include_once(app_path().'/functions/queries/query_totals_of.php');
 
 use App\Models\ProductMove;
 use App\Models\Storage;
@@ -61,7 +61,7 @@ class QuantitiesReport extends Controller
 
         $used_years = get_used_years();
         $year_of_report = get_year_of_report($request, $used_years);
-        $totals = query_quantity_totals($request, $request->storage_id_of_report, $year_of_report);
+        $totals = query_totals_of($request, 'quantity', $request->storage_id_of_report, $year_of_report);
 
         return view('pages/quantities-report', [
             'totals' => $totals,
