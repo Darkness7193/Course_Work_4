@@ -19,7 +19,6 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
             (select name from products where id = product_id) as product_name,
             sum(if(year(date) = $year, $calculated_field, 0)) as totals_by_year,
             $total_quantities_by_months
-            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity
         from product_moves
         where storage_id = ?
             and year(date) = ?

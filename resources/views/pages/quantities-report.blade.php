@@ -19,7 +19,6 @@
     @foreach ($totals as $total)
         <tr>
             <td>{{ $total->product_name }}</td>
-            <td>{{ $total->quantity }}</td>
 
             <td>{{ $total->totals_by_year ?: '' }}</td>
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
