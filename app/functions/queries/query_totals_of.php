@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 function query_totals_of($request, $calculated_field, $storage_id, $year) {
     $total_quantities_by_months = "";
     for ($i=1; $i<13; $i++) {
-        $total_quantities_by_months .= "sum(if(month(date) = $i, $calculated_field, 0)) as totals_by_month_$i,\n";
+        $total_quantities_by_months .= "sum(if(month(date) = $i, $calculated_field, 0)) as totals_by_month_$i";
+        if ($i !== 12) { $total_quantities_by_months .= ",\n"; }
     }
 
     $totals = DB::select("
