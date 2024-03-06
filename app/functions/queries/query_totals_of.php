@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function query_totals_of($request, $report_field, $storage_id, $year) {
+function query_totals_of($request, $calculated_field, $storage_id, $year) {
     $total_quantities_by_months = "";
     for ($i=1; $i<13; $i++) {
-        $total_quantities_by_months .= "sum(if(month(date) = $i, $report_field, 0)) as totals_by_month_$i,\n";
+        $total_quantities_by_months .= "sum(if(month(date) = $i, $calculated_field, 0)) as totals_by_month_$i,\n";
     }
 
     $totals = DB::select("
         select
             (select name from products where id = product_id) as product_name,
             $total_quantities_by_months
-            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity,
-            sum(if(product_move_type in ('purchasing', 'inventory'), quantity*price, -quantity*price)) as cost
+            sum(if(product_move_type in ('purchasing', 'inventory'), quantity, -quantity)) as quantity
         from product_moves
         where storage_id = ?
             and year(date) = ?

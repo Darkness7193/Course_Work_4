@@ -19,8 +19,6 @@ class PurchasesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
-        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $purchases = ProductMove::where('product_move_type', 'purchasing');
         [$view_fields, $headers] = get_columns([
             ['date', 'Поступило'],
 
@@ -31,6 +29,9 @@ class PurchasesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
+
+        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
+        $purchases = ProductMove::where('product_move_type', 'purchasing');
 
         return view('pages/purchases-crud', [
             'purchases' => filter_order_paginate($purchases, $view_fields, $request),

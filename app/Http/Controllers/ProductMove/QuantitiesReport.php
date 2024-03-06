@@ -42,9 +42,8 @@ class QuantitiesReport extends Controller
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
             ['product_id', 'Товар'],
-
-            ['cost', 'Стоимость'],
             ['quantity', 'Кол-во'],
+
             ['quantity_month_1', 'Янв',],
             ['quantity_month_2', 'Фев',],
             ['quantity_month_3', 'Мар',],
@@ -61,7 +60,11 @@ class QuantitiesReport extends Controller
 
         $used_years = get_used_years();
         $year_of_report = get_year_of_report($request, $used_years);
-        $totals = query_totals_of($request, 'quantity', $request->storage_id_of_report, $year_of_report);
+        $totals = query_totals_of($request,
+            ['quantity', 'quantity*price'][intval($request->field_for_report_i)],
+            $request->storage_id_of_report,
+            $year_of_report
+        );
 
         return view('pages/quantities-report', [
             'totals' => $totals,
@@ -71,7 +74,8 @@ class QuantitiesReport extends Controller
             'Storage' => Storage::class,
             'storage_id_of_report' => $request->storage_id_of_report,
             'used_years' => $used_years,
-            'year_of_report' => $year_of_report
+            'year_of_report' => $year_of_report,
+            'field_for_report_i' => (intval($request->field_for_report_i) + 1) % 2
         ]);
     }
 }
