@@ -6,7 +6,7 @@ include_once(app_path().'/helpers/eloquent/where_some_field_like.php');
 
 
 function filter(&$rows, $search_targets, $view_fields) {
-    if (empty($search_targets)) { return $rows; }
+    if ($search_targets === []) { return $rows; }
 
     $rows = where_some_field_like($rows, $search_targets['tablewise'] ?? null, $view_fields);
 

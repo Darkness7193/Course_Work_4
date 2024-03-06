@@ -12,7 +12,7 @@ function get_foreign_name($foreign_id) {
 
 
 function or_where_field_like(&$rows, $target, $search_field) {
-    if (empty($target)) { return $rows; }
+    if ($target === '') { return $rows; }
 
     return is_foreing_id($search_field)
         ? $rows->orWhereRelation(get_foreign_name($search_field), 'name', 'like', "%$target%")
@@ -21,7 +21,7 @@ function or_where_field_like(&$rows, $target, $search_field) {
 
 
 function where_field_like(&$rows, $target, $search_field) {
-    if (empty($target)) { return $rows; }
+    if ($target === '') { return $rows; }
 
     return is_foreing_id($search_field)
         ? $rows->WhereRelation(get_foreign_name($search_field), 'name', 'like', "%$target%")
