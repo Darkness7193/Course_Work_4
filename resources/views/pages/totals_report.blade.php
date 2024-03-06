@@ -37,13 +37,11 @@
 
 
 <div>{{ $totals->links('pagination::my-pagination-links') }}</div>
-
 @include('table-tools.search-bar', [
     'search_targets' => $search_targets,
     'view_fields' => $view_fields,
     'headers' => $headers
 ])
-
 @include('table-tools.ordering-menu', [
     'view_fields' => $view_fields,
     'headers' => $headers

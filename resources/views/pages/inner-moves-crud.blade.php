@@ -43,18 +43,15 @@
 
 
 <div>{{ $inner_moves->links('pagination::my-pagination-links') }}</div>
-
 @include('crud-components.save-btn', ['no_view_fields' => [
     'product_move_type' => 'purchasing',
     'new_storage_id' => null
 ]])
-
 @include('table-tools.search-bar', [
     'search_targets' => $search_targets,
     'view_fields' => $view_fields,
     'headers' => $headers
 ])
-
 @include('table-tools.ordering-menu', [
     'view_fields' => $view_fields,
     'headers' => $headers
