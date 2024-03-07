@@ -44,11 +44,9 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
         select
             (select name from products where id = product_id) as product_name,
             sum(
-                if(year(date) = ?,
-                    if(product_move_type in ('purchasing', 'inventory'),
-                        $calculated_field, -$calculated_field
-                    ), 0
-            )) - transfered_quantity as totals_by_year,
+                if(product_move_type in ('purchasing', 'inventory'),
+                    $calculated_field, -$calculated_field)
+            ) - transfered_quantity as totals_by_year,
             $total_quantities_by_months
 
         from product_moves left join transfered
@@ -57,7 +55,7 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
         where storage_id = ? and year(date) = ?
         group by product_id
         ",
-        [$storage_id, $year, $storage_id, $year]
+        [$storage_id, $storage_id, $year]
     );
 
     return paginate_array($totals,
