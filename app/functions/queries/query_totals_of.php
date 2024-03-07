@@ -37,8 +37,7 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
 
             from product_moves
             where new_storage_id = ? and product_move_type = 'transfering'
-            group by product_id
-        )
+            group by product_id)
 
 
         select
@@ -47,7 +46,8 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
                 - transfered_quantity as totals_by_year,
             $total_quantities_by_months
 
-        from product_moves left join transfered
+        from product_moves
+            left join transfered
             on product_id = transfered_product_id
 
         where storage_id = ? and year(date) = ?
