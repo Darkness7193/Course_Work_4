@@ -56,10 +56,10 @@ function query_quantity_or_cost_totals($request, $field_for_report_i, $storage_i
             sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
                 - transfered_quantity AS totals_by_year,
             $total_by_months
-
         FROM product_moves
             LEFT JOIN transfered
             ON product_id = transfered_product_id
+
             LEFT JOIN ever
             ON product_id = ever_product_id
         WHERE storage_id = ? AND year(date) = ?
