@@ -29,29 +29,40 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
     $storage_id = $storage_id ?: Storage::first()->id;
     $total_quantities_by_months = get_totals_by_months($calculated_field);
 
-    $totals = DB::select("
-        with transfered as (
-            select
-                product_id as transfered_product_id,
-                sum($calculated_field) as transfered_quantity
+    $totals = DB::select(/**@lang SQL*/"
+        WITH transfered AS (
+            SELECT
+                product_id AS transfered_product_id,
+                sum($calculated_field) AS transfered_quantity
 
-            from product_moves
-            where new_storage_id = ? and product_move_type = 'transfering'
-            group by product_id)
+            FROM product_moves
+            WHERE new_storage_id = ? AND product_move_type = 'transfering'
+            GROUP BY product_id
+        ),
 
+        ever AS (
+            SELECT
+                product_id AS ever_product_id,
+                sum(IF(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) AS ever_quantity
 
-        select
-            (select name from products where id = product_id) as product_name,
-            sum(if(product_move_type in ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
-                - transfered_quantity as totals_by_year,
+            FROM product_moves
+            GROUP BY product_id
+        )
+
+        SELECT
+            (SELECT name FROM products WHERE id = product_id) AS product_name,
+            ever_quantity AS totals_by_ever,
+            sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
+                - transfered_quantity AS totals_by_year,
             $total_quantities_by_months
 
-        from product_moves
-            left join transfered
-            on product_id = transfered_product_id
-
-        where storage_id = ? and year(date) = ?
-        group by product_id
+        FROM product_moves
+            LEFT JOIN transfered
+            ON product_id = transfered_product_id
+            LEFT JOIN ever
+            ON product_id = ever_product_id
+        WHERE storage_id = ? AND year(date) = ?
+        GROUP BY product_id
         ",
         [$storage_id, $storage_id, $year]
     );

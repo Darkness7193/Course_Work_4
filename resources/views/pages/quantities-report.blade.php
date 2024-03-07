@@ -20,6 +20,7 @@
         <tr>
             <td>{{ $total->product_name }}</td>
 
+            <td class="ever-td">{{ $total->totals_by_ever ?: '' }}</td>
             <td class="year-td">{{ $total->totals_by_year ?: '' }}</td>
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
