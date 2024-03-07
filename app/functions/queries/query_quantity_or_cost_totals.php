@@ -25,9 +25,10 @@ function get_totals_by_months($calculated_field) {
 }
 
 
-function query_totals_of($request, $calculated_field, $storage_id, $year) {
+function query_quantity_or_cost_totals($request, $field_for_report_i, $storage_id, $year) {
     $storage_id = $storage_id ?: Storage::first()->id;
-    $total_quantities_by_months = get_totals_by_months($calculated_field);
+    $calculated_field = ['quantity', 'quantity*price'][$field_for_report_i];
+    $total_by_months = get_totals_by_months($calculated_field);
 
     $totals = DB::select(/**@lang SQL*/"
         WITH transfered AS (
@@ -54,7 +55,7 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
             ever_quantity AS totals_by_ever,
             sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
                 - transfered_quantity AS totals_by_year,
-            $total_quantities_by_months
+            $total_by_months
 
         FROM product_moves
             LEFT JOIN transfered
