@@ -1,15 +1,24 @@
+.year-td {
+    min-width: 44px;
+}
+
+
 tr > .winter-td {
     background: #bcbcd2;
+    min-width: 44px;
 }
 
 tr > .spring-td {
     background: #c3d7c3;
+    min-width: 44px;
 }
 
 tr > .summer-td {
     background: #adad7a;
+    min-width: 44px;
 }
 
 tr > .fall-td {
     background: #cca6a6;
+    min-width: 44px;
 }

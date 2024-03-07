@@ -40,6 +40,7 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
             group by product_id
         )
 
+
         select
             (select name from products where id = product_id) as product_name,
             sum(
@@ -52,8 +53,8 @@ function query_totals_of($request, $calculated_field, $storage_id, $year) {
 
         from product_moves left join transfered
             on product_id = transfered_product_id
-        where storage_id = ?
-            and year(date) = ?
+
+        where storage_id = ? and year(date) = ?
         group by product_id
         ",
         [$storage_id, $year, $storage_id, $year]
