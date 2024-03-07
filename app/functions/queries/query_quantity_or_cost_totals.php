@@ -37,14 +37,14 @@ function query_quantity_or_cost_totals($request, $field_for_report_i, $storage_i
                 sum($calculated_field) AS transfered_quantity
 
             FROM product_moves
-            WHERE new_storage_id = ? AND product_move_type = 'transfering'
+            WHERE storage_id = ? AND product_move_type = 'transfering'
             GROUP BY product_id
         ),
 
         ever AS (
             SELECT
                 product_id AS ever_product_id,
-                sum(IF(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) AS ever_quantity
+                sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) AS ever_quantity
 
             FROM product_moves
             GROUP BY product_id
