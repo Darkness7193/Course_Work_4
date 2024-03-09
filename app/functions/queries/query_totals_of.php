@@ -57,6 +57,7 @@ function query_totals_of($request, $report_field_i, $report_storage_id, $year) {
     $report_field = ['quantity', 'quantity*price'][$report_field_i];
     $from_our_storages = from_our_storages($report_storage_id, $report_field);
 
+    dump($from_our_storages->get()->toArray());
     $totals = DB::table('product_moves as this')
         ->joinSub($from_our_storages, 'from_our_storages', on('this.product_id', '=', 'from_our_storages.product_id'))
         ->joinSub(all_time_totals($report_storage_id, $report_field), 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
