@@ -11,12 +11,11 @@ function get_totals_by_months($calculated_field) {
 
     for ($i=1; $i<13; $i++) {
         $totals_by_months .= "
-            sum(
-                if(month(date) = $i,
-                    if(product_move_type in ('purchasing', 'inventory'),
-                        $calculated_field, -$calculated_field
-                    ), 0
-            )) as totals_by_month_$i";
+            Sum(
+                If(month(date) = $i,
+                    If(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field),
+                    0
+            )) As totals_by_month_$i";
 
         if ($i !== 12) { $totals_by_months .= ",\n"; }
     }
@@ -31,39 +30,36 @@ function query_quantity_or_cost_totals($request, $field_for_report_i, $storage_i
     $total_by_months = get_totals_by_months($calculated_field);
 
     $totals = DB::select(/**@lang SQL*/"
-        WITH transfered AS (
-            SELECT
-                product_id AS transfered_product_id,
-                sum($calculated_field) AS transfered_quantity
+        With transfered As (
+            Select product_id As transfered_product_id,
+                sum($calculated_field) As transfered_quantity
 
-            FROM product_moves
-            WHERE storage_id = ? AND product_move_type = 'transfering'
-            GROUP BY product_id
+            From product_moves
+            Where storage_id = ? And product_move_type = 'transfering'
+            Group By product_id
         ),
 
-        ever AS (
-            SELECT
-                product_id AS ever_product_id,
-                sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) AS ever_quantity
+        ever As (
+            Select product_id As ever_product_id,
+                sum(if(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) As ever_quantity
 
-            FROM product_moves
-            GROUP BY product_id
+            From product_moves
+            Group By product_id
         )
 
-        SELECT
-            (SELECT name FROM products WHERE id = product_id) AS product_name,
-            ever_quantity AS totals_by_ever,
-            sum(if(product_move_type IN ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
-                - transfered_quantity AS totals_by_year,
+        Select (Select name From products Where id = product_id) As product_name,
+            ever_quantity As totals_by_ever,
+            sum(if(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
+                - transfered_quantity As totals_by_year,
             $total_by_months
-        FROM product_moves
-            LEFT JOIN transfered
-            ON product_id = transfered_product_id
+        From product_moves
+            Left Join transfered
+            On product_id = transfered_product_id
 
-            LEFT JOIN ever
-            ON product_id = ever_product_id
-        WHERE storage_id = ? AND year(date) = ?
-        GROUP BY product_id
+            Left Join ever
+            On product_id = ever_product_id
+        Where storage_id = ? And year(date) = ?
+        Group By product_id
         ",
         [$storage_id, $storage_id, $year]
     );
