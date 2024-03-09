@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/functions/queries/query_totals_of.php');
-include_once(app_path().'/functions/get_year_of_report.php');
 include_once(app_path().'/functions/get_used_years.php');
+include_once(app_path().'/functions/report_year_defaults.php');
 
-use App\Models\ProductMove;
 use App\Models\Storage;
 use Illuminate\Routing\Controller;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 
@@ -38,12 +36,15 @@ class QuantitiesReport extends Controller
         ]);
 
         $used_years = get_used_years($request->storage_for_report);
-        $year_of_report = get_year_of_report($request, $used_years);
+        $request->report_year = report_year_defaults($request->report_year, $used_years);
+
         $totals = query_totals_of($request,
             intval($request->field_for_report_i),
             $request->storage_id_of_report,
-            $year_of_report
+            $request->report_year
         );
+
+        dump($request->all());
 
         return view('pages/quantities-report', [
             'totals' => $totals,
@@ -53,7 +54,7 @@ class QuantitiesReport extends Controller
             'Storage' => Storage::class,
             'storage_id_of_report' => $request->storage_id_of_report,
             'used_years' => $used_years,
-            'year_of_report' => $year_of_report,
+            'report_year' => $request->report_year,
             'field_for_report_i' => (intval($request->field_for_report_i) + 1) % 2
         ]);
     }
