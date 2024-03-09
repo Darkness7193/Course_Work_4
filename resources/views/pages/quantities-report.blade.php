@@ -20,11 +20,11 @@
         <tr>
             <td>{{ $total->product_name }}</td>
 
-            <td class="ever-td">{{ $total->totals_by_ever ?: '' }}</td>
-            <td class="year-td">{{ $total->totals_by_year ?: '' }}</td>
+            <td class="ever-td">{{ $total->ever_totals ?: '' }}</td>
+            <td class="year-td">{{ $total->year_totals ?: '' }}</td>
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
-                <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"totals_by_month_$i"} ?: '' }}</td>
+                <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"month_{$i}_totals"} ?: '' }}</td>
             @endfor
         </tr>
     @endforeach

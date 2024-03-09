@@ -6,64 +6,61 @@ use App\Models\Storage;
 use Illuminate\Support\Facades\DB;
 
 
-function get_totals_by_months($calculated_field) {
-    $totals_by_months = "";
+function on($value_1, $operator, $value_2) {
+    return function($join) use($value_1, $operator, $value_2) {$join->on($value_1, $operator, $value_2); };
+}
 
+
+function select_totals_by_months(&$query, $calculated_field) {
     for ($i=1; $i<13; $i++) {
-        $totals_by_months .= "
+        $query = $query->selectRaw("
             Sum(
                 If(month(date) = $i,
                     If(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field),
                     0
-            )) As totals_by_month_$i";
-
-        if ($i !== 12) { $totals_by_months .= ",\n"; }
+            )) As month_{$i}_totals
+        ");
     }
 
-    return $totals_by_months;
+    return $query;
 }
 
 
-function query_quantity_or_cost_totals($request, $field_for_report_i, $storage_id, $year) {
-    $storage_id = $storage_id ?: Storage::first()->id;
-    $calculated_field = ['quantity', 'quantity*price'][$field_for_report_i];
-    $total_by_months = get_totals_by_months($calculated_field);
+function query_quantity_or_cost_totals($request, $report_field_i, $report_storage_id, $year) {
+    $report_storage_id = $report_storage_id ?: Storage::first()->id;
+    $report_field = ['quantity', 'quantity*price'][$report_field_i];
 
-    $totals = DB::select(/**@lang SQL*/"
-        With transfered As (
-            Select product_id As transfered_product_id,
-                sum($calculated_field) As transfered_quantity
-            From product_moves
-            Where storage_id = ? And product_move_type = 'transfering'
-            Group By product_id
-        ),
 
-        ever As (
-            Select product_id As ever_product_id,
-                sum(if(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field)) As ever_quantity
-            From product_moves
-            Group By product_id
-        )
+    $transfered = DB::table('product_moves')
+        ->where('storage_id', '=', $report_storage_id)
+        ->where('product_move_type', '=', 'transfering')
+        ->groupBy('product_id')
+        ->select('product_id As transfered_product_id', DB::raw("Sum($report_field) As transfered_totals"));
 
-        Select (Select name From products Where id = product_id) As product_name,
-            ever_quantity As totals_by_ever,
-            sum(if(product_move_type In ('purchasing', 'inventory'), $calculated_field, -$calculated_field))
-                - transfered_quantity As totals_by_year,
-            $total_by_months
-        From product_moves
-            Left Join transfered
-            On product_id = transfered_product_id
 
-            Left Join ever
-            On product_id = ever_product_id
-        Where storage_id = ? And year(date) = ?
-        Group By product_id
-        ",
-        [$storage_id, $storage_id, $year]
-    );
+    $ever = DB::table('product_moves')
+        ->where('storage_id', '=', $report_storage_id)
+        ->where('product_move_type', '=', 'transfering')
+        ->groupBy('product_id')
+        ->select('product_id As ever_product_id')
+        ->selectRaw("Sum(If(product_move_type In ('purchasing', 'inventory'), $report_field, -$report_field)) As ever_totals");
 
-    return paginate_array($totals,
+
+    $totals = DB::table('product_moves as this')
+        ->joinSub($transfered, 'transfered', on('this.product_id', '=', 'transfered_product_id'))
+        ->joinSub($ever, 'ever', on('this.product_id', '=', 'ever_product_id'))
+        ->where('this.storage_id', '=', $report_storage_id)
+        ->where(DB::raw('year(date)'), '=', $year)
+        ->groupBy('this.product_id')
+        ->select('ever_totals')
+        ->selectRaw("(Select name From products Where id = product_id) As product_name")
+        ->selectRaw("Sum(If(product_move_type IN ('purchasing', 'inventory'), $report_field, -$report_field)) As year_totals");
+    select_totals_by_months($totals, $report_field);
+
+
+    return paginate($totals,
         per_page: $request->session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );
 }
+
