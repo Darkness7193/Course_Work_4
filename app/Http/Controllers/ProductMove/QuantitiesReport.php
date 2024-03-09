@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/functions/queries/query_quantity_or_cost_totals.php');
+include_once(app_path().'/functions/queries/query_totals_of.php');
 
 use App\Models\ProductMove;
 use App\Models\Storage;
