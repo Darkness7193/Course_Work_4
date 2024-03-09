@@ -42,7 +42,7 @@
     'headers' => $headers
 ])
 @include('report-components.report-storage-select', ['$Storage' => $Storage, 'report_storage_id' => $report_storage_id])
-@include('report-components.report-year-select', ['$used_years' => $used_years, 'year_of_report' => $report_year])
+@include('report-components.report-year-select', ['$used_years' => $used_years, 'report_year' => $report_year])
 <form>
     <button class="field-for-report-btn">Количество/Стоимость</button>
     <input hidden="hidden" name="field_for_report_i" value="{{ $field_for_report_i ?? 0 }}">

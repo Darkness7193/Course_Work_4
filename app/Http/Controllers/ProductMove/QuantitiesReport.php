@@ -42,8 +42,8 @@ class QuantitiesReport extends Controller
 
         $totals = query_totals_of($request,
             intval($request->field_for_report_i),
-            $request->report_storage_id,
-            $request->report_year
+            session()->get('report_storage_id'),
+            session()->get('report_year')
         );
 
         return view('pages/quantities-report', [
