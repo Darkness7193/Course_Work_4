@@ -10,7 +10,7 @@ function filter_order_paginate($product_moves, $view_fields, $request) {
     multi_order_by($product_moves, $request->ordered_orders ?? [['created_at', 'asc']]);
 
     return paginate($product_moves,
-        per_page: $request->session()->get('per_page') ?? 10,
+        per_page: session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );
 }

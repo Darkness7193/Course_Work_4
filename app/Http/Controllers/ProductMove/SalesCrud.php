@@ -18,7 +18,7 @@ class SalesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
-        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
+        if ($request->per_page) { session()->put('per_page', $request->per_page); }
         $sales = ProductMove::where('product_move_type', 'selling');
         [$view_fields, $headers] = get_columns([
             ['date', 'Продано'],

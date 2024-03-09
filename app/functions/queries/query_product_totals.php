@@ -24,7 +24,7 @@ function query_product_totals($request) {
 
 
     return paginate_array($totals,
-        per_page: $request->session()->get('per_page') ?? 10,
+        per_page: session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );
 }

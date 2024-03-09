@@ -72,7 +72,7 @@ function query_totals_of($request, $report_field_i, $report_storage_id, $year) {
             select_totals_by_month($totals, $report_field);
 
     return paginate($totals,
-        per_page: $request->session()->get('per_page') ?? 10,
+        per_page: session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
     );
 }
