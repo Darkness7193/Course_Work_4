@@ -38,7 +38,7 @@ class QuantitiesReport extends Controller
         $used_years = get_used_years($request->storage_id_of_report);
         $report_year = report_year_defaults($request->report_year, $used_years);
         if ($report_year) { session()->put('report_year', report_year_defaults($report_year, $used_years)); }
-        if ($request->report_storage_id) { session()->put('storage_id_of_report', $request->report_storage_id); }
+        if ($request->report_storage_id) { session()->put('report_storage_id', $request->report_storage_id); }
 
         $totals = query_totals_of($request,
             intval($request->field_for_report_i),

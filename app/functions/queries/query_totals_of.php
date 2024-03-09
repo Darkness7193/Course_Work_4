@@ -45,7 +45,7 @@ function select_totals_by_month(&$query, $report_field) {
             If(month(date) = $i,
                 If(product_move_type in ('purchasing', 'inventory'), $report_field, -$report_field),
                 0
-        )) + from_our_storages.month_{$i}_totals As month_{$i}_totals
+        )) As month_{$i}_totals
     ");}
 
     return $query;
