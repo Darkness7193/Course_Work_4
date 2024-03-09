@@ -38,15 +38,13 @@ class QuantitiesReport extends Controller
         $used_years = get_used_years($request->storage_id_of_report);
         $report_year = report_year_defaults($request->report_year, $used_years);
         if ($report_year) { session()->put('report_year', report_year_defaults($report_year, $used_years)); }
-        if ($request->storage_id_of_report) { session()->put('storage_id_of_report', $request->storage_id_of_report); }
+        if ($request->report_storage_id) { session()->put('storage_id_of_report', $request->report_storage_id); }
 
         $totals = query_totals_of($request,
             intval($request->field_for_report_i),
-            $request->storage_id_of_report,
+            $request->report_storage_id,
             $request->report_year
         );
-
-        dump(session());
 
         return view('pages/quantities-report', [
             'totals' => $totals,
@@ -54,7 +52,7 @@ class QuantitiesReport extends Controller
             'view_fields' => $view_fields,
             'headers' => $headers,
             'Storage' => Storage::class,
-            'storage_id_of_report' => session()->get('storage_id_of_report'),
+            'report_storage_id' => session()->get('report_storage_id'),
             'used_years' => $used_years,
             'report_year' => session()->get('report_year'),
             'field_for_report_i' => (intval($request->field_for_report_i) + 1) % 2
