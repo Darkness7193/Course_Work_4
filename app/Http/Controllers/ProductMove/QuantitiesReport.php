@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/functions/queries/query_totals_of.php');
+include_once(app_path().'/functions/get_year_of_report.php');
+include_once(app_path().'/functions/get_used_years.php');
 
 use App\Models\ProductMove;
 use App\Models\Storage;
@@ -11,35 +13,11 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 
-function get_used_years() {
-    $years = [];
-    foreach (ProductMove::all() as $product_move) {
-        $years[] = $product_move->date->year;
-    }
-    $years = array_values(array_unique($years));
-    rsort($years);
-
-    return $years;
-}
-
-
-function get_year_of_report($request, $used_years) {
-    if ($request->year_of_report) {
-        return $request->year_of_report;
-    } else if (in_array(now()->year, $used_years)) {
-        return now()->year;
-
-    } else if (!empty($used_years)) {
-        return $used_years[0];
-    } else {
-        return 'Материалов нет';
-    }
-}
 
 
 class QuantitiesReport extends Controller
 {
-    public function __invoke(Request $request): View {
+    public function __invoke(Request $request) {
         [$view_fields, $headers] = get_columns([
             ['product_id', 'Товар'],
             ['totals_by_ever', 'Всего',],
@@ -59,7 +37,7 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $used_years = get_used_years();
+        $used_years = get_used_years($request->storage_for_report);
         $year_of_report = get_year_of_report($request, $used_years);
         $totals = query_totals_of($request,
             intval($request->field_for_report_i),
