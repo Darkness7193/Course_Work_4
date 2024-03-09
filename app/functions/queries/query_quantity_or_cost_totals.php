@@ -60,8 +60,8 @@ function query_quantity_or_cost_totals($request, $report_field_i, $report_storag
         ->groupBy('this.product_id')
         ->selectRaw("ever_totals,
             (Select name From products Where id = product_id) As product_name,
-            Sum(If(product_move_type IN ('purchasing', 'inventory'), $report_field, -$report_field)) - transfered_totals As year_totals");
-        select_totals_by_months($totals, $report_field);
+            Sum(If(product_move_type IN ('purchasing', 'inventory'), $report_field, -$report_field)) + transfered_totals As year_totals");
+            select_totals_by_months($totals, $report_field);
 
     return paginate($totals,
         per_page: $request->session()->get('per_page') ?? 10,

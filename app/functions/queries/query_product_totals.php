@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 function query_product_totals($request) {
     $totals = DB::select("
-        SELECT
-            (SELECT name FROM storages WHERE id = storage_id) AS storage_name,
-            (SELECT name FROM products WHERE id = product_id) AS product_name,
-            sum(if(product_move_type IN ('purchasing', 'inventory'), quantity, -quantity)) AS quantity,
-            sum(if(product_move_type IN ('purchasing', 'inventory'), quantity*price, -quantity*price)) AS cost,
-            sum(if(product_move_type = 'purchasing', quantity, 0))       AS purchases_quantity,
-            sum(if(product_move_type = 'purchasing', price*quantity, 0)) AS purchases_cost,
-            sum(if(product_move_type = 'selling', quantity, 0))          AS sales_quantity,
-            sum(if(product_move_type = 'selling', price*quantity, 0))    AS sales_cost
-        FROM product_moves
-        GROUP BY storage_id, product_id
+        Select
+            (Select name From storages Where id = storage_id) As storage_name,
+            (Select name From products Where id = product_id) As product_name,
+            sum(if(product_move_type In ('purchasing', 'inventory'), quantity, -quantity)) As quantity,
+            sum(if(product_move_type In ('purchasing', 'inventory'), quantity*price, -quantity*price)) As cost,
+            sum(if(product_move_type = 'purchasing', quantity, 0))       As purchases_quantity,
+            sum(if(product_move_type = 'purchasing', price*quantity, 0)) As purchases_cost,
+            sum(if(product_move_type = 'selling', quantity, 0))          As sales_quantity,
+            sum(if(product_move_type = 'selling', price*quantity, 0))    As sales_cost
+        From product_moves
+        Group By storage_id, product_id
     ");
 
 
