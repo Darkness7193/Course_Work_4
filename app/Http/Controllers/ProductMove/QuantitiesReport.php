@@ -61,7 +61,7 @@ class QuantitiesReport extends Controller
 
         $used_years = get_used_years();
         $year_of_report = get_year_of_report($request, $used_years);
-        $totals = query_quantity_or_cost_totals($request,
+        $totals = query_totals_of($request,
             intval($request->field_for_report_i),
             $request->storage_id_of_report,
             $year_of_report

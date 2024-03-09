@@ -46,7 +46,7 @@ function all_totals($report_storage_id, $report_field) {
 }
 
 
-function query_quantity_or_cost_totals($request, $report_field_i, $report_storage_id, $year) {
+function query_totals_of($request, $report_field_i, $report_storage_id, $year) {
     $report_storage_id = $report_storage_id ?: Storage::first()->id;
     $report_field = ['quantity', 'quantity*price'][$report_field_i];
     $transfered = transfered($report_storage_id, $report_field);
