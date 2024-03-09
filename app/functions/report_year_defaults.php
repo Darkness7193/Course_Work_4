@@ -10,6 +10,6 @@ function report_year_defaults($report_year, $used_years) {
     } else if (!empty($used_years)) {
         return $used_years[0];
     } else {
-        return 'Года отчета отсутствуют';
+        return null;
     }
 }

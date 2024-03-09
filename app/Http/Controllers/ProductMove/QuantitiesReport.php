@@ -35,7 +35,7 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $used_years = get_used_years($request->storage_for_report);
+        $used_years = get_used_years($request->storage_id_of_report);
         $request->report_year = report_year_defaults($request->report_year, $used_years);
 
         $totals = query_totals_of($request,
