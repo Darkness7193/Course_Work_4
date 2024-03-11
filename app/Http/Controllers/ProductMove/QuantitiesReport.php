@@ -44,7 +44,6 @@ class QuantitiesReport extends Controller
 
         $report_field_i = (intval($request->report_field_i ?? -1) + 1) % 2;
 
-
         session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
             session('report_storage'),
