@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/functions/queries/query_totals_of.php');
-include_once(app_path().'/functions/get_used_years.php');
-include_once(app_path().'/functions/report_year_defaults.php');
+include_once(app_path().'/functions/get_used_years_of.php');
+include_once(app_path().'/functions/get_report_year.php');
+include_once(app_path().'/helpers/pure_php/coalesce.php');
 
+use App\helpers\pure_php\CoalesceNull;
 use App\Models\Storage;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 
+function get_report_storage($report_storage_id) {
+    return Storage::find(session()->get('report_storage_id'))
+        ?? Storage::first()
+        ?? (object)['id'=>null, 'name'=>'Складов нет'];
+}
 
 
 class QuantitiesReport extends Controller
@@ -35,16 +42,21 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $used_years = get_used_years($request->storage_id_of_report);
-        $report_year = report_year_defaults($request->report_year, $used_years);
-        if ($report_year) { session()->put('report_year', report_year_defaults($report_year, $used_years)); }
-        if ($request->report_storage_id) { session()->put('report_storage_id', $request->report_storage_id); }
+        $report_field_i = (intval($request->report_field_i ?? -1) + 1) % 2;
+        $used_years = get_used_years_of($request->report_storage_id);
 
-        $totals = query_totals_of($request,
-            intval($request->field_for_report_i),
-            session()->get('report_storage_id'),
-            session()->get('report_year')
-        );
+        session(['report_year' => coalesce([
+            $request->report_year,
+            max($used_years ?: [null]),
+            null
+        ]) ]);
+        session(['report_storage' => coalesce([
+            Storage::find($request->report_storage_id),
+            Storage::first(),
+            (object)['id'=>null, 'name'=>'Складов нет']
+        ]) ]);
+
+        $totals = query_totals_of($request, $report_field_i, session('report_storage')->id, session('report_year'));
 
         return view('pages/quantities-report', [
             'totals' => $totals,
@@ -52,10 +64,10 @@ class QuantitiesReport extends Controller
             'view_fields' => $view_fields,
             'headers' => $headers,
             'Storage' => Storage::class,
-            'report_storage_id' => session()->get('report_storage_id'),
             'used_years' => $used_years,
-            'report_year' => session()->get('report_year'),
-            'field_for_report_i' => (intval($request->field_for_report_i) + 1) % 2
+            'report_year' => session('report_year'),
+            'report_storage' => session('report_storage'),
+            'report_field_i' => $report_field_i
         ]);
     }
 }

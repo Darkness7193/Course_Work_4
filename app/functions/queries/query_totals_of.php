@@ -52,13 +52,16 @@ function select_totals_by_month(&$query, $report_field) {
 }
 
 
-function query_totals_of($request, int $report_field_i, int $report_storage_id, int $year) {
+function query_totals_of($request, ?int $report_field_i, ?int $report_storage_id, ?int $year) {
+    if ($report_field_i === null or $report_storage_id === null or $year === null) {
+        $arr = [];
+        return paginate_array($arr, 1); }
     $report_field = ['quantity', 'quantity*price'][$report_field_i];
     $from_our_storages = from_our_storages($report_storage_id, $report_field);
     $all_time_totals = all_time_totals($report_storage_id, $report_field);
 
     //dd($from_our_storages->ddRawSql());
-    dd($from_our_storages->get()->toArray());
+    //dd($from_our_storages->get()->toArray());
     $totals = DB::table('product_moves as this')
         ->leftJoinSub($from_our_storages, 'from_our_storages', on('this.product_id', '=', 'from_our_storages.product_id'))
         ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
