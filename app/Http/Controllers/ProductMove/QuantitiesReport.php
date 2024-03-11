@@ -45,18 +45,19 @@ class QuantitiesReport extends Controller
         $report_field_i = (intval($request->report_field_i ?? -1) + 1) % 2;
 
 
-        session(['report_storage' => $report_storage=coalesce([
+        session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
+            session('report_storage'),
             Storage::first(),
             (object)['id'=>null, 'name'=>'Складов нет']
         ]) ]);
-        $used_years = get_used_years_of($report_storage->id);
+        $used_years = get_used_years_of(session()->get('report_storage')->id);
         session(['report_year' => coalesce([
             $request->report_year,
             max($used_years ?: [null]),
             null
         ]) ]);
-        $totals = query_totals_of($request, $report_field_i, $report_storage->id, session('report_year'));
+        $totals = query_totals_of($request, $report_field_i, session()->get('report_storage')->id, session('report_year'));
 
         return view('pages/quantities-report', [
             'totals' => $totals,
