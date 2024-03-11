@@ -56,11 +56,6 @@ function select_totals_by_month(&$query, $report_field) {
 }
 
 
-function test_query($report_storage_id) {
-    return DB::table('product_moves')
-        ->where('new_storage_id', '=', $report_storage_id);
-}
-
 function query_totals_of($request, ?int $report_field_i, ?int $report_storage_id, ?int $year) {
     if ($report_field_i === null or $report_storage_id === null or $year === null) {
         $arr = [];
