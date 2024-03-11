@@ -16,6 +16,7 @@ function all_time_totals($report_storage_id, $report_field) {
         ->where('storage_id', '=', $report_storage_id)
         ->where('product_move_type', '=', 'transfering')
         ->groupBy('product_id')
+
         ->select('product_id As product_id')
         ->selectRaw("Sum(If(product_move_type In ('purchasing', 'inventory'), $report_field, -$report_field)) As all_time_totals");
 }
@@ -27,6 +28,7 @@ function from_our_storages($report_storage_id, $report_field) {
         ->where('product_move_type', '=', 'transfering')
         ->where('new_storage_id', '=', $report_storage_id)
         ->groupBy('product_id')
+
         ->select('product_id')
         ->selectRaw("Sum($report_field) As all_totals");
         for ($i=1; $i<13; $i++) {$from_our_storages = $from_our_storages->selectRaw(/**@lang SQL*/"
@@ -41,16 +43,24 @@ function from_our_storages($report_storage_id, $report_field) {
 
 function select_totals_by_month(&$query, $report_field) {
     for ($i=1; $i<13; $i++) {$query = $query->selectRaw(/**@lang SQL*/"
-        Sum(
-            If(month(date) = $i or month(date) = Null,
-                If(this.product_move_type in ('purchasing', 'inventory'), $report_field, -$report_field),
-                0
-        )) + from_our_storages.month_{$i}_totals As month_{$i}_totals
+        Ifnull(
+            Sum(
+                If(month(date) = $i,
+                    If(this.product_move_type in ('purchasing', 'inventory'), $report_field, -$report_field),
+                    0
+            )),
+            0
+        ) + Ifnull(from_our_storages.month_{$i}_totals, 0) As month_{$i}_totals
     ");}
 
     return $query;
 }
 
+
+function test_query($report_storage_id) {
+    return DB::table('product_moves')
+        ->where('new_storage_id', '=', $report_storage_id);
+}
 
 function query_totals_of($request, ?int $report_field_i, ?int $report_storage_id, ?int $year) {
     if ($report_field_i === null or $report_storage_id === null or $year === null) {
@@ -60,8 +70,7 @@ function query_totals_of($request, ?int $report_field_i, ?int $report_storage_id
     $from_our_storages = from_our_storages($report_storage_id, $report_field);
     $all_time_totals = all_time_totals($report_storage_id, $report_field);
 
-    //dd($from_our_storages->ddRawSql());
-    //dd($from_our_storages->get()->toArray());
+    dump(test_query($report_storage_id)->get()->toArray());
     $totals = DB::table('product_moves as this')
         ->leftJoinSub($from_our_storages, 'from_our_storages', on('this.product_id', '=', 'from_our_storages.product_id'))
         ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
@@ -73,9 +82,11 @@ function query_totals_of($request, ?int $report_field_i, ?int $report_storage_id
             (Select name From products Where id = this.product_id) As product_name,
             all_time_totals,
             Sum(If(this.product_move_type In ('purchasing', 'inventory'), $report_field, -$report_field))
-                + from_our_storages.all_totals As year_totals");
+                + Ifnull(from_our_storages.all_totals, 0) As year_totals");
             select_totals_by_month($totals, $report_field);
 
+    //dd($totals->toRawSql());
+    //dd($totals->get()->toArray());
     return paginate($totals,
         per_page: session()->get('per_page') ?? 10,
         current_page: $request->current_page ?? 1,
