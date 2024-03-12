@@ -45,7 +45,7 @@
 @include('report-components.report-year-select', ['$used_years' => $used_years, 'report_year' => $report_year])
 <form>
     <button class="field-for-report-btn">Количество/Стоимость</button>
-    <input hidden="hidden" name="report_field_i" value="{{ $report_field_i }}">
+    <input hidden="hidden" name="is_cost_report" value="{{ $is_cost_report }}">
 </form>
 
 

@@ -34,7 +34,7 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $report_field_i = !($request->report_field_i ?? 1);
+        $is_cost_report = !$request->is_cost_report;
 
         session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
@@ -48,7 +48,7 @@ class QuantitiesReport extends Controller
             max($used_years ?: [null]),
             null
         ]) ]);
-        $totals = query_totals_of($request, $report_field_i, session()->get('report_storage')->id, session('report_year'));
+        $totals = query_totals_of($request, $is_cost_report, session()->get('report_storage')->id, session('report_year'));
 
         return view('pages/quantities-report', [
             'totals' => $totals,
@@ -59,7 +59,7 @@ class QuantitiesReport extends Controller
             'used_years' => $used_years,
             'report_year' => session('report_year'),
             'report_storage' => session('report_storage'),
-            'report_field_i' => $report_field_i
+            'is_cost_report' => $is_cost_report
         ]);
     }
 }
