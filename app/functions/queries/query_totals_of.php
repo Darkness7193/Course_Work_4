@@ -59,7 +59,6 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
     $inner_import = inner_import($report_storage_id, $quantity_or_cost, $year);
     $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
 
-    dump($inner_import->get()->toArray());
     $totals = DB::table('product_moves as this')
         ->leftJoinSub($inner_import, 'inner_import', on('this.product_id', '=', 'inner_import.product_id'))
         ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
