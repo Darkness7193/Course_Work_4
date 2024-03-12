@@ -42,7 +42,7 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $report_field_i = (intval($request->report_field_i ?? -1) + 1) % 2;
+        $report_field_i = !($request->report_field_i ?? 1);
 
         session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
