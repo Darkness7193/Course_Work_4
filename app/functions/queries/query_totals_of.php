@@ -14,7 +14,6 @@ function on($value_1, $operator, $value_2) {
 function all_time_totals($report_storage_id, $quantity_or_cost) {
     return DB::table('product_moves')
         ->where('storage_id', '=', $report_storage_id)
-        ->where('product_move_type', '=', 'transfering')
         ->groupBy('product_id')
 
         ->select('product_id As product_id')
@@ -62,14 +61,14 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
     dump($inner_import->get()->toArray());
     $totals = DB::table('product_moves as this')
         ->leftJoinSub($inner_import, 'inner_import', on('this.product_id', '=', 'inner_import.product_id'))
-        ->JoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
+        ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $year)
         ->groupBy('this.product_id')
 
         ->selectRaw(/**@lang SQL*/"
             (Select name From products Where id = this.product_id) As product_name,
-            all_time_totals,
+            Ifnull(all_time_totals, 0) + Ifnull(inner_import.all_totals, 0) as all_time_totals,
             Sum(If(this.product_move_type In ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost))
                 + Ifnull(inner_import.all_totals, 0) As year_totals");
             select_totals_by_month($totals, $quantity_or_cost);
