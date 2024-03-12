@@ -34,7 +34,7 @@ class QuantitiesReport extends Controller
             ['totals_by_month_12', 'Дек',]
         ]);
 
-        $is_cost_report = !$request->is_cost_report;
+        $is_cost_report = ($request->is_cost_report ?? 1) ? 0 : 1;
 
         session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
