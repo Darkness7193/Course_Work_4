@@ -7,17 +7,9 @@ include_once(app_path().'/functions/get_used_years_of.php');
 include_once(app_path().'/functions/get_report_year.php');
 include_once(app_path().'/helpers/pure_php/coalesce.php');
 
-use App\helpers\pure_php\CoalesceNull;
 use App\Models\Storage;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-
-
-function get_report_storage($report_storage_id) {
-    return Storage::find(session()->get('report_storage_id'))
-        ?? Storage::first()
-        ?? (object)['id'=>null, 'name'=>'Складов нет'];
-}
 
 
 class QuantitiesReport extends Controller
