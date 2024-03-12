@@ -35,6 +35,7 @@ class QuantitiesReport extends Controller
         ]);
 
         $is_cost_report = ($request->is_cost_report ?? 1) ? 0 : 1;
+        $is_report_storage_change = $request->report_storage_id !== null;
 
         session(['report_storage' => coalesce([
             Storage::find($request->report_storage_id),
@@ -45,6 +46,7 @@ class QuantitiesReport extends Controller
         $used_years = get_used_years_of(session()->get('report_storage')->id);
         session(['report_year' => coalesce([
             $request->report_year,
+            $is_report_storage_change ? null : session('report_year'),
             max($used_years ?: [null]),
             null
         ]) ]);
