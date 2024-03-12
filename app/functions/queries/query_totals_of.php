@@ -31,9 +31,7 @@ function from_storages($report_storage_id, $report_field) {
         ->select('product_id')
         ->selectRaw("Sum($report_field) As all_totals");
         for ($i=1; $i<13; $i++) {$from_storages = $from_storages->selectRaw(/**@lang SQL*/"
-            Ifnull(
-                Sum(If(product_move_type = 'transfering' And month(date) = $i, $report_field, 0)),
-                0) As month_{$i}_totals
+            Sum(If(product_move_type = 'transfering' And month(date) = $i, $report_field, 0)) As month_{$i}_totals
         ");}
 
     return $from_storages;
@@ -42,14 +40,11 @@ function from_storages($report_storage_id, $report_field) {
 
 function select_totals_by_month(&$query, $report_field) {
     for ($i=1; $i<13; $i++) {$query = $query->selectRaw(/**@lang SQL*/"
-        Ifnull(
-            Sum(
-                If(month(date) = $i,
-                    If(this.product_move_type in ('purchasing', 'inventory'), $report_field, -$report_field),
-                    0
-            )),
-            0
-        ) + Ifnull(from_storages.month_{$i}_totals, 0) As month_{$i}_totals
+        Sum(
+            If(month(date) = $i,
+                If(this.product_move_type in ('purchasing', 'inventory'), $report_field, -$report_field),
+                0
+        )) + Ifnull(from_storages.month_{$i}_totals, 0) As month_{$i}_totals
     ");}
 
     return $query;
