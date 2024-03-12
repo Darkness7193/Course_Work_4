@@ -44,7 +44,7 @@
 @include('report-components.report-storage-select', ['$Storage' => $Storage, 'report_storage' => $report_storage])
 @include('report-components.report-year-select', ['$used_years' => $used_years, 'report_year' => $report_year])
 <form>
-    <button class="field-for-report-btn">@if($is_cost_report) Показывать количества @else Показывать стоимости @endif</button>
+    <button class="field-for-report-btn">@if($is_cost_report) Показывать количество @else Показывать стоимость @endif</button>
     <input hidden="hidden" name="is_cost_report" value="{{ $is_cost_report }}">
 </form>
 

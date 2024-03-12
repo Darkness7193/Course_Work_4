@@ -15,7 +15,7 @@
     <div class="dropdown">
         <button class="icon ordering-btn drop-btn" type="button" onclick="toggle_dropdown_content(this)"></button>
         <button class="icon un-ordering-btn drop-btn" type="submit" name="action" value="is_un_ordering" onclick="clear_number_checkboxes()"></button>
-        <div class="dropdown-content number-check-box-container">
+        <div class="ordering-menu dropdown-content number-check-box-container">
             <table>
                 @foreach(array_merge($view_fields, ['created_at', 'updated_at']) as $rw => $view_field)
                     <tr>
