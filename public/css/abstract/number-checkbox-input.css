@@ -2,7 +2,9 @@
 }
 
 .number-checkbox-input {
-    width:21px;
+    width: 21px;
+    height: 21px;
+    box-sizing:border-box; /* without it element somewhat have additional size (h+=7.2px, w=5.2px) 0_о */
     text-align: right;
     outline: none;
     caret-color: transparent;
