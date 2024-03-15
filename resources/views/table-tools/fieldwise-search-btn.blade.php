@@ -9,9 +9,9 @@
     <button class="drop-btn icon" type="button" onclick="toggle_dropdown_content(this)"></button>
     <div class="fieldwise-search-menu dropdown-content">
         <table>
-            @foreach($view_fields as $rw => $view_field)
+            @foreach(array_merge($view_fields, ['created_at', 'updated_at']) as $rw => $view_field)
                 <tr>
-                    <td>{{ $headers[$rw] }}:</td>
+                    <td>{{ array_merge($headers, ['# по созданию', '# по изменению'])[$rw] }}:</td>
                     <td><input class="fieldwise-search-input"
                         name="{{ $view_field }}_search_target"
                         type="text"
