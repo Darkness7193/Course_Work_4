@@ -60,10 +60,10 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
     $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
 
     $totals = DB::table('product_moves as this')
-        ->leftJoinSub($inner_import, 'inner_import', on('this.product_id', '=', 'inner_import.product_id'))
-        ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $year)
+        ->leftJoinSub($inner_import, 'inner_import', on('this.product_id', '=', 'inner_import.product_id'))
+        ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
         ->groupBy('this.product_id')
 
         ->selectRaw(/**@lang SQL*/"
