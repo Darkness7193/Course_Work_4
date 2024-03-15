@@ -1,4 +1,3 @@
-window.last_dropdown = null
 
 
 function hide_dropdowns() {
