@@ -1,3 +1,4 @@
+window.last_dropdown = null
 
 
 function hide_dropdowns() {
@@ -11,6 +12,7 @@ function toggle_dropdown_content(drop_btn) {
     let dropdown_content = drop_btn.parentNode.getElementsByClassName('dropdown-content')[0]
     let is_dropdown_hidden = ['', 'none'].includes(dropdown_content.style.display)
 
+    if (is_dropdown_hidden) { hide_dropdowns() } // close other dropdowns when open some of them
     dropdown_content.style.display = is_dropdown_hidden ? 'block' : 'none'
 }
 
