@@ -1,13 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 include_once(app_path().'/helpers/eloquent/filter.php');
 include_once(app_path().'/helpers/eloquent/multi_order_by.php');
 include_once(app_path().'/helpers/eloquent/paginate.php');
 
 
-function filter_order_paginate($product_moves, $view_fields, $request) {
+function filter_order_paginate($product_moves, $view_fields, $request, $default_order) {
+    if ($product_moves === null) { $arr=[]; return paginate_array($arr, 1); }
     filter($product_moves, $request->search_targets, $view_fields);
-    multi_order_by($product_moves, $request->ordered_orders ?? [['created_at', 'asc']]);
+    multi_order_by($product_moves, $request->ordered_orders ?? [$default_order]);
 
     return paginate($product_moves,
         per_page: session()->get('per_page') ?? 10,

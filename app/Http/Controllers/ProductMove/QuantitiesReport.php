@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove;
 
+include_once(app_path().'/functions/queries/filter_order_paginate.php');
 include_once(app_path().'/functions/queries/query_totals_of.php');
 include_once(app_path().'/functions/get_used_years_of.php');
 include_once(app_path().'/functions/get_report_year.php');
@@ -10,28 +11,29 @@ include_once(app_path().'/helpers/pure_php/coalesce.php');
 use App\Models\Storage;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class QuantitiesReport extends Controller
 {
     public function __invoke(Request $request) {
         [$view_fields, $headers] = get_columns([
-            ['product_id', 'Товар'],
-            ['totals_by_ever', 'Всего',],
-            ['totals_by_year', 'Год',],
+            ['product_name', 'Товар'],
+            ['all_time_totals', 'Всего'],
+            ['year_totals', 'Год'],
 
-            ['totals_by_month_1', 'Янв',],
-            ['totals_by_month_2', 'Фев',],
-            ['totals_by_month_3', 'Мар',],
-            ['totals_by_month_4', 'Апр',],
-            ['totals_by_month_5', 'Май',],
-            ['totals_by_month_6', 'Июн',],
-            ['totals_by_month_7', 'Июл',],
-            ['totals_by_month_8', 'Авг',],
-            ['totals_by_month_9', 'Сен',],
-            ['totals_by_month_10', 'Окт',],
-            ['totals_by_month_11', 'Ноя',],
-            ['totals_by_month_12', 'Дек',]
+            ['month_1_totals',  'Янв'],
+            ['month_2_totals',  'Фев'],
+            ['month_3_totals',  'Мар'],
+            ['month_4_totals',  'Апр'],
+            ['month_5_totals',  'Май'],
+            ['month_6_totals',  'Июн'],
+            ['month_7_totals',  'Июл'],
+            ['month_8_totals',  'Авг'],
+            ['month_9_totals',  'Сен'],
+            ['month_10_totals', 'Окт'],
+            ['month_11_totals', 'Ноя'],
+            ['month_12_totals', 'Дек']
         ]);
 
         $is_cost_report = ($request->is_cost_report ?? 1) ? 0 : 1;
@@ -51,9 +53,10 @@ class QuantitiesReport extends Controller
             null
         ]) ]);
         $totals = query_totals_of($request, $is_cost_report, session()->get('report_storage')->id, session('report_year'));
+        $totals = $totals ? DB::query()->fromSub($totals, 'some_name') : DB::query();
 
         return view('pages/quantities-report', [
-            'totals' => $totals,
+            'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,
             'headers' => $headers,

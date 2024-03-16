@@ -2,6 +2,7 @@
 
 include_once(app_path().'/helpers/eloquent/paginate.php');
 
+use App\Models\ProductMove;
 use Illuminate\Support\Facades\DB;
 
 
@@ -52,12 +53,12 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 
 function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id, ?int $year) {
     if ($is_cost_report === null or $report_storage_id === null or $year === null) {
-        $arr = []; return paginate_array($arr, 1); }
+        return null; }
     $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
     $imported = imported($report_storage_id, $quantity_or_cost, $year);
     $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
 
-    $totals = DB::table('product_moves as this')
+    $totals = ProductMove::from('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $year)
         ->leftJoinSub($imported, 'imported', on('this.product_id', '=', 'imported.product_id'))
@@ -71,9 +72,5 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
                 + Ifnull(imported.year_totals, 0) As year_totals");
             select_totals_by_month($totals, $quantity_or_cost);
 
-
-    return paginate($totals,
-        per_page: session()->get('per_page') ?? 10,
-        current_page: $request->current_page ?? 1,
-    );
+    return $totals;
 }

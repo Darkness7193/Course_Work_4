@@ -32,7 +32,7 @@ class SalesCrud extends Controller
         ]);
 
         return view('pages/sales-crud', [
-            'sales' => filter_order_paginate($sales, $view_fields, $request),
+            'sales' => filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']),
             'view_fields' => $view_fields,
             'headers' => $headers,
             'products' => Product::select('id', 'name')->get(),
