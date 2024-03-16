@@ -56,7 +56,7 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
     $imported = imported($report_storage_id, $quantity_or_cost, $year);
     $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
 
-    $totals = ProductMove::from('product_moves as this')
+    $totals = DB::table('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $year)
         ->leftJoinSub($imported, 'imported', on('this.product_id', '=', 'imported.product_id'))
@@ -70,5 +70,5 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
                 + Ifnull(imported.year_totals, 0) As year_totals");
             select_totals_by_month($totals, $quantity_or_cost);
 
-    return DB::query()->fromSub($totals, 'some_name');
+    return ProductMove::query()->fromSub($totals, 'some_name');
 }
