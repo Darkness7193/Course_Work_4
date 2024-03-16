@@ -4,7 +4,7 @@ namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/EmptyRow.php');
-include_once(app_path().'/sql/queries/query_inner_moves.php');
+include_once(app_path().'/sql/queries/inner_moves.php');
 
 use App\helpers\pure_php\EmptyRow;
 use App\Models\Product;
@@ -22,7 +22,7 @@ class InnerMovesCrud extends Controller
     public function __invoke(Request $request): View
     {
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $inner_moves = query_inner_moves(ProductMove::query());
+        $inner_moves = inner_moves(ProductMove::query());
         [$view_fields, $headers] = get_columns([
             ['date', 'Дата'],
 
