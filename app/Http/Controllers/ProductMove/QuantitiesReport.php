@@ -53,7 +53,7 @@ class QuantitiesReport extends Controller
             max($used_years ?: [null]),
             null
         ]) ]);
-        $totals = query_totals_of($request, $is_cost_report, session()->get('report_storage')->id, session('report_year'));
+        $totals = query_totals_of($is_cost_report, session()->get('report_storage')->id, session('report_year'));
 
         return view('pages/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
