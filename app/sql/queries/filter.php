@@ -1,7 +1,7 @@
 <?php
 
-include_once(app_path().'/sql/eloquent_helpers/where_field_like.php');
-include_once(app_path().'/sql/eloquent_helpers/where_some_field_like.php');
+include_once(app_path().'/sql/helpers/where_field_like.php');
+include_once(app_path().'/sql/helpers/where_some_field_like.php');
 
 
 

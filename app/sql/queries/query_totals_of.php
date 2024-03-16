@@ -1,16 +1,12 @@
 <?php
 
-include_once(app_path().'/sql/eloquent_helpers/paginate.php');
+include_once(app_path().'/sql/helpers/paginate.php');
+include_once(app_path().'/sql/helpers/on.php');
 
 use App\Models\ProductMove;
 use Illuminate\Support\Facades\DB;
 
 
-
-
-function on($value_1, $operator, $value_2) {
-    return function($join) use($value_1, $operator, $value_2) {$join->on($value_1, $operator, $value_2); };
-}
 
 
 function all_time_totals($report_storage_id, $quantity_or_cost) {

@@ -1,8 +1,8 @@
 <?php
 
 include_once(app_path().'/sql/queries/filter.php');
-include_once(app_path().'/sql/eloquent_helpers/multi_order_by.php');
-include_once(app_path().'/sql/eloquent_helpers/paginate.php');
+include_once(app_path().'/sql/helpers/multi_order_by.php');
+include_once(app_path().'/sql/helpers/paginate.php');
 
 
 
