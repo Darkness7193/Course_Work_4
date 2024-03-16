@@ -1,8 +1,9 @@
 <?php
 
+include_once(app_path().'/sql/eloquent_helpers/where_field_like.php');
+include_once(app_path().'/sql/eloquent_helpers/where_some_field_like.php');
 
-include_once(app_path().'/helpers/eloquent/where_field_like.php');
-include_once(app_path().'/helpers/eloquent/where_some_field_like.php');
+
 
 
 function filter(&$rows, $search_targets, $view_fields) {

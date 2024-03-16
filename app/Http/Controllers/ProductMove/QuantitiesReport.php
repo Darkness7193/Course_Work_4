@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/functions/queries/filter_order_paginate.php');
-include_once(app_path().'/functions/queries/query_totals_of.php');
-include_once(app_path().'/functions/get_used_years_of.php');
-include_once(app_path().'/functions/get_report_year.php');
+include_once(app_path().'/sql/queries/filter_order_paginate.php');
+include_once(app_path().'/sql/queries/query_totals_of.php');
+include_once(app_path().'/helpers/get_used_years_of.php');
 include_once(app_path().'/helpers/pure_php/coalesce.php');
 
 use App\Models\Storage;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 
 
 class QuantitiesReport extends Controller

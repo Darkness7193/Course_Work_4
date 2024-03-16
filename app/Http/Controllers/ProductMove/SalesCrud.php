@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove;
 
-include_once(app_path().'/functions/queries/filter_order_paginate.php');
+include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/EmptyRow.php');
 
 use App\helpers\pure_php\EmptyRow;
@@ -12,6 +12,8 @@ use App\Models\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
+
+
 
 
 class SalesCrud extends Controller

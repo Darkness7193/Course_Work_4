@@ -1,9 +1,11 @@
 <?php
 
-include_once(app_path().'/helpers/eloquent/paginate.php');
+include_once(app_path().'/sql/eloquent_helpers/paginate.php');
 
 use App\Models\ProductMove;
 use Illuminate\Support\Facades\DB;
+
+
 
 
 function on($value_1, $operator, $value_2) {

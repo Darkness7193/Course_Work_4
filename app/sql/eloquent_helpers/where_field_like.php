@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 function is_foreing_id($field) {
     return str_contains($field, 'id');
 }

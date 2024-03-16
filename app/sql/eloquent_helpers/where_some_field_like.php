@@ -1,7 +1,8 @@
 <?php
 
+include_once(app_path().'/sql/eloquent_helpers/where_field_like.php');
 
-include_once(app_path().'/helpers/eloquent/where_field_like.php');
+
 
 
 function where_some_field_like(&$rows, $target, $search_fields) {

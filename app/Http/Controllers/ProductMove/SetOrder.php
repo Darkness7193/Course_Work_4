@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 
+
+
 function get_ordered_orders($request) {
     $orders_priority = array_filter(get_form_data($request, '_order_priority'), function($x){return $x !== null;} );
     asort($orders_priority);

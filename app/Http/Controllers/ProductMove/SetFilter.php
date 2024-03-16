@@ -8,6 +8,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 
+
+
 function get_search_targets($request, $postfix) {
     $targets = get_form_data($request, $postfix);
     $tablewise = $targets['tablewise'];

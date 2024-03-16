@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+include_once(app_path().'/sql/eloquent_helpers/filter.php');
+include_once(app_path().'/sql/eloquent_helpers/multi_order_by.php');
+include_once(app_path().'/sql/eloquent_helpers/paginate.php');
 
-include_once(app_path().'/helpers/eloquent/filter.php');
-include_once(app_path().'/helpers/eloquent/multi_order_by.php');
-include_once(app_path().'/helpers/eloquent/paginate.php');
+
 
 
 function filter_order_paginate($product_moves, $view_fields, $request, $default_order) {
