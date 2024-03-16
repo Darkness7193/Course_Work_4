@@ -24,7 +24,7 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 }
 
 
-function query_totals_of(bool $is_cost_report, ?int $report_storage_id, ?int $report_year) {
+function quantity_totals(bool $is_cost_report, ?int $report_storage_id, ?int $report_year) {
     if ($report_storage_id === null or $report_year === null) { return null; }
     $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
     $import_totals = import_totals($report_storage_id, $quantity_or_cost, $report_year);

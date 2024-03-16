@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ProductMove;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/sql/queries/query_totals_of.php');
+include_once(app_path().'/sql/queries/quantity_totals.php');
 include_once(app_path().'/helpers/get_used_years_of.php');
 include_once(app_path().'/helpers/pure_php/coalesce.php');
 
@@ -53,7 +53,7 @@ class QuantitiesReport extends Controller
             max($used_years ?: [null]),
             null
         ]) ]);
-        $totals = query_totals_of($is_cost_report, session()->get('report_storage')->id, session('report_year'));
+        $totals = quantity_totals($is_cost_report, session()->get('report_storage')->id, session('report_year'));
 
         return view('pages/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
