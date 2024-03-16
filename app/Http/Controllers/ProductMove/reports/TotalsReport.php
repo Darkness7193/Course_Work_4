@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\ProductMove;
+namespace App\Http\Controllers\ProductMove\reports;
 
 include_once(app_path().'/sql/queries/product_totals.php');
 
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
-
-
 
 
 class TotalsReport extends Controller

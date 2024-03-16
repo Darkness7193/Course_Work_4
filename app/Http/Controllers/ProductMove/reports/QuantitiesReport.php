@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ProductMove;
+namespace App\Http\Controllers\ProductMove\reports;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/sql/queries/quantity_totals.php');
@@ -8,11 +8,8 @@ include_once(app_path().'/helpers/get_used_years_of.php');
 include_once(app_path().'/helpers/pure_php/coalesce.php');
 
 use App\Models\Storage;
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Routing\Controller;
 
 
 class QuantitiesReport extends Controller
