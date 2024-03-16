@@ -55,7 +55,7 @@ class QuantitiesReport extends Controller
         ]) ]);
         $totals = quantity_totals($is_cost_report, session()->get('report_storage')->id, session('report_year'));
 
-        return view('pages/quantities-report', [
+        return view('pages/reports/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,

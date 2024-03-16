@@ -1,11 +1,12 @@
-<!DOCTYPE html><html lang="ru">@include('global-head')
+<!DOCTYPE html>
+<html lang="ru">@include('global-head')
 
 
 <!-- imports: -->
-    @include('another/php_variables')
-    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
+@include('another.php_variables')
+<link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+<link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
 
 
 <body>
@@ -44,7 +45,11 @@
 @include('report-components.report-storage-select', ['$Storage' => $Storage, 'report_storage' => $report_storage])
 @include('report-components.report-year-select', ['$used_years' => $used_years, 'report_year' => $report_year])
 <form>
-    <button class="field-for-report-btn">@if($is_cost_report) Показывать количество @else Показывать стоимость @endif</button>
+    <button class="field-for-report-btn">@if($is_cost_report)
+            Показывать количество
+        @else
+            Показывать стоимость
+        @endif</button>
     <input hidden="hidden" name="is_cost_report" value="{{ $is_cost_report }}">
 </form>
 

@@ -27,7 +27,7 @@ class TotalsReport extends Controller
             ['quantity', 'Кол-во остатка'],
         ]);
 
-        return view('pages/totals-report', [
+        return view('pages/reports/totals-report', [
             'totals' => product_totals($request),
             'search_targets' => $request->search_targets,
             'view_fields' => $view_fields,

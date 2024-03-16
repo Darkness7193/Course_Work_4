@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ru">@include('global-head')
+<!DOCTYPE html>
+<html lang="ru">@include('global-head')
 <script>
     window.post_to_get_route_route = '{{ route('post_to_get_route') }}'
     window.current_route = '{{ Route::current()->getName() }}'
@@ -6,9 +7,9 @@
 
 
 <!-- imports: -->
-    @include('another/php_variables')
-    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+@include('another.php_variables')
+<link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
 <body>
