@@ -14,9 +14,9 @@ Route::get('', Home::class)->name('home');
 
 
 Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
-    Route::get('product_moves/purchases_crud', 'PurchasesCrud')->name('product_moves.purchases_crud');
-    Route::get('product_moves/sales_crud', 'SalesCrud')->name('product_moves.sales_crud');
-    Route::get('product_moves/inner_moves_crud', 'InnerMovesCrud')->name('product_moves.inner_moves_crud');
+    Route::get('product_moves/purchases_crud', 'cruds\PurchasesCrud')->name('product_moves.purchases_crud');
+    Route::get('product_moves/sales_crud', 'cruds\SalesCrud')->name('product_moves.sales_crud');
+    Route::get('product_moves/inner_moves_crud', 'cruds\InnerMovesCrud')->name('product_moves.inner_moves_crud');
     Route::get('product_moves/totals_report', 'reports\TotalsReport')->name('product_moves.totals_report');
     Route::get('product_moves/quantities_report', 'reports\QuantitiesReport')->name('product_moves.quantities_report');
 
