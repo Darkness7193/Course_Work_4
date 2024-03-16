@@ -72,5 +72,5 @@ function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id
                 + Ifnull(imported.year_totals, 0) As year_totals");
             select_totals_by_month($totals, $quantity_or_cost);
 
-    return $totals;
+    return DB::query()->fromSub($totals, 'some_name');
 }

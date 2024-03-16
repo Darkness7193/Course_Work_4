@@ -53,7 +53,6 @@ class QuantitiesReport extends Controller
             null
         ]) ]);
         $totals = query_totals_of($request, $is_cost_report, session()->get('report_storage')->id, session('report_year'));
-        $totals = $totals ? DB::query()->fromSub($totals, 'some_name') : DB::query();
 
         return view('pages/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
