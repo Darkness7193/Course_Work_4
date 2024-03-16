@@ -19,7 +19,7 @@ function all_time_totals($report_storage_id, $quantity_or_cost) {
 }
 
 
-function imported($report_storage_id, $quantity_or_cost, $year) {
+function imported($report_storage_id, $quantity_or_cost, $report_year) {
     $imported = DB::table('product_moves')
         ->where('product_move_type', '=', 'transfering')
         ->where('new_storage_id', '=', $report_storage_id)
@@ -27,7 +27,7 @@ function imported($report_storage_id, $quantity_or_cost, $year) {
 
         ->select('product_id')
         ->selectRaw("Sum($quantity_or_cost) As all_totals")
-        ->selectRaw("Sum(If(year(date) = $year, $quantity_or_cost, 0)) As year_totals");
+        ->selectRaw("Sum(If(year(date) = $report_year, $quantity_or_cost, 0)) As year_totals");
         for ($i=1; $i<13; $i++) {$imported = $imported->selectRaw(/**@lang SQL*/"
             Sum(If(product_move_type = 'transfering' And month(date) = $i, $quantity_or_cost, 0)) As month_{$i}_totals
         ");}
@@ -49,16 +49,16 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 }
 
 
-function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id, ?int $year) {
-    if ($is_cost_report === null or $report_storage_id === null or $year === null) {
+function query_totals_of($request, bool $is_cost_report, ?int $report_storage_id, ?int $report_year) {
+    if ($is_cost_report === null or $report_storage_id === null or $report_year === null) {
         return null; }
     $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
-    $imported = imported($report_storage_id, $quantity_or_cost, $year);
+    $imported = imported($report_storage_id, $quantity_or_cost, $report_year);
     $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
 
     $totals = DB::table('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
-        ->where(DB::raw('year(this.date)'), '=', $year)
+        ->where(DB::raw('year(this.date)'), '=', $report_year)
         ->leftJoinSub($imported, 'imported', on('this.product_id', '=', 'imported.product_id'))
         ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
         ->groupBy('this.product_id')
