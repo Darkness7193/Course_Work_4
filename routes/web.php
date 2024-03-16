@@ -2,11 +2,15 @@
 
 include(app_path().'/helpers/post_to_get_route.php');
 
+use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
 
 /**
  * @var string $post_to_get_route
  */
+
+
+Route::get('', Home::class)->name('home');
 
 
 Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
