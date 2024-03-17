@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 
 function import_totals($report_storage_id, $is_cost_report, $report_year) {
-    $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
+    $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     $import_totals = $q = DB::table('product_moves')
         ->where('product_move_type', '=', 'transfering')

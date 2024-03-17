@@ -27,7 +27,7 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_cost_report) {
     if ($report_storage_id === null or $report_year === null) { return null; }
 
-    $quantity_or_cost = ['this.quantity', 'this.quantity*this.price'][$is_cost_report];
+    $quantity_or_cost = $is_cost_report ? 'this.quantity*this.price' : 'this.quantity';
     $import_totals = import_totals($report_storage_id, $is_cost_report, $report_year);
     $all_time_totals = all_time_totals($report_storage_id, $is_cost_report);
 
