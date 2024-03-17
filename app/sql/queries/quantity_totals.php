@@ -26,18 +26,18 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 
 function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_cost_report) {
     if ($report_storage_id === null or $report_year === null) { return null; }
-
     $quantity_or_cost = $is_cost_report ? 'this.quantity*this.price' : 'this.quantity';
-    $import_totals = import_totals($report_storage_id, $is_cost_report, $report_year);
-    $all_time_totals = all_time_totals($report_storage_id, $is_cost_report);
 
     $totals = DB::table('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $report_year)
-        ->leftJoinSub($import_totals, 'import_totals', on('this.product_id', '=', 'import_totals.product_id'))
-        ->leftJoinSub($all_time_totals, 'all_time_totals', on('this.product_id', '=', 'all_time_totals.product_id'))
-        ->groupBy('this.product_id')
 
+        ->leftJoinSub(import_totals($report_storage_id, $is_cost_report, $report_year), 'import_totals',
+            on('this.product_id', '=', 'import_totals.product_id'))
+        ->leftJoinSub(all_time_totals($report_storage_id, $is_cost_report), 'all_time_totals',
+            on('this.product_id', '=', 'all_time_totals.product_id'))
+
+        ->groupBy('this.product_id')
         ->selectRaw(/**@lang SQL*/"
             (Select name From products Where id = this.product_id) As product_name,
             Ifnull(all_time_totals.all_time_totals, 0) + Ifnull(import_totals.all_totals, 0) as all_time_totals,
