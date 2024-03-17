@@ -6,11 +6,9 @@
         <option value="{{ $used_year }}">{{ $used_year }} год</option>
     @endforeach
 
-    <option selected="selected" hidden="hidden" value="{{ $report_year }}">
-        @if ($report_year)
-            {{ $report_year }} год
-        @else
-            Не имеет годов поставок
-        @endif
-    </option>
+    @if ($report_year)
+        <option selected="selected" hidden="hidden" value="{{ $report_year }}">{{ $report_year }} год</option>
+    @elseif (!$used_years)
+        <option selected="selected" hidden="hidden" value=""> Не имеет годов поставок </option>
+    @endif
 </select>
