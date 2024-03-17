@@ -11,16 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function select_totals_by_month(&$query, $quantity_or_cost) {
-    for ($i=1; $i<13; $i++) {$query = $query->selectRaw(/**@lang SQL*/"
+function select_totals_by_month($month, $quantity_or_cost) {
+    return /**@lang SQL*/"
         Sum(
-            If(month(date) = $i,
+            If(month(date) = $month,
                 If(this.product_move_type in ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost),
                 0
-        )) + Ifnull(import_totals.month_{$i}_totals, 0) As month_{$i}_totals
-    ");}
-
-    return $query;
+        )) + Ifnull(import_totals.month_{$month}_totals, 0) As month_{$month}_totals
+    ";
 }
 
 
@@ -28,7 +26,7 @@ function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_co
     if ($report_storage_id === null or $report_year === null) { return null; }
     $quantity_or_cost = $is_cost_report ? 'this.quantity*this.price' : 'this.quantity';
 
-    $totals = DB::table('product_moves as this')
+    $totals = $q = DB::table('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $report_year)
 
@@ -43,7 +41,8 @@ function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_co
             Ifnull(all_time_totals.all_time_totals, 0) + Ifnull(import_totals.all_totals, 0) as all_time_totals,
             Sum(If(this.product_move_type In ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost))
                 + Ifnull(import_totals.year_totals, 0) As year_totals");
-            select_totals_by_month($totals, $quantity_or_cost);
+            for ($i=1; $i<13; $i++) {$q=$q
+                ->selectRaw(select_totals_by_month($i, $quantity_or_cost)); }
 
     return ProductMove::query()->fromSub($totals, 'some_name');
 }
