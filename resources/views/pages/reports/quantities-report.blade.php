@@ -42,16 +42,9 @@
     'view_fields' => $view_fields,
     'headers' => $headers
 ])
-@include('report-components.report-storage-select', ['$Storage' => $Storage, 'report_storage' => $report_storage])
-@include('report-components.report-year-select', ['$used_years' => $used_years, 'report_year' => $report_year])
-<form>
-    <button class="field-for-report-btn">@if($is_cost_report)
-            Показывать количество
-        @else
-            Показывать стоимость
-        @endif</button>
-    <input hidden="hidden" name="is_cost_report" value="{{ $is_cost_report }}">
-</form>
+@include('report-components.report-storage-select', ['Storage' => $Storage, 'report_storage' => $report_storage])
+@include('report-components.report-year-select', ['used_years' => $used_years, 'report_year' => $report_year])
+@include('report-components.report-field-btn', ['is_cost_report' => $is_cost_report])
 
 
 <div style="height: 500px"></div>
