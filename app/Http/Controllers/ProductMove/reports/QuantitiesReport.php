@@ -48,8 +48,7 @@ class QuantitiesReport extends Controller
         ]);
         set_request_defaults($request);
 
-        $is_cost_report = (int) !($request->is_cost_report ?? 1);
-        $totals = quantity_totals($request->report_storage->id, $request->report_year, $is_cost_report);
+        $totals = quantity_totals($request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
 
         return view('pages/reports/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
@@ -60,7 +59,7 @@ class QuantitiesReport extends Controller
             'used_years' => get_used_years_of($request->report_storage->id),
             'report_year' => $request->report_year,
             'report_storage' => $request->report_storage,
-            'is_cost_report' => $is_cost_report
+            'is_cost_report' => $request->is_cost_report
         ]);
     }
 }
