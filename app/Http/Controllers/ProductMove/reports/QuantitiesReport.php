@@ -48,7 +48,7 @@ class QuantitiesReport extends Controller
         ]);
         set_request_defaults($request);
 
-        $is_cost_report = ($request->is_cost_report ?? 1) ? 0 : 1;
+        $is_cost_report = (int) !($request->is_cost_report ?? 1);
         $totals = quantity_totals($request->report_storage->id, $request->report_year, $is_cost_report);
 
         return view('pages/reports/quantities-report', [
