@@ -6,7 +6,7 @@
         Показывать количество
     @else
         Показывать стоимость
-   @endif
+    @endif
 </button>
 <input hidden="hidden" name="is_cost_report" value="{{ $is_cost_report }}">
 
