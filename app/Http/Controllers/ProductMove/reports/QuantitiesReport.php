@@ -47,7 +47,6 @@ class QuantitiesReport extends Controller
             ['month_12_totals', 'Дек']
         ]);
         set_request_defaults($request);
-        $used_years = get_used_years_of($request->report_storage->id);
 
         $is_cost_report = ($request->is_cost_report ?? 1) ? 0 : 1;
         $totals = quantity_totals($request->report_storage->id, $request->report_year, $is_cost_report);
@@ -58,7 +57,7 @@ class QuantitiesReport extends Controller
             'view_fields' => $view_fields,
             'headers' => $headers,
             'Storage' => Storage::class,
-            'used_years' => $used_years,
+            'used_years' => get_used_years_of($request->report_storage->id),
             'report_year' => $request->report_year,
             'report_storage' => $request->report_storage,
             'is_cost_report' => $is_cost_report
