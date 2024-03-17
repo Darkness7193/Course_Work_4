@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function all_time_totals($report_storage_id, $quantity_or_cost) {
+function all_time_totals($report_storage_id, $is_cost_report) {
+    $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
+
     return DB::table('product_moves')
         ->where('storage_id', '=', $report_storage_id)
         ->groupBy('product_id')

@@ -27,9 +27,9 @@ function select_totals_by_month(&$query, $quantity_or_cost) {
 function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_cost_report) {
     if ($report_storage_id === null or $report_year === null) { return null; }
 
-    $quantity_or_cost = ['quantity', 'quantity*price'][$is_cost_report];
-    $import_totals = import_totals($report_storage_id, $quantity_or_cost, $report_year);
-    $all_time_totals = all_time_totals($report_storage_id, $quantity_or_cost);
+    $quantity_or_cost = ['this.quantity', 'this.quantity*this.price'][$is_cost_report];
+    $import_totals = import_totals($report_storage_id, $is_cost_report, $report_year);
+    $all_time_totals = all_time_totals($report_storage_id, $is_cost_report);
 
     $totals = DB::table('product_moves as this')
         ->where('this.storage_id', '=', $report_storage_id)
