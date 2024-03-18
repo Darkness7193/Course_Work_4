@@ -38,7 +38,7 @@ function quantity_totals(?int $report_storage_id, ?int $report_year, bool $is_co
         ->groupBy('this.product_id')
         ->selectRaw("(Select name From products Where id = this.product_id) As product_name")
         ->selectRaw(/**@lang SQL*/"
-            Ifnull(all_time_totals.all_time_totals, 0) + Ifnull(import_totals.all_totals, 0) as all_time_totals,
+            Ifnull(all_time_totals.all_time_totals, 0) + Ifnull(import_totals.all_totals, 0) As all_time_totals,
             Sum(If(this.product_move_type In ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost))
                 + Ifnull(import_totals.year_totals, 0) As year_totals");
             for ($i=1; $i<13; $i++) {$q=$q
