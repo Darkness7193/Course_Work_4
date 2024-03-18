@@ -4,7 +4,7 @@
 
 
 <!-- f($search_target, $view_fields, $headers): -->
-<form class="search-bar vertical-arrange vertical-center"
+<form class="search-bar vertical-center"
     method="post"
     action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf

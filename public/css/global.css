@@ -16,7 +16,7 @@ input::-webkit-outer-spin-button {
 
 .vertical-arrange {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .vertical-center {

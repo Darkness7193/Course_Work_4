@@ -1,0 +1,4 @@
+.report-field-btn {
+    text-align: left;
+    padding-left: 3px; /* it's padding of <select>s of report-components */
+}

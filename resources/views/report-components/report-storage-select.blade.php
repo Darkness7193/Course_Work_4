@@ -1,7 +1,7 @@
 
 
 <!-- f($Storage, $report_storage): -->
-<select style="width: 200px;" name="report_storage_id" onchange="this.form.submit()">
+<select name="report_storage_id" onchange="this.form.submit()">
     @foreach ($Storage::all() as $storage)
         <option value="{{ $storage->id ?? '' }}">{{ $storage->name }}</option>
     @endforeach

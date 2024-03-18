@@ -8,7 +8,7 @@
 
 
 <!-- f($view_fields, $headers): -->
-<form class="vertical-arrange vertical-center"
+<form class="vertical-center"
     method="post"
     action="{{ route('product_moves.set_order', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf

@@ -42,7 +42,7 @@
     'view_fields' => $view_fields,
     'headers' => $headers
 ])
-<form>
+<form class="vertical-arrange" style="max-width: 200px">
     @include('report-components.report-storage-select', ['Storage' => $Storage, 'report_storage' => $report_storage])
     @include('report-components.report-year-select', ['used_years' => $used_years, 'report_year' => $report_year])
     @include('report-components.report-field-btn', ['is_cost_report' => $is_cost_report])
