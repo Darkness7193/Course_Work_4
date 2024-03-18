@@ -26,7 +26,7 @@ function set_request_defaults(&$request)
         : null;
     $request->flashOnly('report_storage_id');
 
-
+    $request->current_report_type = $request->current_report_type ?? 'quantities';
 }
 
 
@@ -53,10 +53,9 @@ class QuantitiesReport extends Controller
         ]);
         set_request_defaults($request);
 
-        dump($request->report_type);
-        if (in_array($request->report_type, ProductMove::product_move_types())) {
-            $totals = move_type_totals($request->report_type, $request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
-        } else if ($request->get('report_type', 'quantities') === 'quantities') {
+        if (in_array($request->current_report_type, ProductMove::product_move_types())) {
+            $totals = move_type_totals($request->current_report_type, $request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
+        } else if ($request->current_report_type === 'quantities') {
             $totals = quantity_totals($request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
         }
 
@@ -70,7 +69,7 @@ class QuantitiesReport extends Controller
             'report_year' => $request->report_year,
             'report_storage' => $request->report_storage,
             'is_cost_report' => $request->is_cost_report,
-            'report_type' => $request->report_type
+            'current_report_type' => $request->current_report_type
         ]);
     }
 }

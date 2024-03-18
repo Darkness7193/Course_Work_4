@@ -46,14 +46,22 @@
     @include('report-components.report-storage-select', ['Storage' => $Storage, 'report_storage' => $report_storage])
     @include('report-components.report-year-select', ['used_years' => $used_years, 'report_year' => $report_year])
     @include('report-components.report-field-btn', ['is_cost_report' => $is_cost_report])
-    <select name="report_type" onchange="this.form.submit()">
-        <option value="quantities"> Отчет количеств </option>
-        <option value="purchasing"> Отчет закупок </option>
-        <option value="selling"> Отчет продаж </option>
-        <option value="liquidating"> Отчет ликвидации </option>
-        <option value="inventory"> Отчет инвентаризации </option>
 
-        <option selected="selected" hidden="hidden" value="{{ $report_type }}">{{ $report_type }}</option>
+    @php($ru_report_types = [
+        'quantities' => 'Отчет количеств',
+        'purchasing' => 'Отчет закупок',
+        'selling' => 'Отчет продаж',
+        'liquidating' => 'Отчет ликвидации',
+        'inventory' => 'Отчет инвентаризации'
+    ])
+    <select name="current_report_type" onchange="this.form.submit()">
+        @foreach ($ru_report_types as $report_type => $ru_report_type)
+            <option value="{{ $report_type }}">{{ $ru_report_type }}</option>
+        @endforeach
+
+        <option selected="selected" hidden="hidden" value="{{ $current_report_type }}">
+            {{ $ru_report_types[$current_report_type] }}
+        </option>
     </select>
 </form>
 
