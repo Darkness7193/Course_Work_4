@@ -7,9 +7,9 @@
 
 
 <!-- imports: -->
-@include('another.php_variables')
-<link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-<link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    @include('another.php_variables')
+    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
 <body>

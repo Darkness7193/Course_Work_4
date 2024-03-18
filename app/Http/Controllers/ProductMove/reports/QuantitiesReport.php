@@ -4,11 +4,14 @@ namespace App\Http\Controllers\ProductMove\reports;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/sql/queries/quantity_totals.php');
+include_once(app_path().'/sql/queries/move_type_totals.php');
 include_once(app_path().'/helpers/get_used_years_of.php');
 
-use App\Models\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Storage;
+use App\Models\ProductMove;
+
 
 
 function set_request_defaults(&$request)
@@ -22,6 +25,8 @@ function set_request_defaults(&$request)
         ? $request->report_year
         : null;
     $request->flashOnly('report_storage_id');
+
+
 }
 
 
@@ -48,7 +53,12 @@ class QuantitiesReport extends Controller
         ]);
         set_request_defaults($request);
 
-        $totals = quantity_totals($request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
+        dump($request->report_type);
+        if (in_array($request->report_type, ProductMove::product_move_types())) {
+            $totals = move_type_totals($request->report_type, $request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
+        } else if ($request->get('report_type', 'quantities') === 'quantities') {
+            $totals = quantity_totals($request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
+        }
 
         return view('pages/reports/quantities-report', [
             'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
@@ -59,7 +69,8 @@ class QuantitiesReport extends Controller
             'used_years' => get_used_years_of($request->report_storage->id),
             'report_year' => $request->report_year,
             'report_storage' => $request->report_storage,
-            'is_cost_report' => $request->is_cost_report
+            'is_cost_report' => $request->is_cost_report,
+            'report_type' => $request->report_type
         ]);
     }
 }
