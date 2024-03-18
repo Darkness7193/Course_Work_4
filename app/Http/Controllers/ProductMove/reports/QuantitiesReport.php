@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\ProductMove\reports;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/sql/queries/quantity_totals.php');
-include_once(app_path().'/sql/queries/move_type_totals.php');
+include_once(app_path().'/sql/queries/report_totals/quantity_totals.php');
+include_once(app_path().'/sql/queries/report_totals/move_type_totals.php');
 include_once(app_path().'/helpers/get_used_years_of.php');
 
 use Illuminate\Http\Request;

@@ -2,8 +2,8 @@
 
 include_once(app_path().'/sql/helpers/paginate.php');
 include_once(app_path().'/sql/helpers/on.php');
-include_once(app_path().'/sql/queries/all_time_totals.php');
-include_once(app_path().'/sql/queries/import_totals.php');
+include_once(app_path().'/sql/queries/subqueries/all_time_totals.php');
+include_once(app_path().'/sql/queries/subqueries/import_totals.php');
 
 use App\Models\ProductMove;
 use Illuminate\Support\Facades\DB;

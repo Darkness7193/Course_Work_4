@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ProductMove\reports;
 
-include_once(app_path().'/sql/queries/product_totals.php');
+include_once(app_path().'/sql/queries/report_totals/product_totals.php');
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
