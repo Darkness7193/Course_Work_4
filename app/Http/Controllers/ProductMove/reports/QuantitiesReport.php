@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Storage;
 use App\Models\ProductMove;
-
+use function App\sql\queries\move_type_totals\move_type_totals;
 
 
 function set_request_defaults(&$request)
