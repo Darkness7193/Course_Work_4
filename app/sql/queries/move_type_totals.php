@@ -1,6 +1,6 @@
 <?php
 
-//namespace App\sql\queries;
+namespace App\sql\queries\move_type_totals;
 
 include_once(app_path().'/sql/helpers/paginate.php');
 include_once(app_path().'/sql/helpers/on.php');
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function all_time_totals_2($report_move_type, $report_storage_id, $is_cost_report) {
+function all_time_totals($report_move_type, $report_storage_id, $is_cost_report) {
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     return DB::table('product_moves')
@@ -33,7 +33,7 @@ function move_type_totals($report_move_type, ?int $report_storage_id, ?int $repo
         ->where('this.storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(this.date)'), '=', $report_year)
 
-        ->leftJoinSub(all_time_totals_2($report_move_type, $report_storage_id, $is_cost_report), 'all_time_totals',
+        ->leftJoinSub(all_time_totals($report_move_type, $report_storage_id, $is_cost_report), 'all_time_totals',
             on('this.product_id', '=', 'all_time_totals.product_id'))
 
         ->groupBy('this.product_id')
