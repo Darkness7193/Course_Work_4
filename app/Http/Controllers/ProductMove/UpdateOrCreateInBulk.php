@@ -21,10 +21,9 @@ class UpdateOrCreateInBulk extends Controller
             if ($exist_purchase) {
                 $exist_purchase->update($updated_cells);
             } else {
-                $new_row = array_merge($request->no_view_fields, $updated_cells);
-                $is_all_fields_filled = count($new_row) === $fillable_count;
-                if ($is_all_fields_filled) {
-                    ProductMove::create($new_row);
+                $new_purchase = array_merge($request->no_view_fields, $updated_cells);
+                if (count($new_purchase) === $fillable_count) {
+                    ProductMove::create($new_purchase);
                 }
             }
         }
