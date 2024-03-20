@@ -33,20 +33,14 @@
 
 
 <div>{{ $totals->links('pagination::my-pagination-links') }}</div>
-@include('table-tools.search-bar', [
-    'search_targets' => $search_targets,
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
-@include('table-tools.ordering-menu', [
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
+@include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
+@include('table-tools.ordering-menu', compact('view_fields', 'headers'))
+
 <form class="vertical-arrange" style="max-width: 200px">
-    @include('report-components.report-storage-select', ['Storage' => $Storage, 'report_storage' => $report_storage])
-    @include('report-components.report-year-select', ['used_years' => $used_years, 'report_year' => $report_year])
-    @include('report-components.report-field-btn', ['is_cost_report' => $is_cost_report])
-    @include('report-components.report-type-select', ['current_report_type' => $current_report_type])
+    @include('report-components.report-storage-select')
+    @include('report-components.report-year-select')
+    @include('report-components.report-field-btn')
+    @include('report-components.report-type-select')
 </form>
 
 

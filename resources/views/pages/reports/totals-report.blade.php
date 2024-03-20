@@ -38,15 +38,8 @@
 
 
 <div>{{ $totals->links('pagination::my-pagination-links') }}</div>
-@include('table-tools.search-bar', [
-    'search_targets' => $search_targets,
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
-@include('table-tools.ordering-menu', [
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
+@include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
+@include('table-tools.ordering-menu', compact('view_fields', 'headers'))
 <div style="height: 500px"></div>
 
 

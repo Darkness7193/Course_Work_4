@@ -11,7 +11,7 @@
 
     <div class="default-input-wrapper"><button name="action" value="search"></button></div>
 
-    @include('table-tools.fieldwise-search-btn', ['view_fields' => $view_fields,'headers' => $headers])
+    @include('table-tools.fieldwise-search-btn', compact('view_fields', 'headers'))
     <button class="icon anti-search-btn" type="submit" name="action" value="un_search"></button>
     <button class="icon search-btn" type="submit" name="action" value="search"></button>
 
