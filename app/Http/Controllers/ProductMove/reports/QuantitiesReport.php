@@ -27,24 +27,6 @@ function product_moves_totals() {
 }
 
 
-function set_session(&$request)
-{
-    $is_report_storage_the_same = $request->report_storage_id !== session('report_storage_id');
-
-    $data = [
-        'report_storage' => $request->report_storage_id ? Storage::find($request->report_storage_id) : null,
-        'report_year' => $is_report_storage_the_same ? $request->report_year : null,
-        'is_cost_report' => (bool)$request->is_cost_report
-    ] + $request->all([
-        'search_targets',
-        'current_report_type',
-        'search_targets'
-    ]);
-
-    foreach ($data as $key => $value) { if ($value !== null) { session()->put($key, $value); } }
-}
-
-
 function set_session_defaults()
 {
     $defaults = [
@@ -54,6 +36,22 @@ function set_session_defaults()
     ];
 
     foreach ($defaults as $key => $value) { if (session($key) === null) { session()->put($key, $value); } }
+}
+
+
+function set_session(&$request)
+{
+    $data = [
+        'report_storage' => $request->report_storage_id ? Storage::find($request->report_storage_id) : null,
+        'report_year' => $request->report_storage_id !== session('report_storage_id') ? $request->report_year : null,
+        'is_cost_report' => (bool)$request->is_cost_report
+    ] + $request->all([
+        'search_targets',
+        'current_report_type',
+        'search_targets'
+    ]);
+
+    foreach ($data as $key => $value) { if ($value !== null) { session()->put($key, $value); } }
 }
 
 
