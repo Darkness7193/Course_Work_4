@@ -50,9 +50,10 @@ function set_session_defaults()
     $defaults = [
         'report_storage' => Storage::first() ?? (object)['id'=>null, 'name'=>'Складов нет'],
         'current_report_type' => 'quantities',
+        'is_cost_report' => true,
     ];
 
-    foreach ($defaults as $key => $value) { if ($value === null) { session()->put($key, $value); } }
+    foreach ($defaults as $key => $value) { if (session($key) === null) { session()->put($key, $value); } }
 }
 
 
