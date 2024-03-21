@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\ProductMove\reports;
 
+include_once(app_path().'/helpers/get_used_years_of.php');
+include_once(app_path().'/helpers/session_get.php');
+
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/sql/queries/report_totals/quantity_totals.php');
 include_once(app_path().'/sql/queries/report_totals/move_type_totals.php');
-include_once(app_path().'/helpers/get_used_years_of.php');
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,19 +16,43 @@ use App\Models\ProductMove;
 use function App\sql\queries\move_type_totals\move_type_totals;
 
 
-function set_request_defaults(&$request)
+
+
+function product_moves_totals() {
+    if (in_array(session('current_report_type'), ProductMove::product_move_types())) {
+        return move_type_totals(session('current_report_type'), session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
+    } else if (session('current_report_type') === 'quantities') {
+        return quantity_totals(session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
+    }
+}
+
+
+function set_session(&$request)
 {
-    $request->report_storage =
-        $request->report_storage_id ? Storage::find($request->report_storage_id) : null
-        ?? Storage::first()
-        ?? (object)['id'=>null, 'name'=>'Складов нет'];
+    $is_report_storage_the_same = $request->report_storage_id !== session('report_storage_id');
 
-    $request->report_year = $request->report_storage_id === $request->old('report_storage_id')
-        ? $request->report_year
-        : null;
-    $request->flashOnly('report_storage_id');
+    $data = [
+        'report_storage' => $request->report_storage_id ? Storage::find($request->report_storage_id) : null,
+        'report_year' => $is_report_storage_the_same ? $request->report_year : null,
+        'is_cost_report' => (bool)$request->is_cost_report
+    ] + $request->all([
+        'search_targets',
+        'current_report_type',
+        'search_targets'
+    ]);
 
-    $request->current_report_type = $request->current_report_type ?? 'quantities';
+    foreach ($data as $key => $value) { if ($value !== null) { session()->put($key, $value); } }
+}
+
+
+function set_session_defaults()
+{
+    $defaults = [
+        'report_storage' => Storage::first() ?? (object)['id'=>null, 'name'=>'Складов нет'],
+        'current_report_type' => 'quantities',
+    ];
+
+    foreach ($defaults as $key => $value) { if ($value === null) { session()->put($key, $value); } }
 }
 
 
@@ -51,25 +77,24 @@ class QuantitiesReport extends Controller
             ['month_11_totals', 'Ноя'],
             ['month_12_totals', 'Дек']
         ]);
-        set_request_defaults($request);
-
-        if (in_array($request->current_report_type, ProductMove::product_move_types())) {
-            $totals = move_type_totals($request->current_report_type, $request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
-        } else if ($request->current_report_type === 'quantities') {
-            $totals = quantity_totals($request->report_storage->id, $request->report_year, (bool)$request->is_cost_report);
-        }
+        set_session($request);
+        set_session_defaults();
 
         return view('pages/reports/quantities-report', [
-            'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
-            'search_targets' => $request->search_targets,
-            'view_fields' => $view_fields,
-            'headers' => $headers,
-            'Storage' => Storage::class,
-            'used_years' => get_used_years_of($request->report_storage->id),
-            'report_year' => $request->report_year,
-            'report_storage' => $request->report_storage,
-            'is_cost_report' => $request->is_cost_report,
-            'current_report_type' => $request->current_report_type
-        ]);
+                'totals' => filter_order_paginate(product_moves_totals(), $view_fields, $request, ['product_name', 'asc']),
+                'used_years' => get_used_years_of(session()->get('report_storage')->id),
+                'Storage' => Storage::class,
+
+            ] + session_get([
+                'report_storage',
+                'report_year',
+                'is_cost_report',
+                'search_targets',
+                'current_report_type',
+                'search_targets'
+
+            ]) + compact('view_fields', 'headers')
+        );
     }
 }
+
