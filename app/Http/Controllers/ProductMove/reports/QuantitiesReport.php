@@ -6,8 +6,7 @@ include_once(app_path().'/helpers/get_used_years_of.php');
 include_once(app_path().'/helpers/session_get.php');
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/sql/queries/report_totals/quantity_totals.php');
-include_once(app_path().'/sql/queries/report_totals/move_type_totals.php');
+include_once(app_path().'/sql/queries/report_totals/product_totals.php');
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -16,17 +15,6 @@ use App\Models\ProductMove;
 use function App\sql\queries\move_type_totals\move_type_totals;
 
 
-
-
-function product_moves_totals($report_options) {
-    [$current_report_type, $report_storage, $report_year, $is_cost_report] = array_values($report_options);
-
-    if (in_array($current_report_type, ProductMove::product_move_types())) {
-        return move_type_totals($current_report_type, $report_storage->id, $report_year, $is_cost_report);
-    } else if ($current_report_type === 'quantities') {
-        return quantity_totals($report_storage->id, $report_year, $is_cost_report);
-    }
-}
 
 
 function set_session_defaults()
@@ -80,7 +68,7 @@ class QuantitiesReport extends Controller
         ]);
         set_session($request);
         set_session_defaults();
-        $totals = product_moves_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
+        $totals = product_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
 
         return view('pages/reports/quantities-report', [
                 'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),

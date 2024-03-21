@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function product_totals($request) {
+function general_product_totals($request) {
     $totals = DB::select("
         Select
             (Select name From storages Where id = storage_id) As storage_name,
