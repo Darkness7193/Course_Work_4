@@ -18,11 +18,13 @@ use function App\sql\queries\move_type_totals\move_type_totals;
 
 
 
-function product_moves_totals() {
-    if (in_array(session('current_report_type'), ProductMove::product_move_types())) {
-        return move_type_totals(session('current_report_type'), session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
-    } else if (session('current_report_type') === 'quantities') {
-        return quantity_totals(session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
+function product_moves_totals($report_options) {
+    [$current_report_type, $report_storage, $report_year, $is_cost_report] = array_values($report_options);
+
+    if (in_array($current_report_type, ProductMove::product_move_types())) {
+        return move_type_totals($current_report_type, $report_storage->id, $report_year, $is_cost_report);
+    } else if ($current_report_type === 'quantities') {
+        return quantity_totals($report_storage->id, $report_year, $is_cost_report);
     }
 }
 
@@ -32,10 +34,10 @@ function set_session_defaults()
     $defaults = [
         'report_storage' => Storage::first() ?? (object)['id'=>null, 'name'=>'Складов нет'],
         'current_report_type' => 'quantities',
-        'is_cost_report' => true,
+        'is_cost_report' => false,
     ];
 
-    foreach ($defaults as $key => $value) { if (session($key) === null) { session()->put($key, $value); } }
+    foreach ($defaults as $key => $value) { if (empty(session($key))) { session()->put($key, $value); } }
 }
 
 
@@ -78,9 +80,10 @@ class QuantitiesReport extends Controller
         ]);
         set_session($request);
         set_session_defaults();
+        $totals = product_moves_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
 
         return view('pages/reports/quantities-report', [
-                'totals' => filter_order_paginate(product_moves_totals(), $view_fields, $request, ['product_name', 'asc']),
+                'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
                 'used_years' => get_used_years_of(session()->get('report_storage')->id),
                 'Storage' => Storage::class,
 
