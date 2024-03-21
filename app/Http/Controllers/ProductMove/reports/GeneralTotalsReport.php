@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\ProductMove\reports;
 
-include_once(app_path().'/sql/queries/report_totals/product_totals.php');
+include_once(app_path().'/sql/queries/report_totals/general_totals.php');
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 
 
-class TotalsReport extends Controller
+class GeneralTotalsReport extends Controller
 {
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
