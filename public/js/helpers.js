@@ -116,7 +116,9 @@ export function suppress_context_menu_once() {
 
 set_is_mouse_down()
 export function activation_by_hold_mouse(element) {
-    element.addEventListener("mouseenter", (event) => {
+    element.addEventListener('mousedown', (event)=>{ if (event.which === 3) { element.click() } })
+
+    element.addEventListener("mouseenter", (event)=>{
         if (is_mouse_down) {
             element.click()
             suppress_context_menu_once()
