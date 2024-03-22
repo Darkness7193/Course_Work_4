@@ -11,8 +11,6 @@ include_once(app_path().'/sql/queries/report_totals/product_totals.php');
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Storage;
-use App\Models\ProductMove;
-use function App\sql\queries\move_type_totals\move_type_totals;
 
 
 
@@ -38,7 +36,8 @@ function set_session(&$request)
     ] + $request->all([
         'search_targets',
         'current_report_type',
-        'search_targets'
+        'search_targets',
+        'per_page',
     ]);
 
     foreach ($data as $key => $value) { if ($value !== null) { session()->put($key, $value); } }
