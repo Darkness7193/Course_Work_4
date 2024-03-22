@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('manufactor');
             $table->float('purchase_price');
             $table->float('selling_price');
             $table->string('comment');
+            $table->boolean('is_to_sale');
         });
     }
 

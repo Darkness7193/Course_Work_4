@@ -17,9 +17,11 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->text(),
+            'manufactor' => $this->faker->text(),
             'purchase_price' => random_int(1, 1000),
             'selling_price' => random_int(1, 1000),
-            'comment' => $this->faker->text()
+            'comment' => $this->faker->text(),
+            'is_to_sale' => (bool)random_int(0, 1)
         ];
     }
 }

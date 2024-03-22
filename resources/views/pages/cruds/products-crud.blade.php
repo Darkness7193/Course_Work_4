@@ -20,27 +20,23 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($purchases as $purchase)
-        @include('crud-components.product-move-crud-tr', [
-            'row' => $purchase,
-            'products' => $products,
-            'storages' => $storages
+    @foreach ($products as $product)
+        @include('crud-components.product-crud-tr', [
+            'row' => $product
         ])
     @endforeach
 
-    @if ($purchases->count() < $purchases->perPage())
+    @if ($products->count() < $products->perPage())
         @include('crud-components.product-move-crud-tr', [
             'row' => $emptyRow,
-            'products' => $products,
-            'storages' => $storages,
             'is_create_tr' => true,
-            'paginator' => $purchases
+            'paginator' => $products
         ])
     @endif
 </table>
 
 
-<div>{{ $purchases->links('pagination::my-pagination-links') }}</div>
+<div>{{ $products->links('pagination::my-pagination-links') }}</div>
 @include('crud-components.save-btn', ['no_view_fields' => [
     'product_move_type' => 'purchasing',
     'new_storage_id' => null

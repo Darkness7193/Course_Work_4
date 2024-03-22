@@ -20,23 +20,21 @@ class Crud extends Controller
     public function __invoke(Request $request): View
     {
         [$view_fields, $headers] = get_columns([
-            ['date', 'Поступило'],
+            ['name', 'Наименование'],
 
-            ['product_id', 'Товар'],
-            ['quantity', 'Кол-во'],
-            ['price', 'Цена'],
+            ['manufactor', 'Производитель'],
+            ['purchase_price', 'Цена закупки'],
+            ['selling_price', 'Цена продажи'],
 
-            ['storage_id', 'Склад'],
-            ['comment', 'Комментарий']
+            ['comment', 'Комментарий'],
+            ['is_to_sale', 'На продажу']
         ]);
 
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $purchases = ProductMove::where('product_move_type', 'purchasing');
+        $products = Product::query();
 
         return view('pages/cruds/products-crud', [
-            'purchases' => filter_order_paginate($purchases, $view_fields, $request, ['created_at', 'asc']),
-            'products' => Product::select('id', 'name')->get(),
-            'storages' => Storage::select('id', 'name')->get(),
+            'products' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
             'max_id' => ProductMove::max('id'),
             'emptyRow' => new EmptyRow(),
             'search_targets' => $request->search_targets

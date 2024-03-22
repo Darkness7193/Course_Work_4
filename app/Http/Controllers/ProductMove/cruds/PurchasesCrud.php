@@ -15,6 +15,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 
 
+
+
 class PurchasesCrud extends Controller
 {
     public function __invoke(Request $request): View
