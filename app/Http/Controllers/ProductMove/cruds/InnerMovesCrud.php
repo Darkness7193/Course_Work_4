@@ -36,7 +36,7 @@ class InnerMovesCrud extends Controller
         ]);
 
         return view('pages/cruds/inner-moves-crud', [
-            'inner_moves' => filter_order_paginate($inner_moves, $view_fields, $request, ['created_at', 'asc']),
+            'paginator' => filter_order_paginate($inner_moves, $view_fields, $request, ['created_at', 'asc']),
             'ProductMove' => ProductMove::class,
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),

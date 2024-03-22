@@ -7,6 +7,7 @@
 <script src="{{ asset('js/of_crud-table/auto_new_tr.js') }}" type="module"></script>
 <script src="{{ asset('js/of_crud-table/disable_new_storage_field.js') }}" type="module"></script>
 <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
+<script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
 <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -21,7 +22,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($inner_moves as $inner_move)
+    @foreach ($paginator as $inner_move)
         @include('crud-components.inner-move-crud-tr', [
             'row' => $inner_move,
             'ProductMove' => $ProductMove,
@@ -30,20 +31,20 @@
         ])
     @endforeach
 
-    @if ($inner_moves->count() < $inner_moves->perPage())
+    @if ($paginator->count() < $paginator->perPage())
         @include('crud-components.inner-move-crud-tr', [
             'row' => $emptyRow,
             'ProductMove' => $ProductMove,
             'products' => $products,
             'storages' => $storages,
             'is_create_tr' => true,
-            'paginator' => $inner_moves
+            'paginator' => $paginator
         ])
     @endif
 </table>
 
 
-<div>{{ $inner_moves->links('pagination::my-pagination-links') }}</div>
+<div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
 @include('crud-components.save-btn', ['no_view_fields' => [
     'product_move_type' => 'purchasing',
     'new_storage_id' => null

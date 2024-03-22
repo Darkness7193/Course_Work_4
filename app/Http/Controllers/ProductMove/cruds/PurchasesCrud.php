@@ -36,7 +36,7 @@ class PurchasesCrud extends Controller
         $purchases = ProductMove::where('product_move_type', 'purchasing');
 
         return view('pages/cruds/purchases-crud', [
-            'purchases' => filter_order_paginate($purchases, $view_fields, $request, ['created_at', 'asc']),
+            'paginator' => filter_order_paginate($purchases, $view_fields, $request, ['created_at', 'asc']),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),

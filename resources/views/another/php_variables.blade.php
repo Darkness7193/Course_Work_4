@@ -8,4 +8,6 @@
         'img_delete_on': "{{ asset('images/delete-on.png') }}",
         'img_delete_off': "{{ asset('images/delete-off.png') }}",
     }
+    window.per_page = Number('{{ $paginator->perPage() }}')
+    window.page_count = Number('{{ $paginator->count() }}')
 </script>

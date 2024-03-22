@@ -1,4 +1,4 @@
-import { get_value, set_value } from "../helpers.js"
+import { get_value } from "../helpers.js"
 
 ;[...document.getElementsByClassName('product-move-type-select')].forEach((move_type_select)=>{
     move_type_select.addEventListener('change', ()=>{

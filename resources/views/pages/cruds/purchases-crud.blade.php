@@ -6,6 +6,7 @@
     @include('another.php_variables')
     <script src="{{ asset('js/of_crud-table/auto_new_tr.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
+    <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -20,7 +21,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($purchases as $purchase)
+    @foreach ($paginator as $purchase)
         @include('crud-components.product-move-crud-tr', [
             'row' => $purchase,
             'products' => $products,
@@ -28,19 +29,19 @@
         ])
     @endforeach
 
-    @if ($purchases->count() < $purchases->perPage())
+    @if ($paginator->count() < $paginator->perPage())
         @include('crud-components.product-move-crud-tr', [
             'row' => $emptyRow,
             'products' => $products,
             'storages' => $storages,
             'is_create_tr' => true,
-            'paginator' => $purchases
+            'paginator' => $paginator
         ])
     @endif
 </table>
 
 
-<div>{{ $purchases->links('pagination::my-pagination-links') }}</div>
+<div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
 @include('crud-components.save-btn', ['no_view_fields' => [
     'product_move_type' => 'purchasing',
     'new_storage_id' => null

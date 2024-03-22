@@ -1,7 +1,7 @@
 import { is_filled, set_editors_to_empty } from "../helpers.js"
 
 
-function set_next_row_id(tr) {
+export function set_next_row_id(tr) {
     let crud_table = document.getElementsByClassName('crud-table')[0]
     tr.dataset['rowId'] = String(Number(crud_table.dataset.maxId) + 1)
     crud_table.dataset.maxId = tr.dataset.rowId

@@ -32,7 +32,7 @@ class SalesCrud extends Controller
         ]);
 
         return view('pages/cruds/sales-crud', [
-            'sales' => filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']),
+            'paginator' => filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']),
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'max_id' => ProductMove::max('id'),

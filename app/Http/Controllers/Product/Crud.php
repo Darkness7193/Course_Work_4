@@ -34,7 +34,7 @@ class Crud extends Controller
         $products = Product::query();
 
         return view('pages/cruds/products-crud', [
-            'products' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
+            'paginator' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
             'max_id' => ProductMove::max('id'),
             'emptyRow' => new EmptyRow(),
             'search_targets' => $request->search_targets
