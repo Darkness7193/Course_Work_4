@@ -25,9 +25,9 @@ export function append_empty_tr(table) {
 export function auto_new_tr() {
     let crud_table = document.getElementsByClassName('crud-table')[0]
     let old_last_tr = crud_table.rows[crud_table.rows.length-1]
-    let page_is_full = window.page_count >= window.per_page
+    let is_full_page = window.php_vars['page_count'] >= window.php_vars['per_page']
 
-    if (is_filled(old_last_tr) && !page_is_full) { // TODO when you'll refactor auto_new_tr() conditions?
+    if (is_filled(old_last_tr) && !is_full_page) { // TODO when you'll refactor auto_new_tr() conditions?
 
         let new_last_tr = append_empty_tr(crud_table)
         let delete_btn = old_last_tr.getElementsByClassName('delete-btn')[0]
@@ -36,10 +36,10 @@ export function auto_new_tr() {
         old_last_tr.onchange = ''
         delete_btn.style.display = 'block'
 
-        window.page_count += 1 // TODO what is window.page_count += 1?
+        window.php_vars['page_count'] += 1 // TODO what is window.page_count += 1?
     }
 
-    if (page_is_full) {
+    if (is_full_page) {
         let delete_btn = old_last_tr.getElementsByClassName('delete-btn')[0]
         delete_btn.style.display = 'block'
     }
