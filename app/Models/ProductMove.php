@@ -36,7 +36,7 @@ class ProductMove extends Model
 
         'product_move_type',
         'storage_id',
-        'end_storage_id',
+        'new_storage_id',
 
         'product_id',
         'quantity',
