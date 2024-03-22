@@ -27,4 +27,9 @@ Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
 });
 
 
+Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
+    Route::get('products/crud', 'Crud')->name('products.crud');
+});
+
+
 Route::post('post_to_get_route', $post_to_get_route)->name('post_to_get_route');

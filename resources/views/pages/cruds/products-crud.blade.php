@@ -3,11 +3,11 @@
 
 
 <!-- imports: -->
-    @include('another.php_variables')
-    <script src="{{ asset('js/of_crud-table/auto_new_tr.js') }}" type="module"></script>
-    <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
-    <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+@include('another.php_variables')
+<script src="{{ asset('js/of_crud-table/auto_new_tr.js') }}" type="module"></script>
+<script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
+<link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
+<link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
 <body>
