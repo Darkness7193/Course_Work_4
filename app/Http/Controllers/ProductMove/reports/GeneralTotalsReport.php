@@ -28,8 +28,6 @@ class GeneralTotalsReport extends Controller
         return view('pages/reports/totals-report', [
             'totals' => general_product_totals($request),
             'search_targets' => $request->search_targets,
-            'view_fields' => $view_fields,
-            'headers' => $headers
-        ]);
+        ] + compact('view_fields', 'headers'));
     }
 }
