@@ -22,3 +22,9 @@ tr > .fall-td {
     background: #cca6a6;
     min-width: 44px;
 }
+
+tr > .report-field-td {
+    background: transparent;
+    min-width: 44px;
+}
+

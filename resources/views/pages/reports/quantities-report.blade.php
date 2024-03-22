@@ -27,6 +27,7 @@
             @for ($i=1; $i<13; $i++)
                 <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"month_{$i}_totals"} }}</td>
             @endfor
+            <td class="report-field-td">@if($is_cost_report) ₽ @else шт. @endif</td>
         </tr>
     @endforeach
 </table>
