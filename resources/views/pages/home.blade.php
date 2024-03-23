@@ -2,7 +2,6 @@
 
 
 <!-- imports: -->
-    @include('another/php_variables')
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
