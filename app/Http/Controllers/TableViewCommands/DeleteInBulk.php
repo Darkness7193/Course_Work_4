@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\ProductMove;
-
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\TableViewCommands;
 
 use App\Models\ProductMove;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 
 class DeleteInBulk extends Controller
@@ -16,7 +13,7 @@ class DeleteInBulk extends Controller
     {
         $ids = $request->all()['deleted_rows'];
         foreach ($ids as $id) {
-            ProductMove::find($id)->delete();
+            $request->CrudModel::find($id)->delete();
         }
     }
 }

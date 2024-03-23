@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\ProductMove;
-
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\TableViewCommands;
 
 use App\Models\ProductMove;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 
 class UpdateOrCreateInBulk extends Controller
@@ -23,7 +20,7 @@ class UpdateOrCreateInBulk extends Controller
             } else {
                 $new_purchase = array_merge($request->no_view_fields, $updated_cells);
                 if (count($new_purchase) === $fillable_count) {
-                    ProductMove::create($new_purchase);
+                    $request->CrudModel::create($new_purchase);
                 }
             }
         }

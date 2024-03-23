@@ -3,10 +3,10 @@
 
 
 
-<!-- f($search_target, $view_fields, $headers): -->
+<!-- f($CrudModel, $search_target, $view_fields, $headers): -->
 <form class="search-bar vertical-center"
     method="post"
-    action="{{ route('product_moves.set_filter', ['target_route' => Route::current()->getName()]) }}"
+    action="{{ route('set_filter', ['target_route' => Route::current()->getName()]) }}"
 >   @csrf
 
     <div class="default-input-wrapper"><button name="action" value="search"></button></div>

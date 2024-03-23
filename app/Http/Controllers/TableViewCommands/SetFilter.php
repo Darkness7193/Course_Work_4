@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\ProductMove;
+namespace App\Http\Controllers\TableViewCommands;
 
 include_once(app_path().'/helpers/get_form_data.php');
 
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Routing\Controller;
 
 
 function get_search_targets($request, $postfix) {
