@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
 
-@if ($paginator->hasPages())
     <nav class="d-flex justify-items-center justify-content-between">
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
             <form method="POST"
@@ -22,4 +21,3 @@
             </form>
         </div>
     </nav>
-@endif

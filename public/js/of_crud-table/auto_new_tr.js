@@ -27,7 +27,7 @@ export function auto_new_tr() {
     let old_last_tr = crud_table.rows[crud_table.rows.length-1]
     let is_full_page = window.php_vars['page_count'] >= window.php_vars['per_page']
 
-    if (is_filled(old_last_tr) && !is_full_page) { // TODO when you'll refactor auto_new_tr() conditions?
+    if (is_filled(old_last_tr) && !is_full_page) {
 
         let new_last_tr = append_empty_tr(crud_table)
         let delete_btn = old_last_tr.getElementsByClassName('delete-btn')[0]
