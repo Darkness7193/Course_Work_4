@@ -11,10 +11,10 @@ class UpdateOrCreateInBulk extends Controller
 {
     public function __invoke(Request $request): void
     {
-        $fillable_count = count((new ProductMove)->getFillable());
+        $fillable_count = count((new $request->CrudModel)->getFillable());
         foreach ($request->updated_rows as $row_id => $updated_cells)
         {
-            $exist_purchase = ProductMove::find($row_id);
+            $exist_purchase = $request->CrudModel::find($row_id);
             if ($exist_purchase) {
                 $exist_purchase->update($updated_cells);
             } else {

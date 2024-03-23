@@ -30,6 +30,7 @@ function toggle_row_deleting(delete_btn) {
 function submit_changes(no_view_fields) {
     ;[deleted_rows, updated_rows] = remove_elements_that_in_both(deleted_rows, updated_rows)
     let CrudModel = document.getElementsByClassName('crud-table')[0].dataset.crudModel
+    console.log(CrudModel)
 
     post(window.php_vars['update_or_create_in_bulk_route'], {'CrudModel': CrudModel, 'updated_rows': updated_rows, 'no_view_fields': JSON.parse(no_view_fields)})
     post(window.php_vars['delete_in_bulk_route'], {'CrudModel': CrudModel, 'deleted_rows': Array.from(deleted_rows)})

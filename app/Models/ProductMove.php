@@ -61,17 +61,6 @@ class ProductMove extends Model
         ];
     }
 
-    public static function view_fields() {
-         return [
-            'date',
-            'product_id',
-            'quantity',
-            'price',
-            'storage_id',
-            'comment',
-        ];
-    }
-
     public function product() {
         return $this->belongsTo(Product::class, 'product_id');
     }

@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="{{ asset('css/table-tools/search-bar.css') }}">
 
 
-
 <!-- f($CrudModel, $search_target, $view_fields, $headers): -->
 <form class="search-bar vertical-center"
     method="post"
