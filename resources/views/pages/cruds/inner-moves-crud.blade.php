@@ -37,11 +37,9 @@
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->storage, 'foreign_rows' => $storages])</td>
             <td>
-                @if ("$inner_move->product_move_type" === 'transfering')
-                    @include('crud-components.foreign-cell', ['class' => 'new-storage-select', 'selected_foreign_row' => $inner_move->new_storage, 'foreign_rows' => $storages])
-                @else
-                    @include('crud-components.foreign-cell', ['class' => 'new-storage-select', 'foreign_rows' => $storages, 'parameters' => 'disabled="true"'])
-                @endif
+                @include('crud-components.foreign-cell', "$inner_move->product_move_type" === 'transfering'
+                    ? ['class' => 'new-storage-select', 'selected_foreign_row' => $inner_move->new_storage, 'foreign_rows' => $storages]
+                    : ['class' => 'new-storage-select', 'foreign_rows' => $storages, 'parameters' => 'disabled="true"'])
             </td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->product, 'foreign_rows' => $products])</td>
