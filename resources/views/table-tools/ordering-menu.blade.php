@@ -10,7 +10,7 @@
 <!-- f($CrudModel, $view_fields, $headers): -->
 <form class="vertical-center"
     method="post"
-    action="{{ route('set_order', ['target_route' => Route::current()->getName()]) }}"
+    action="{{ route('set_order', ['previous_route' => Route::current()->getName()]) }}"
 >   @csrf
     <div class="dropdown">
         <button class="icon ordering-btn drop-btn" type="button" onclick="toggle_dropdown_content(this)"></button>

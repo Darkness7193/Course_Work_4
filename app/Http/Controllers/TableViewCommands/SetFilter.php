@@ -23,7 +23,7 @@ function get_search_targets($request, $postfix) {
 class SetFilter extends Controller
 {
     public function __invoke(Request $request){
-        return to_route($request->target_route, [
+        return to_route($request->previous_route, [
             'search_targets' => $request->action === 'un_search' ? null : get_search_targets($request, '_search_target')
         ]);
     }
