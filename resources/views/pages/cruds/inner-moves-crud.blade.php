@@ -27,19 +27,20 @@
             <td><input type="date" value="{{ $inner_move->date->toDateString() }}" onchange="update_cell_of(this)"></td>
 
             <td><select class="foreign-cell product-move-type-select" onchange="update_cell_of(this)">
-                    @foreach($ProductMove::inner_move_types_ru() as $inner_move_type => $inner_move_type_ru)
-                        <option value="{{ $inner_move_type }}"> {{ $inner_move_type_ru }} </option>
-                    @endforeach
-                    <option value="{{ $inner_move->product_move_type }}" selected="selected" hidden="hidden">
-                        {{ "$inner_move" ? $ProductMove::inner_move_types_ru()[$inner_move->product_move_type] : '' }}
-                    </option>
-                </select></td>
+                @foreach($ProductMove::inner_move_types_ru() as $inner_move_type => $inner_move_type_ru)
+                    <option value="{{ $inner_move_type }}"> {{ $inner_move_type_ru }} </option>
+                @endforeach
+                <option value="{{ $inner_move->product_move_type }}" selected="selected" hidden="hidden">
+                    {{ "$inner_move" ? $ProductMove::inner_move_types_ru()[$inner_move->product_move_type] : '' }}
+                </option>
+            </select></td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->storage, 'foreign_rows' => $storages])</td>
             <td>
-                @include('crud-components.foreign-cell', "$inner_move->product_move_type" === 'transfering'
-                    ? ['class' => 'new-storage-select', 'selected_foreign_row' => $inner_move->new_storage, 'foreign_rows' => $storages]
-                    : ['class' => 'new-storage-select', 'foreign_rows' => $storages, 'parameters' => 'disabled="true"'])
+                @include('crud-components.foreign-cell', ['class' => 'new-storage-select', 'foreign_rows' => $storages] + (
+                    "$inner_move->product_move_type" === 'transfering'
+                        ? ['selected_foreign_row' => $inner_move->new_storage]
+                        : ['parameters' => 'disabled="true"']))
             </td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->product, 'foreign_rows' => $products])</td>
