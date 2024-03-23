@@ -70,7 +70,7 @@ class QuantitiesReport extends Controller
         $totals = product_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
 
         return view('pages/reports/quantities-report', [
-                'totals' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
+                'paginator' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
                 'used_years' => get_used_years_of(session()->get('report_storage')->id),
                 'Storage' => Storage::class,
 

@@ -26,7 +26,7 @@ class GeneralTotalsReport extends Controller
         ]);
 
         return view('pages/reports/totals-report', [
-            'totals' => general_product_totals($request),
+            'paginator' => general_product_totals($request),
             'search_targets' => $request->search_targets,
         ] + compact('view_fields', 'headers'));
     }

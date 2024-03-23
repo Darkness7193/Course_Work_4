@@ -17,7 +17,7 @@
         @endforeach
     </tr>
 
-    @foreach ($totals as $total)
+    @foreach ($paginator as $total)
         <tr>
             <td>{{ $total->product_name }}</td>
 
@@ -33,7 +33,7 @@
 </table>
 
 
-<div>{{ $totals->links('pagination::my-pagination-links') }}</div>
+<div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
 @include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
 @include('table-tools.ordering-menu', compact('view_fields', 'headers'))
 

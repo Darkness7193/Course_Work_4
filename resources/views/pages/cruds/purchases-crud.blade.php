@@ -4,6 +4,7 @@
 
 <!-- imports: -->
     @include('another.php_variables')
+    <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/submit_changes.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">

@@ -3,7 +3,7 @@
 
 <!-- imports: -->
     @include('another/php_variables')
-    <script src="{{ asset('js/of_crud-table/auto_new_tr.js') }}" type="module"></script>
+    <script src="{{ asset('js/of_crud-table/submit_changes.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
@@ -20,22 +20,23 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator as $sale)
-        @include('crud-components.product-move-crud-tr', [
-            'row' => $sale,
-            'products' => $products,
-            'storages' => $storages
-        ])
+    @foreach ($paginator->items() ?: [$emptyRow] as $sale)
+        <tr data-row-id="{{ $sale->id }}">
+            <td><input type="date" value="{{ $sale->date->toDateString() }}" onchange="update_cell_of(this)"></td>
+
+            <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $sale->product, 'foreign_rows' => $products])</td>
+            <td><input type="number" value="{{ $sale->quantity }}" onchange="update_cell_of(this)"></td>
+            <td><input type="number" step="0.01" value="{{ $sale->price }}" onchange="update_cell_of(this)"></td>
+
+            <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $sale->storage, 'foreign_rows' => $storages])</td>
+            <td class="comment-td"><input type="text" value="{{ $sale->comment }}" onchange="update_cell_of(this)"></td>
+
+            <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
+        </tr>
     @endforeach
 
-    @if (($paginator->count() < $paginator->perPage()) || !$paginator->hasPages())
-        @include('crud-components.product-move-crud-tr', [
-            'row' => $emptyRow,
-            'products' => $products,
-            'storages' => $storages,
-            'is_create_tr' => true,
-            'paginator' => $paginator
-        ])
+    @if ($paginator->count() < $paginator->perPage())
+        <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     @endif
 </table>
 
