@@ -29,7 +29,7 @@
             <td><input type="number" step="0.01" value="{{ $product->selling_price }}" onchange="update_cell_of(this)"></td>
 
             <td class="comment-td"><input type="text" value="{{ $product->comment }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" value="{{ $product->is_to_sale }}" onchange="update_cell_of(this)"></td>
+            <td><input type="text" value="{{ $product->is_to_sale }}" onchange="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
         </tr>
@@ -42,10 +42,7 @@
 
 
 <div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
-@include('crud-components.save-btn', ['no_view_fields' => [
-    'product_move_type' => 'purchasing',
-    'new_storage_id' => null
-]])
+@include('crud-components.save-btn', ['no_view_fields' => []])
 @include('table-tools.search-bar', [
     'search_targets' => $search_targets,
     'view_fields' => $view_fields,
