@@ -40,7 +40,8 @@
                 @include('crud-components.foreign-cell', ['class' => 'new-storage-select', 'foreign_rows' => $storages] + (
                     "$inner_move->product_move_type" === 'transfering'
                         ? ['selected_foreign_row' => $inner_move->new_storage]
-                        : ['parameters' => 'disabled="true"']))
+                        : ['parameters' => 'disabled="true"'])
+                )
             </td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->product, 'foreign_rows' => $products])</td>
