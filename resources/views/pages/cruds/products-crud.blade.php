@@ -37,15 +37,8 @@
 
 <div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
 @include('crud-components.save-btn', ['no_view_fields' => []])
-@include('table-tools.search-bar', [
-    'search_targets' => $search_targets,
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
-@include('table-tools.ordering-menu', [
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
+@include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
+@include('table-tools.ordering-menu', compact('view_fields', 'headers'))
 
 </body>
 </html>

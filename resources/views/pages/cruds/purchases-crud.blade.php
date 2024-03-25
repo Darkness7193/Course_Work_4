@@ -42,15 +42,8 @@
     'product_move_type' => 'purchasing',
     'new_storage_id' => null
 ]])
-@include('table-tools.search-bar', [
-    'search_targets' => $search_targets,
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
-@include('table-tools.ordering-menu', [
-    'view_fields' => $view_fields,
-    'headers' => $headers
-])
+@include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
+@include('table-tools.ordering-menu', compact('view_fields', 'headers'))
 
 </body>
 </html>
