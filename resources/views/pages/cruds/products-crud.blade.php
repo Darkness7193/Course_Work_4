@@ -12,7 +12,7 @@
 
 
 <body>
-<table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $Product }}">
+<table class="crud-table" data-max-id="{{ $Product::max('id') }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $Product }}">
     <tr>
         @foreach($headers as $header)
             <th>{{ mb_strtoupper($header) }}</th>

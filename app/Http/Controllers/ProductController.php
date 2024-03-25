@@ -33,7 +33,6 @@ class ProductController extends Controller
         return view('pages/cruds/products-crud', [
             'paginator' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
             'Product' => Product::class,
-            'max_id' => Product::max('id'),
             'emptyRow' => new EmptyRow(),
             'search_targets' => $request->search_targets
         ] + compact('view_fields', 'headers'));

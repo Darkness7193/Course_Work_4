@@ -34,7 +34,6 @@ class StorageController extends Controller
         return view('pages/cruds/storages-crud', [
             'paginator' => filter_order_paginate($storages, $view_fields, $request, ['created_at', 'asc']),
             'Storage' => Storage::class,
-            'max_id' => Storage::max('id'),
             'emptyRow' => new EmptyRow(),
             'search_targets' => $request->search_targets
         ] + compact('view_fields', 'headers'));
