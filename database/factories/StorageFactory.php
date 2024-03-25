@@ -18,6 +18,8 @@ class StorageFactory extends Factory
         return [
             'name' => $this->faker->text(),
             'address' => $this->faker->text(),
+            'phone_number' => $this->faker->text(),
+            'email' => $this->faker->text(),
             'comment' => $this->faker->text()
         ];
     }

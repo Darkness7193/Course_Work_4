@@ -12,5 +12,7 @@
 
     <button onclick="window.location='{{ route('product_moves.general_totals_report') }}'"> Общий отчет </button>
     <button onclick="window.location='{{ route('product_moves.quantities_report') }}'"> Отчет количеств </button>
+
     <button onclick="window.location='{{ route('products.crud') }}'"> products_crud </button>
+    <button onclick="window.location='{{ route('storages.crud') }}'"> storages_crud </button>
 </body>

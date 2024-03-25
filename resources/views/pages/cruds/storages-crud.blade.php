@@ -12,7 +12,7 @@
 
 
 <body>
-<table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $Product }}">
+<table class="crud-table" data-max-id="{{ $max_id }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $Storage }}">
     <tr>
         @foreach($headers as $header)
             <th>{{ mb_strtoupper($header) }}</th>
@@ -21,14 +21,14 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator->items() ?: [$emptyRow] as $product)
-        <tr data-row-id="{{ $product->id }}">
-            <td><input type="text" value="{{ $product->name }}" onchange="update_cell_of(this)"></td>
-            <td><input type="text" value="{{ $product->manufactor }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $product->purchase_price }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $product->selling_price }}" onchange="update_cell_of(this)"></td>
+    @foreach ($paginator->items() ?: [$emptyRow] as $storage)
+        <tr data-row-id="{{ $storage->id }}">
+            <td><input type="text" value="{{ $storage->name }}" onchange="update_cell_of(this)"></td>
+            <td><input type="text" value="{{ $storage->address }}" onchange="update_cell_of(this)"></td>
+            <td><input type="text" step="0.01" value="{{ $storage->phone_number }}" onchange="update_cell_of(this)"></td>
+            <td><input type="text" step="0.01" value="{{ $storage->email }}" onchange="update_cell_of(this)"></td>
 
-            <td class="comment-td"><input type="text" value="{{ $product->comment }}" onchange="update_cell_of(this)"></td>
+            <td class="comment-td"><input type="text" value="{{ $storage->comment }}" onchange="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn')</td>
         </tr>

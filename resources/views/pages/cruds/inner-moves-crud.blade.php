@@ -50,7 +50,7 @@
 
             <td class="comment-td"><input type="text" value="{{ $inner_move->comment }}" onchange="update_cell_of(this)"></td>
 
-            <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
+            <td>@include('crud-components.delete-btn')</td>
         </tr>
     @endforeach
 
