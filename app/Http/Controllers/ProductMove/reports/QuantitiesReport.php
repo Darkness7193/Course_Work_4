@@ -46,8 +46,9 @@ class QuantitiesReport extends Controller
                 $request->report_storage_id !== session('report_storage_id') ? $request->report_year : null,
             ],
             'is_cost_report' => [(bool)$request->is_cost_report, false],
-            'search_targets' => $request->search_targets,
             'current_report_type' => [$request->current_report_type, 'quantities'],
+            'search_targets' => $request->search_targets,
+            'per_page' => $request->per_page,
         ]);
 
         $totals = product_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
