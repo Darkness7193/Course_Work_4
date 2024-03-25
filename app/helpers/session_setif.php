@@ -10,21 +10,25 @@ function session_singular_setif($session_key, $new_value, $default = null)
 }
 
 
+function syntax_sugar($value_and_or_default) {
+    if (is_array($value_and_or_default)) {
+        if (count($value_and_or_default) === 2) {
+            return $value_and_or_default;
+        } else {
+            return [$value_and_or_default[0], null];
+        }
+    } else {
+        return [$value_and_or_default, null];
+    }
+}
+
+
 function session_setif($parameters_sets)
 {
     $final_values = [];
 
     foreach ($parameters_sets as $request_key => $value_and_or_default) {
-        if (is_array($value_and_or_default)) {
-            if (count($value_and_or_default) === 2) {
-                [$value, $default] = $value_and_or_default;
-            } else {
-                $value = $value_and_or_default[0];
-            }
-        } else {
-            $value = $value_and_or_default;
-            $default = null;
-        }
+        [$value, $default] = syntax_sugar($value_and_or_default);
         $final_values[$request_key] = session_singular_setif($request_key, $value, $default);
     }
 
