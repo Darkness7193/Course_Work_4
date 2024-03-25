@@ -12,14 +12,12 @@ function session_singular_setif($session_key, $new_value, $default = null)
 
 function syntax_sugar($value_and_or_default) {
     if (is_array($value_and_or_default)) {
-        if (count($value_and_or_default) === 2) {
-            return $value_and_or_default;
-        } else {
-            return [$value_and_or_default[0], null];
-        }
-    } else {
-        return [$value_and_or_default, null];
+        if (count($value_and_or_default) === 2) { return $value_and_or_default; }
+
+        return [$value_and_or_default[0], null];
     }
+
+    return [$value_and_or_default, null];
 }
 
 
