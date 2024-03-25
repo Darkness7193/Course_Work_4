@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProductMove\cruds;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/EmptyRow.php');
+include_once(app_path().'/helpers/get_filler_rows.php');
 
 use App\helpers\pure_php\EmptyRow;
 use App\Models\Product;
@@ -18,8 +19,6 @@ class SalesCrud extends Controller
 {
     public function __invoke(Request $request): View
     {
-        if ($request->per_page) { session()->put('per_page', $request->per_page); }
-        $sales = ProductMove::where('product_move_type', 'selling');
         [$view_fields, $headers] = get_columns([
             ['date', 'Продано'],
 
@@ -30,13 +29,17 @@ class SalesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
+        if ($request->per_page) { session()->put('per_page', $request->per_page); }
+
+        $sales = ProductMove::where('product_move_type', 'selling');
+        $sales = filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']);
 
         return view('pages/cruds/sales-crud', [
-            'paginator' => filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']),
+            'paginator' => $sales,
             'ProductMove' => ProductMove::class,
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
-            'emptyRow' => new EmptyRow(),
+            'filler_rows' => get_filler_rows($sales, Storage::max('id')),
             'search_targets' => $request->search_targets
         ] + compact('view_fields', 'headers'));
     }

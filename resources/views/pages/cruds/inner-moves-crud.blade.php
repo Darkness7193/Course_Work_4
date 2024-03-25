@@ -7,7 +7,6 @@
     <script src="{{ asset('js/of_crud-table/submit_changes.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/disable_new_storage_field.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
-    <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -22,7 +21,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator->items() ?: [$emptyRow] as $inner_move)
+    @foreach (array_merge($paginator->items(), $filler_rows) as $inner_move)
         <tr data-row-id="{{ $inner_move->id }}">
             <td><input type="date" value="{{ $inner_move->date->toDateString() }}" onchange="update_cell_of(this)"></td>
 
@@ -53,10 +52,6 @@
             <td>@include('crud-components.delete-btn')</td>
         </tr>
     @endforeach
-
-    @if ($paginator->count() < $paginator->perPage())
-        <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
-    @endif
 </table>
 
 

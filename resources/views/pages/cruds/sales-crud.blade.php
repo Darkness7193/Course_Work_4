@@ -5,7 +5,6 @@
     @include('another/php_variables')
     <script src="{{ asset('js/of_crud-table/submit_changes.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
-    <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -20,7 +19,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator->items() ?: [$emptyRow] as $sale)
+    @foreach (array_merge($paginator->items(), $filler_rows) as $sale)
         <tr data-row-id="{{ $sale->id }}">
             <td><input type="date" value="{{ $sale->date->toDateString() }}" onchange="update_cell_of(this)"></td>
 
@@ -34,10 +33,6 @@
             <td>@include('crud-components.delete-btn')</td>
         </tr>
     @endforeach
-
-    @if ($paginator->count() < $paginator->perPage())
-        <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
-    @endif
 </table>
 
 

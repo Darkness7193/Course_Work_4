@@ -29,15 +29,16 @@ class ProductController extends Controller
 
             ['comment', 'Комментарий'],
         ]);
-
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $paginator = filter_order_paginate(Product::query(), $view_fields, $request, ['created_at', 'asc']);
+
+        $products = filter_order_paginate(Product::query(), $view_fields, $request, ['created_at', 'asc']);
 
         return view('pages/cruds/products-crud', [
+            'paginator' => $products,
             'Product' => Product::class,
-            'filler_rows' => get_filler_rows($paginator, Product::max('id')),
+            'filler_rows' => get_filler_rows($products, Product::max('id')),
             'search_targets' => $request->search_targets
 
-        ] + compact('view_fields', 'headers', 'paginator'));
+        ] + compact('view_fields', 'headers'));
     }
 }

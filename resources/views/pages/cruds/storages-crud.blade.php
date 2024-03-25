@@ -6,7 +6,6 @@
     @include('another.php_variables')
     <script src="{{ asset('js/of_crud-table/submit_changes.js') }}" type="module"></script>
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
-    <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
@@ -21,7 +20,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator->items() ?: [$emptyRow] as $storage)
+    @foreach (array_merge($paginator->items(), $filler_rows) as $storage)
         <tr data-row-id="{{ $storage->id }}">
             <td><input type="text" value="{{ $storage->name }}" onchange="update_cell_of(this)"></td>
             <td><input type="text" value="{{ $storage->address }}" onchange="update_cell_of(this)"></td>
@@ -33,10 +32,6 @@
             <td>@include('crud-components.delete-btn')</td>
         </tr>
     @endforeach
-
-    @if ($paginator->count() < $paginator->perPage())
-        <script src="{{ asset('js/of_crud-table/set_first_creation_tr.js') }}" type="module"></script>
-    @endif
 </table>
 
 
