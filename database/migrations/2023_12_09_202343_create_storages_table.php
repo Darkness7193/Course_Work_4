@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('storages', function (Blueprint $table) {
@@ -16,13 +13,12 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('address');
+            $table->string('phone_number');
+            $table->string('email');
             $table->string('comment');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('storages');

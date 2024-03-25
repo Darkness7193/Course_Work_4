@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -19,13 +16,10 @@ return new class extends Migration
             $table->float('purchase_price');
             $table->float('selling_price');
             $table->string('comment');
-            $table->boolean('is_to_sale');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('products');

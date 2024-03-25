@@ -13,7 +13,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 
 
-class ProductController extends Controller
+class StorageController extends Controller
 {
     public function index(Request $request): View
     {
@@ -25,17 +25,18 @@ class ProductController extends Controller
             ['selling_price', 'Цена продажи'],
 
             ['comment', 'Комментарий'],
+            ['is_to_sale', 'На продажу']
         ]);
 
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
         $products = Product::query();
 
         return view('pages/cruds/products-crud', [
-            'paginator' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
-            'Product' => Product::class,
-            'max_id' => Product::max('id'),
-            'emptyRow' => new EmptyRow(),
-            'search_targets' => $request->search_targets
-        ] + compact('view_fields', 'headers'));
+                'paginator' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
+                'Product' => Product::class,
+                'max_id' => Product::max('id'),
+                'emptyRow' => new EmptyRow(),
+                'search_targets' => $request->search_targets
+            ] + compact('view_fields', 'headers'));
     }
 }

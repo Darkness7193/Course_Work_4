@@ -29,7 +29,6 @@
             <td><input type="number" step="0.01" value="{{ $product->selling_price }}" onchange="update_cell_of(this)"></td>
 
             <td class="comment-td"><input type="text" value="{{ $product->comment }}" onchange="update_cell_of(this)"></td>
-            <td><input type="text" value="{{ $product->is_to_sale }}" onchange="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn', ['is_create_tr' => $is_create_tr ?? false ])</td>
         </tr>
