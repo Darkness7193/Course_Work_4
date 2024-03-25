@@ -23,9 +23,9 @@
 
     @foreach (array_merge($paginator->items(), $filler_rows) as $inner_move)
         <tr data-row-id="{{ $inner_move->id }}">
-            <td><input type="date" value="{{ $inner_move->date->toDateString() }}" onchange="update_cell_of(this)"></td>
+            <td><input type="date" value="{{ $inner_move->date->toDateString() }}" onfocusout="update_cell_of(this)"></td>
 
-            <td><select class="foreign-cell product-move-type-select" onchange="update_cell_of(this)">
+            <td><select class="foreign-cell product-move-type-select" onfocusout="update_cell_of(this)">
                 @foreach($ProductMove::inner_move_types_ru() as $inner_move_type => $inner_move_type_ru)
                     <option value="{{ $inner_move_type }}"> {{ $inner_move_type_ru }} </option>
                 @endforeach
@@ -44,10 +44,10 @@
             </td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $inner_move->product, 'foreign_rows' => $products])</td>
-            <td><input type="number" value="{{ $inner_move->quantity }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $inner_move->price }}" onchange="update_cell_of(this)"></td>
+            <td><input type="number" value="{{ $inner_move->quantity }}" onfocusout="update_cell_of(this)"></td>
+            <td><input type="number" step="0.01" value="{{ $inner_move->price }}" onfocusout="update_cell_of(this)"></td>
 
-            <td class="comment-td"><input type="text" value="{{ $inner_move->comment }}" onchange="update_cell_of(this)"></td>
+            <td class="comment-td"><input type="text" value="{{ $inner_move->comment }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn')</td>
         </tr>

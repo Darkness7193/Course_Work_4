@@ -22,14 +22,14 @@
 
     @foreach (array_merge($paginator->items(), $filler_rows) as $purchase)
         <tr data-row-id="{{ $purchase->id }}">
-            <td><input type="date" value="{{ $purchase->date->toDateString() }}" onchange="update_cell_of(this)"></td>
+            <td><input type="date" value="{{ $purchase->date->toDateString() }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $purchase->product, 'foreign_rows' => $products])</td>
-            <td><input type="number" value="{{ $purchase->quantity }}" onchange="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $purchase->price }}" onchange="update_cell_of(this)"></td>
+            <td><input type="number" value="{{ $purchase->quantity }}" onfocusout="update_cell_of(this)"></td>
+            <td><input type="number" step="0.01" value="{{ $purchase->price }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $purchase->storage, 'foreign_rows' => $storages])</td>
-            <td class="comment-td"><input type="text" value="{{ $purchase->comment }}" onchange="update_cell_of(this)"></td>
+            <td class="comment-td"><input type="text" value="{{ $purchase->comment }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn')</td>
         </tr>

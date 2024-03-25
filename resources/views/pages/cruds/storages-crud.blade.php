@@ -22,12 +22,12 @@
 
     @foreach (array_merge($paginator->items(), $filler_rows) as $storage)
         <tr data-row-id="{{ $storage->id }}">
-            <td><input type="text" value="{{ $storage->name }}" onchange="update_cell_of(this)"></td>
-            <td><input type="text" value="{{ $storage->address }}" onchange="update_cell_of(this)"></td>
-            <td><input type="text" step="0.01" value="{{ $storage->phone_number }}" onchange="update_cell_of(this)"></td>
-            <td><input type="text" step="0.01" value="{{ $storage->email }}" onchange="update_cell_of(this)"></td>
+            <td><input type="text" value="{{ $storage->name }}" onfocusout="update_cell_of(this)"></td>
+            <td><input type="text" value="{{ $storage->address }}" onfocusout="update_cell_of(this)"></td>
+            <td><input type="text" step="0.01" value="{{ $storage->phone_number }}" onfocusout="update_cell_of(this)"></td>
+            <td><input type="text" step="0.01" value="{{ $storage->email }}" onfocusout="update_cell_of(this)"></td>
 
-            <td class="comment-td"><input type="text" value="{{ $storage->comment }}" onchange="update_cell_of(this)"></td>
+            <td class="comment-td"><input type="text" value="{{ $storage->comment }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.delete-btn')</td>
         </tr>
