@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/EmptyRow.php');
 include_once(app_path().'/helpers/pure_php/get_columns.php');
+include_once(app_path().'/helpers/get_filler_rows.php');
 
 use App\helpers\pure_php\EmptyRow;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
+
+
 
 
 class ProductController extends Controller
@@ -28,13 +31,13 @@ class ProductController extends Controller
         ]);
 
         if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
-        $products = Product::query();
+        $paginator = filter_order_paginate(Product::query(), $view_fields, $request, ['created_at', 'asc']);
 
         return view('pages/cruds/products-crud', [
-            'paginator' => filter_order_paginate($products, $view_fields, $request, ['created_at', 'asc']),
             'Product' => Product::class,
-            'emptyRow' => new EmptyRow(),
+            'filler_rows' => get_filler_rows($paginator, Product::max('id')),
             'search_targets' => $request->search_targets
-        ] + compact('view_fields', 'headers'));
+
+        ] + compact('view_fields', 'headers', 'paginator'));
     }
 }

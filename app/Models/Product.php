@@ -23,6 +23,5 @@ class Product extends Model
         'selling_price',
 
         'comment',
-        'is_to_sale'
     ];
 }

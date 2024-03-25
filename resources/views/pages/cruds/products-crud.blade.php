@@ -21,7 +21,7 @@
         <th>@include('crud-components.activate-delete-btns-btn')</th>
     </tr>
 
-    @foreach ($paginator->items() ?: [$emptyRow] as $product)
+    @foreach (array_merge($paginator->items(), $filler_rows) as $product)
         <tr data-row-id="{{ $product->id }}">
             <td><input type="text" value="{{ $product->name }}" onchange="update_cell_of(this)"></td>
             <td><input type="text" value="{{ $product->manufactor }}" onchange="update_cell_of(this)"></td>

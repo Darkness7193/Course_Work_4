@@ -37,7 +37,7 @@ export function post(url, data) {
 export function get_row_id_and_cl(element) {
     let td = element.parentNode
     let tr = td.parentNode
-    return [Number(tr.dataset.rowId), td.cellIndex]
+    return [parseInt(tr.dataset.rowId), td.cellIndex]
 }
 
 export function create(parent, tag) {
