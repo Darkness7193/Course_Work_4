@@ -39,7 +39,7 @@ class SalesCrud extends Controller
             'ProductMove' => ProductMove::class,
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
-            'filler_rows' => get_filler_rows($sales, Storage::max('id')),
+            'filler_rows' => get_filler_rows($sales, ProductMove::max('id')),
             'search_targets' => $request->search_targets
         ] + compact('view_fields', 'headers'));
     }
