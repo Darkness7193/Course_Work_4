@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace App\Http\Controllers;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/EmptyRow.php');
@@ -8,15 +8,14 @@ include_once(app_path().'/helpers/pure_php/get_columns.php');
 
 use App\helpers\pure_php\EmptyRow;
 use App\Models\Product;
-use App\Models\ProductMove;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 
 
-class Crud extends Controller
+class ProductController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function index(Request $request): View
     {
         [$view_fields, $headers] = get_columns([
             ['name', 'Наименование'],

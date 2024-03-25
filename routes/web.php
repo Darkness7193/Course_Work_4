@@ -3,6 +3,8 @@
 include(app_path().'/helpers/post_to_get_route.php');
 
 use App\Http\Controllers\Home;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -27,12 +29,9 @@ Route::group(['namespace' => 'App\Http\Controllers\ProductMove'], function() {
 });
 
 
-Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
-    Route::get('products/crud', 'Crud')->name('products.crud');
-});
+Route::get('products/crud', [ProductController::class, 'index'])->name('products.crud');
+Route::get('', [HomeController::class, 'index'])->name('home');
 
-
-Route::get('', Home::class)->name('home');
 
 
 Route::post('post_to_get_route', $post_to_get_route)->name('post_to_get_route');
