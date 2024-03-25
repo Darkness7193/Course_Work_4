@@ -45,7 +45,10 @@ class QuantitiesReport extends Controller
             'report_year' => [
                 $request->report_storage_id !== session('report_storage_id') ? $request->report_year : null,
             ],
-            'is_cost_report' => [(bool)$request->is_cost_report, false],
+            'is_cost_report' => [
+                (bool)$request->is_cost_report,
+                false
+            ],
             'current_report_type' => [$request->current_report_type, 'quantities'],
             'search_targets' => $request->search_targets,
             'per_page' => $request->per_page,
