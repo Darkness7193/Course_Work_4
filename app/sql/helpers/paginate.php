@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 
 
-function paginate(&$query, $per_page=null, $columns=['*'], $page_name = 'page', $current_page=1)
+function paginate(&$query, $per_page=null, $current_page=1, $columns=['*'], $page_name='page')
 {
     $last_page = intdiv($query->count(), $per_page) + 1;
     $current_page = min($current_page, $last_page);

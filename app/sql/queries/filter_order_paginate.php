@@ -12,8 +12,5 @@ function filter_order_paginate($product_moves, $view_fields, $per_page, $current
     filter($product_moves, $search_targets, $view_fields);
     multi_order_by($product_moves, $request->ordered_orders ?? [$default_order]);
 
-    return paginate($product_moves,
-        per_page: $per_page ?? 10,
-        current_page: $current_page ?? 1,
-    );
+    return paginate($product_moves, $per_page, $current_page);
 }
