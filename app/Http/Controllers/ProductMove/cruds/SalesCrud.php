@@ -30,7 +30,6 @@ class SalesCrud extends Controller
             ['comment', 'Комментарий']
         ]);
         $session_items = session_setif([
-            'search_targets' => [$request->search_targets],
             'ordered_orders' => [
                 $request->ordered_orders,
                 [['created_at', 'asc']]
@@ -47,6 +46,8 @@ class SalesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($sales, ProductMove::max('id')),
+            'search_targets' => session('search_targets')
+
         ] + $session_items + compact('view_fields', 'headers'));
     }
 }

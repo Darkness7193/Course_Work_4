@@ -36,7 +36,6 @@ class GeneralTotalsReport extends Controller
                 (bool)$request->is_cost_report,
                 false
             ],
-            'search_targets' => [$request->search_targets],
             'per_page' => $request->per_page,
             'current_page' => $request->current_page
         ]);
@@ -47,6 +46,7 @@ class GeneralTotalsReport extends Controller
             'paginator' => paginate_array($totals, session('per_page') ?? 10, session('current_page') ?? 1),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
+            'search_targets' => session('search_targets')
 
         ] + $session_items + compact('view_fields', 'headers'));
     }
