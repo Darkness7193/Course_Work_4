@@ -19,7 +19,7 @@ function general_product_totals($request, $report_storage, $report_year, $is_cos
             sum(if(product_move_type = 'selling', $quantity_or_cost, 0)) As sales_totals
 
         From product_moves
-        Where storage_id = $report_storage->id
+        Where storage_id = $report_storage->id And year(date) = $report_year
         Group By storage_id, product_id
     ");
 
