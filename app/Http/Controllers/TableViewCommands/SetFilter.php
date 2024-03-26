@@ -23,14 +23,10 @@ function get_search_targets($request, $postfix) {
 
 class SetFilter extends Controller
 {
-    public function __invoke(Request $request){
-        session_setif([
-            'search_targets' => [$request->action === 'search' ? get_search_targets($request, '_search_target') : []]
-        ]);
+    public function __invoke(Request $request) {
+        session()->put('search_targets', $request->action === 'search' ? get_search_targets($request, '_search_target') : []);
 
-        return to_route($request->previous_route, [
-            'search_targets' => $request->action === 'un_search' ? null : get_search_targets($request, '_search_target')
-        ]);
+        return to_route($request->previous_route);
     }
 }
 

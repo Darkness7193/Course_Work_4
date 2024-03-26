@@ -34,9 +34,10 @@ class PurchasesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
+
         $session_items = session_setif([
             'ordered_orders' => [
-                $request->ordered_orders,
+                session('ordered_orders'),
                 [['created_at', 'asc']]
             ],
             'per_page' => $request->per_page,

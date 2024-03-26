@@ -25,9 +25,9 @@ function get_ordered_orders($request) {
 
 class SetOrder extends Controller
 {
-    public function __invoke(Request $request){
-        return to_route($request->previous_route, [
-            'ordered_orders' => $request->action === 'is_ordering' ? get_ordered_orders($request) : null,
-        ]);
+    public function __invoke(Request $request) {
+        session()->put('ordered_orders', $request->action === 'is_ordering' ? get_ordered_orders($request) : null);
+
+        return to_route($request->previous_route);
     }
 }
