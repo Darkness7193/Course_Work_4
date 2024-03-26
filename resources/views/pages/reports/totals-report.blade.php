@@ -40,8 +40,14 @@
 <div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
 @include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
 @include('table-tools.ordering-menu', compact('view_fields', 'headers'))
+
+<form class="vertical-arrange" style="max-width: 200px">
+    @include('report-components.report-storage-select', compact('Storage', 'report_storage'))
+    @include('report-components.report-year-select', compact('used_years', 'report_year'))
+    @include('report-components.report-field-btn', compact('is_cost_report'))
+</form>
+
+
 <div style="height: 500px"></div>
-
-
 </body>
 </html>
