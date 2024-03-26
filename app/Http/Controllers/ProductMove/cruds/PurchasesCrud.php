@@ -7,6 +7,7 @@ include_once(app_path().'/sql/queries/filter_order_paginate.php');
 include_once(app_path().'/helpers/pure_php/get_columns.php');
 include_once(app_path().'/helpers/get_filler_rows.php');
 include_once(app_path().'/helpers/session_setif.php');
+include_once(app_path().'/helpers/clear_session.php');
 
 use App\Models\Product;
 use App\Models\ProductMove;
