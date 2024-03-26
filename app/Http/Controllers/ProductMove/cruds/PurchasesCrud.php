@@ -34,12 +34,8 @@ class PurchasesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
-        if (!is_the_same_route()) {
-            clear_session();
-        }
         dump(session()->all());
         $session_items = session_setif([
-            'search_targets' => [$request->search_targets],
             'ordered_orders' => [
                 $request->ordered_orders,
                 [['created_at', 'asc']]
@@ -56,6 +52,8 @@ class PurchasesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($purchases, ProductMove::max('id')),
+            'search_targets' => session('search_targets')
+
         ] + $session_items + compact('view_fields', 'headers'));
     }
 }
