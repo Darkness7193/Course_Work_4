@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function general_product_totals($request, bool $is_cost_report) {
+function general_product_totals($request, $report_options) {
+    [$report_storage, $report_year, $is_cost_report] = array_values($report_options);
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     $totals = DB::select("
@@ -17,7 +18,9 @@ function general_product_totals($request, bool $is_cost_report) {
             sum(if(product_move_type In ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost)) As quantity_totals,
             sum(if(product_move_type = 'purchasing', $quantity_or_cost, 0)) As purchases_totals,
             sum(if(product_move_type = 'selling', $quantity_or_cost, 0)) As sales_totals
+
         From product_moves
+        Where storage_id = $report_storage->id
         Group By storage_id, product_id
     ");
 

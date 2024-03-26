@@ -39,7 +39,7 @@ class GeneralTotalsReport extends Controller
         ]);
 
         return view('pages/reports/totals-report', [
-            'paginator' => general_product_totals($request, session('is_cost_report')),
+            'paginator' => general_product_totals($request, session_get(['report_storage', 'report_year', 'is_cost_report'])),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
 
