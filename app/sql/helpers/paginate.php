@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 function paginate(&$query, $per_page=null, $current_page=1, $columns=['*'], $page_name='page')
 {
+    if ($query === null) { $arr=[]; return paginate_array($arr, 1); }
+
     $last_page = intdiv($query->count(), $per_page) + 1;
     $current_page = min($current_page, $last_page);
 
