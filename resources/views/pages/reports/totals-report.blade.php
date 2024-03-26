@@ -25,13 +25,9 @@
             <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
-            <td>{{ $total->purchases_cost }}</td>
-            <td>{{ $total->sales_cost }}</td>
-            <td>{{ $total->cost }}</td>
-
-            <td>{{ $total->purchases_quantity }}</td>
-            <td>{{ $total->sales_quantity }}</td>
-            <td>{{ $total->quantity }}</td>
+            <td>{{ $total->purchases_totals }}</td>
+            <td>{{ $total->sales_totals }}</td>
+            <td>{{ $total->quantity_totals }}</td>
         </tr>
     @endforeach
 </table>

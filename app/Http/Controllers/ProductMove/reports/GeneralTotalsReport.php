@@ -18,13 +18,9 @@ class GeneralTotalsReport extends Controller
             ['storage_id', 'Склад'],
             ['product_id', 'Товар'],
 
-            ['purchases_cost', 'Стоимость закупки'],
-            ['sales_cost', 'Стоимость продажи'],
-            ['cost', 'Доход'],
-
-            ['purchases_quantity', 'Кол-во закупки'],
-            ['purchases_quantity', 'Кол-во продажи'],
-            ['quantity', 'Кол-во остатка'],
+            ['purchases_totals', 'Закупка'],
+            ['sales_totals', 'Продажа'],
+            ['quantity_totals', 'Остаток'],
         ]);
         $session_items = session_setif([
             'report_storage' => [
@@ -43,7 +39,7 @@ class GeneralTotalsReport extends Controller
         ]);
 
         return view('pages/reports/totals-report', [
-            'paginator' => general_product_totals($request),
+            'paginator' => general_product_totals($request, session('is_cost_report')),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
 
