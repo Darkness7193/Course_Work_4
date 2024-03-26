@@ -22,7 +22,6 @@
 
     @foreach ($paginator as $total)
         <tr>
-            <td>{{ $total->storage_name }}</td>
             <td>{{ $total->product_name }}</td>
 
             <td>{{ $total->purchases_totals }}</td>
