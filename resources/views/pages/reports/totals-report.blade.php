@@ -27,6 +27,9 @@
             <td>{{ $total->purchases_totals }}</td>
             <td>{{ $total->sales_totals }}</td>
             <td>{{ $total->quantity_totals }}</td>
+            <td>{{ $total->liquidating_totals }}</td>
+            <td>{{ $total->inventory_totals }}</td>
+            <td>{{ $total->import_totals }}</td>
         </tr>
     @endforeach
 </table>

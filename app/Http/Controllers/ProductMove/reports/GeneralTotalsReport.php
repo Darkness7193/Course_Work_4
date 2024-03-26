@@ -20,6 +20,9 @@ class GeneralTotalsReport extends Controller
             ['purchases_totals', 'Закупка'],
             ['sales_totals', 'Продажа'],
             ['quantity_totals', 'Остаток'],
+            ['liquidating_totals', 'Утилизация'],
+            ['inventory_totals', 'Инвентаризация'],
+            ['import_totals', 'Импорт'],
         ]);
         $session_items = session_setif([
             'report_storage' => [
