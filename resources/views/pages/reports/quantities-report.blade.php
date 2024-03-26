@@ -21,7 +21,6 @@
         <tr>
             <td>{{ $total->product_name }}</td>
 
-            <td class="ever-td">{{ $total->all_time_totals }}</td>
             <td class="year-td">{{ $total->year_totals }}</td>
             @php($seasons = ['winter-td', 'spring-td', 'summer-td', 'fall-td', 'winter-td'])
             @for ($i=1; $i<13; $i++)
