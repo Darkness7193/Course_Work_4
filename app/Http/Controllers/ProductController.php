@@ -30,7 +30,7 @@ class ProductController extends Controller
             ['comment', 'Комментарий'],
         ]);
         $session_items = session_setif([
-            'search_targets' => $request->search_targets,
+            'search_targets' => [$request->search_targets],
             'ordered_orders' => [
                 $request->ordered_orders,
                 [['created_at', 'asc']]

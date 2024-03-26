@@ -49,7 +49,7 @@ class QuantitiesReport extends Controller
                 false
             ],
             'current_report_type' => [$request->current_report_type, 'quantities'],
-            'search_targets' => $request->search_targets,
+            'search_targets' => [$request->search_targets],
             'per_page' => $request->per_page,
             'current_page' => $request->current_page,
             'ordered_orders' => [

@@ -8,6 +8,7 @@ include_once(app_path().'/helpers/pure_php/get_columns.php');
 include_once(app_path().'/helpers/get_filler_rows.php');
 include_once(app_path().'/helpers/session_setif.php');
 include_once(app_path().'/helpers/clear_session.php');
+include_once(app_path().'/helpers/is_the_same_route.php');
 
 use App\Models\Product;
 use App\Models\ProductMove;
@@ -33,9 +34,12 @@ class PurchasesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
-
+        if (!is_the_same_route()) {
+            clear_session();
+        }
+        dump(session()->all());
         $session_items = session_setif([
-            'search_targets' => $request->search_targets,
+            'search_targets' => [$request->search_targets],
             'ordered_orders' => [
                 $request->ordered_orders,
                 [['created_at', 'asc']]

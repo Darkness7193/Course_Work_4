@@ -36,7 +36,7 @@ class GeneralTotalsReport extends Controller
                 (bool)$request->is_cost_report,
                 false
             ],
-            'search_targets' => $request->search_targets,
+            'search_targets' => [$request->search_targets],
             'per_page' => $request->per_page,
             'current_page' => $request->current_page
         ]);
