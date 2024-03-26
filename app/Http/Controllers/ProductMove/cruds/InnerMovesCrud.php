@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\ProductMove\cruds;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/helpers/pure_php/EmptyRow.php');
 include_once(app_path().'/sql/queries/inner_moves.php');
-include_once(app_path().'/helpers/get_filler_rows.php');
 
-use App\helpers\pure_php\EmptyRow;
+include_once(app_path().'/helpers/get_filler_rows.php');
+include_once(app_path().'/helpers/session_setif.php');
+
 use App\Models\Product;
 use App\Models\ProductMove;
 use App\Models\Storage;
@@ -33,10 +33,17 @@ class InnerMovesCrud extends Controller
 
             ['comment', 'Комментарий'],
         ]);
-        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
+        $session_items = session_setif([
+            'search_targets' => $request->search_targets,
+            'ordered_orders' => [
+                $request->ordered_orders,
+                [['created_at', 'asc']]
+            ],
+            'per_page' => $request->per_page,
+            'current_page' => $request->current_page
+        ]);
 
-        $inner_moves = inner_moves(ProductMove::query());
-        $inner_moves = filter_order_paginate($inner_moves, $view_fields, $request, ['created_at', 'asc']);
+        $inner_moves = filter_order_paginate(inner_moves(ProductMove::query()), $view_fields);
 
         return view('pages/cruds/inner-moves-crud', [
             'paginator' => $inner_moves,
@@ -44,7 +51,6 @@ class InnerMovesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($inner_moves, Storage::max('id')),
-            'search_targets' => $request->search_targets
-        ] + compact('view_fields', 'headers'));
+        ] + $session_items + compact('view_fields', 'headers'));
     }
 }

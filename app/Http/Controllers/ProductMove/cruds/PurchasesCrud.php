@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\ProductMove\cruds;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/helpers/pure_php/EmptyRow.php');
+
 include_once(app_path().'/helpers/pure_php/get_columns.php');
 include_once(app_path().'/helpers/get_filler_rows.php');
+include_once(app_path().'/helpers/session_setif.php');
 
-use App\helpers\pure_php\EmptyRow;
 use App\Models\Product;
 use App\Models\ProductMove;
 use App\Models\Storage;
@@ -32,10 +32,18 @@ class PurchasesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
-        if ($request->per_page) { $request->session()->put('per_page', $request->per_page); }
 
-        $purchases = ProductMove::where('product_move_type', 'purchasing');
-        $purchases = filter_order_paginate($purchases, $view_fields, $request, ['created_at', 'asc']);
+        $session_items = session_setif([
+            'search_targets' => $request->search_targets,
+            'ordered_orders' => [
+                $request->ordered_orders,
+                [['created_at', 'asc']]
+            ],
+            'per_page' => $request->per_page,
+            'current_page' => $request->current_page
+        ]);
+
+        $purchases = filter_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $view_fields);
 
         return view('pages/cruds/purchases-crud', [
             'paginator' => $purchases,
@@ -43,7 +51,6 @@ class PurchasesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($purchases, ProductMove::max('id')),
-            'search_targets' => $request->search_targets
-        ] + compact('view_fields', 'headers'));
+        ] + $session_items + compact('view_fields', 'headers'));
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\ProductMove\cruds;
 
 include_once(app_path().'/sql/queries/filter_order_paginate.php');
-include_once(app_path().'/helpers/pure_php/EmptyRow.php');
-include_once(app_path().'/helpers/get_filler_rows.php');
 
-use App\helpers\pure_php\EmptyRow;
+include_once(app_path().'/helpers/get_filler_rows.php');
+include_once(app_path().'/helpers/session_setif.php');
+
 use App\Models\Product;
 use App\Models\ProductMove;
 use App\Models\Storage;
@@ -29,10 +29,17 @@ class SalesCrud extends Controller
             ['storage_id', 'Склад'],
             ['comment', 'Комментарий']
         ]);
-        if ($request->per_page) { session()->put('per_page', $request->per_page); }
+        $session_items = session_setif([
+            'search_targets' => $request->search_targets,
+            'ordered_orders' => [
+                $request->ordered_orders,
+                [['created_at', 'asc']]
+            ],
+            'per_page' => $request->per_page,
+            'current_page' => $request->current_page
+        ]);
 
-        $sales = ProductMove::where('product_move_type', 'selling');
-        $sales = filter_order_paginate($sales, $view_fields, $request, ['created_at', 'asc']);
+        $sales = filter_order_paginate(ProductMove::where('product_move_type', 'selling'), $view_fields);
 
         return view('pages/cruds/sales-crud', [
             'paginator' => $sales,
@@ -40,7 +47,6 @@ class SalesCrud extends Controller
             'products' => Product::select('id', 'name')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($sales, ProductMove::max('id')),
-            'search_targets' => $request->search_targets
-        ] + compact('view_fields', 'headers'));
+        ] + $session_items + compact('view_fields', 'headers'));
     }
 }
