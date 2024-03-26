@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function general_product_totals($request, $report_options) {
-    [$report_storage, $report_year, $is_cost_report] = array_values($report_options);
+function general_product_totals($request, $report_storage, $report_year, $is_cost_report) {
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     $totals = DB::select("
