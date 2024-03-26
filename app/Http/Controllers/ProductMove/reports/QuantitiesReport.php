@@ -54,7 +54,7 @@ class QuantitiesReport extends Controller
             'per_page' => $request->per_page,
         ]);
 
-        $totals = product_totals(session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
+        $totals = product_totals(...session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
 
         return view('pages/reports/quantities-report', [
             'paginator' => filter_order_paginate($totals, $view_fields, $request, ['product_name', 'asc']),
