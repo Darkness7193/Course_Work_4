@@ -10,7 +10,7 @@ function paginate(&$query, $per_page=null, $current_page=1, $columns=['*'], $pag
 {
     if ($query === null) { $arr=[]; return paginate_array($arr, 1); }
 
-    $last_page = intdiv($query->count(), $per_page) + 1;
+    $last_page = intdiv($query->count(), max(1, $per_page)) + 1;
     $current_page = min($current_page, $last_page);
 
     return $query = $query->paginate($per_page, $columns, $page_name, $current_page);
