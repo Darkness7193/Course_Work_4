@@ -37,7 +37,11 @@ class GeneralTotalsReport extends Controller
                 false
             ],
             'per_page' => $request->per_page,
-            'current_page' => $request->current_page
+            'current_page' => $request->current_page,
+            'ordered_orders' => [
+                session('ordered_orders'),
+                [['product_name', 'asc']]
+            ]
         ]);
 
         $totals = general_product_totals(...session_get(['report_storage', 'report_year', 'is_cost_report']));
