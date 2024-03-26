@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function general_product_totals($request, $report_storage, $report_year, $is_cost_report) {
+function general_product_totals($report_storage, $report_year, $is_cost_report) {
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
-    $totals = DB::select("
+    return DB::select("
         Select (Select name From products Where id = product_id) As product_name,
             sum(if(product_move_type In ('purchasing', 'inventory'), $quantity_or_cost, -$quantity_or_cost)) As quantity_totals,
             sum(if(product_move_type = 'purchasing', $quantity_or_cost, 0)) As purchases_totals,
@@ -23,10 +23,4 @@ function general_product_totals($request, $report_storage, $report_year, $is_cos
         Where storage_id = $report_storage->id And year(date) = $report_year
         Group By storage_id, product_id
     ");
-
-
-    return paginate_array($totals,
-        per_page: session()->get('per_page') ?? 10,
-        current_page: $request->current_page ?? 1,
-    );
 }

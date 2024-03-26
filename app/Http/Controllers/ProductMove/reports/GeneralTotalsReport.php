@@ -38,10 +38,13 @@ class GeneralTotalsReport extends Controller
             ],
             'search_targets' => $request->search_targets,
             'per_page' => $request->per_page,
+            'current_page' => $request->current_page
         ]);
 
+        $totals = general_product_totals(...session_get(['report_storage', 'report_year', 'is_cost_report']));
+
         return view('pages/reports/totals-report', [
-            'paginator' => general_product_totals($request, ...session_get(['report_storage', 'report_year', 'is_cost_report'])),
+            'paginator' => paginate_array($totals, per_page: session('per_page') ?? 10, current_page: session('current_page') ?? 1),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
 
