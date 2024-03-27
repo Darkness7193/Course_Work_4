@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 
 
-function general_totals($report_storage, $report_year, $is_cost_report) {
-    if ($report_storage->id === null or $report_year === null) { return (object)[]; }
+function general_totals($report_storage_id, $report_year, $is_cost_report) {
+    if ($report_storage_id === null or $report_year === null) { return (object)[]; }
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     $general_totals = DB::table('product_moves')
-        ->where('storage_id', '=', $report_storage->id)
+        ->where('storage_id', '=', $report_storage_id)
         ->where(DB::raw('year(date)'), '=', $report_year)
         ->groupBy('storage_id', 'product_id')
 

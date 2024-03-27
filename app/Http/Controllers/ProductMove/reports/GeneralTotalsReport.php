@@ -45,7 +45,7 @@ class GeneralTotalsReport extends Controller
             ]
         ]);
 
-        $totals = general_totals(...session_get(['report_storage', 'report_year', 'is_cost_report']));
+        $totals = general_totals(session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
 
         return view('pages/reports/totals-report', [
             'paginator' => filter_order_paginate($totals, $view_fields),
