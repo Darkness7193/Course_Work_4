@@ -50,7 +50,7 @@ class PurchasesCrud extends Controller
         return view('pages/cruds/purchases-crud', [
             'paginator' => $purchases,
             'ProductMove' => ProductMove::class,
-            'products' => Product::select('id', 'name')->get(),
+            'products' => Product::select('id', 'name', 'purchase_price')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($purchases, ProductMove::max('id')),
             'search_targets' => session('search_targets')

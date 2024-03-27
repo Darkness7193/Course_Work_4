@@ -25,7 +25,7 @@
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $sale->product, 'foreign_rows' => $products])</td>
             <td><input type="number" value="{{ $sale->quantity }}" onfocusout="update_cell_of(this)"></td>
-            <td><input type="number" step="0.01" value="{{ $sale->price }}" onfocusout="update_cell_of(this)"></td>
+            <td><input class="sale-price-input" type="number" step="0.01" value="{{ $sale->price }}" onfocusout="update_cell_of(this)"></td>
 
             <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $sale->storage, 'foreign_rows' => $storages])</td>
             <td class="comment-td"><input type="text" value="{{ $sale->comment }}" onfocusout="update_cell_of(this)"></td>
