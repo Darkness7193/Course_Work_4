@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 
 function general_totals($report_storage_id, $report_year, $is_cost_report) {
-    if ($report_storage_id === null or $report_year === null) { return (object)[]; }
+    if ($report_storage_id === null or $report_year === null) { return ProductMove::first()->where('id', '=', 'asdf'); }
     $quantity_or_cost = $is_cost_report ? 'quantity*price' : 'quantity';
 
     $general_totals = DB::table('product_moves')

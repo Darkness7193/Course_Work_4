@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 
 function move_type_totals($report_move_type, ?int $report_storage_id, ?int $report_year, bool $is_cost_report) {
-    if ($report_storage_id === null or $report_year === null) { return (object)[]; }
+    if ($report_storage_id === null or $report_year === null) { return ProductMove::first()->where('id', '=', 'asdf'); }
     $quantity_or_cost = $is_cost_report ? 'this.quantity*this.price' : 'this.quantity';
 
     $totals = $q = DB::table('product_moves as this')
