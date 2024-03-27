@@ -45,7 +45,7 @@ class SalesCrud extends Controller
         return view('pages/cruds/sales-crud', [
             'paginator' => $sales,
             'ProductMove' => ProductMove::class,
-            'products' => Product::select('id', 'name')->get(),
+            'products' => Product::select('id', 'name', 'selling_price')->get(),
             'storages' => Storage::select('id', 'name')->get(),
             'filler_rows' => get_filler_rows($sales, ProductMove::max('id')),
             'search_targets' => session('search_targets')
