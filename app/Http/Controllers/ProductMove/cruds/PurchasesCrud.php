@@ -46,6 +46,8 @@ class PurchasesCrud extends Controller
 
         $purchases = filter_order_paginate(ProductMove::where('product_move_type', 'purchasing'), $view_fields);
 
+        dump(session()->all());
+
         return view('pages/cruds/purchases-crud', [
             'paginator' => $purchases,
             'ProductMove' => ProductMove::class,

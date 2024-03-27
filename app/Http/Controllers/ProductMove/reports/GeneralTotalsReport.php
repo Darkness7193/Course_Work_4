@@ -24,6 +24,7 @@ class GeneralTotalsReport extends Controller
             ['inventory_totals', 'Инвентаризация'],
             ['import_totals', 'Импорт'],
         ]);
+
         $session_items = session_setif([
             'report_storage' => [
                 $request->report_storage_id ? Storage::find($request->report_storage_id) : null,
@@ -47,7 +48,7 @@ class GeneralTotalsReport extends Controller
         $totals = general_totals(...session_get(['report_storage', 'report_year', 'is_cost_report']));
 
         return view('pages/reports/totals-report', [
-            'paginator' => paginate_array($totals, session('per_page') ?? 10, session('current_page') ?? 1),
+            'paginator' => filter_order_paginate($totals, $view_fields),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
             'search_targets' => session('search_targets')

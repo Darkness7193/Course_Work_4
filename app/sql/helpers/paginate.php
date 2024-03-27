@@ -17,8 +17,10 @@ function paginate(&$query, $per_page=null, $current_page=1, $columns=['*'], $pag
 }
 
 
-function paginate_array(array &$items, $per_page=10, $current_page=1)
+function paginate_array(?array &$items, $per_page=10, $current_page=1)
 {
+    if ($items === null) { $arr=[]; return paginate_array($arr, 1); }
+
     $last_page = intdiv(count($items), $per_page) + 1;
     $current_page = min($current_page, $last_page);
     $page_content = Collection::make($items)->forPage($current_page, $per_page);
