@@ -19,6 +19,11 @@ input::-webkit-outer-spin-button {
     flex-direction: column;
 }
 
+.horizontal-arrange {
+    display:flex;
+    flex-direction: row;
+}
+
 .vertical-center {
     display: flex;
     align-items: center;
