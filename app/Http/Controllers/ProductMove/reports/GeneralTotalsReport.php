@@ -25,14 +25,21 @@ class GeneralTotalsReport extends Controller
             ['inventory_totals', 'Инвентаризация'],
             ['import_totals', 'Импорт'],
         ]);
-        if (!is_the_same_route()) { Session::forget(['ordered_orders', 'per_page', 'current_page', 'search_targets', 'report_storage', 'report_year', 'is_cost_report']); }
 
-        session_setif([
-            'report_storage' => [
+        if (!is_the_same_route()) { Session::forget([
+            'ordered_orders',
+            'per_page',
+            'current_page',
+            'search_targets',
+            'report_storage',
+            'report_year',
+            'is_cost_report'
+        ]); }
+
+        session_setif(['report_storage' => [
                 $request->report_storage_id ? Storage::find($request->report_storage_id) : null,
                 Storage::first() ?? (object)['id'=>null, 'name'=>'Складов нет']
-            ],
-        ]);
+            ],]);
         $used_years = get_used_years_of(session()->get('report_storage')->id);
         $session_items = session_setif([
             'report_year' => [
@@ -48,10 +55,12 @@ class GeneralTotalsReport extends Controller
             'ordered_orders' => [
                 session('ordered_orders'),
                 [['product_name', 'asc']]
-            ]
+            ],
+            'begin_date' => $request->begin_date,
+            'end_date' => $request->end_date,
         ]);
 
-        $totals = general_totals(session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
+        $totals = general_totals(session()->get('report_storage')->id, session('begin_date'), session('end_date'), session('is_cost_report'));
 
         return view('pages/reports/totals-report', [
             'paginator' => filter_order_paginate($totals, $view_fields),

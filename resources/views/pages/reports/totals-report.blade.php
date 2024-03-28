@@ -41,7 +41,8 @@
 
 <form class="vertical-arrange" style="max-width: 200px">
     @include('report-components.report-storage-select', compact('Storage', 'report_storage'))
-    @include('report-components.report-year-select', compact('used_years', 'report_year'))
+    <input name="begin_date" type="date" onfocusout="this.form.submit()" value="{{ $begin_date }}">
+    <input name="end_date" type="date" onfocusout="this.form.submit()" value="{{ $end_date }}">
     @include('report-components.report-field-btn', compact('is_cost_report'))
 </form>
 
