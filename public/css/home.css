@@ -1,5 +1,5 @@
 .page-btn {
-    width: 200px;
+    width: auto;
     background-image: linear-gradient(#f7f8fa ,#e7e9ec);
     border-color: #adb1b8 #a2a6ac #8d9096;
     border-style: solid;
@@ -26,5 +26,7 @@
 }
 
 .card {
+    width: 30%;
+    max-width: 250px;
     margin-right: 30px;
 }
