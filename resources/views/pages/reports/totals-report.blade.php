@@ -1,10 +1,4 @@
 <!DOCTYPE html><html lang="ru">
-<script>
-    window.post_to_get_route_route = '{{ route('post_to_get_route') }}'
-    window.current_route = '{{ Route::current()->getName() }}'
-</script>
-
-
 <head>
     @include('global-head')
     <title>Общий отчет</title>
