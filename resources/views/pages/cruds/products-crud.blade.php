@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="ru">@include('global-head')
-
+<!DOCTYPE html><html lang="ru">
+<head>
+    @include('global-head')
+    <title>Товары</title>
 
 <!-- imports: -->
     @include('another.php_variables')
@@ -8,6 +9,7 @@
     <script src="{{ asset('js/of_crud-table/delete-btn_bulk_activation.js') }}" type="module"></script>
     <link rel="stylesheet" href="{{ asset('css/crud-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+</head>
 
 
 <body>

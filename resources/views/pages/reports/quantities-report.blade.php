@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">@include('global-head')
-
+<!DOCTYPE html><html lang="ru">
+<head>
+    @include('global-head')
+    <title>Отчет количеств</title>
 
 <!-- imports: -->
     @include('another.php_variables')
     <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
+</head>
 
 
 <body>

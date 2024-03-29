@@ -24,7 +24,7 @@
                 <div class="card-header">{{ __('Отчеты') }}</div>
                 <div class="card-body vertical-arrange">
                     <button class="page-btn" onclick="window.location='{{ route('product_moves.general_totals_report') }}'"> Общий отчет </button>
-                    <button class="page-btn" onclick="window.location='{{ route('product_moves.quantities_report') }}'"> Отчет количеств </button>
+                    <button class="page-btn" onclick="window.location='{{ route('product_moves.quantities_report') }}'"> Отчет по месяцам </button>
                 </div>
             </div>
 
@@ -35,6 +35,7 @@
                     <button class="page-btn" onclick="window.location='{{ route('storages.crud') }}'"> Склады </button>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
