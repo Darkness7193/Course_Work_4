@@ -35,7 +35,6 @@ class QuantitiesReport extends Controller
             ['month_11_totals', 'Ноя'],
             ['month_12_totals', 'Дек']
         ]);
-
         if (!is_the_same_route()) { Session::forget(['ordered_orders', 'per_page', 'current_page', 'search_targets']); }
         $session_items = session_setif([
             'report_storage' => [
