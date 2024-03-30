@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 horizontal-arrange" style="margin-top: 40px">
+        <div class="col-md-8">
 
             <div class="card">
                 <div class="card-header">{{ __('Движения') }}</div>
