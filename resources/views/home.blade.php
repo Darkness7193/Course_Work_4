@@ -31,8 +31,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Справочник') }}</div>
                 <div class="card-body vertical-arrange">
-                    <button class="page-btn" onclick="window.location='{{ route('products.crud') }}'"> Товары </button>
-                    <button class="page-btn" onclick="window.location='{{ route('storages.crud') }}'"> Склады </button>
+                    <button class="page-btn" onclick="window.location='{{ route('products.crud') }}'"> products_crud </button>
+                    <button class="page-btn" onclick="window.location='{{ route('storages.crud') }}'"> storages_crud </button>
                 </div>
             </div>
         </div>
