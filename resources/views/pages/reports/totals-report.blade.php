@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 
 
 <head>
@@ -6,9 +7,9 @@
     @include('global-head')
 
     <!-- imports: -->
-        @include('another.php_variables')
-        <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    @include('php_variables')
+    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 </head>
 
 

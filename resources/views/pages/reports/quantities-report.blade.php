@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 
 
 <head>
@@ -6,10 +7,10 @@
     @include('global-head')
 
     <!-- imports: -->
-        @include('another.php_variables')
-        <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
+    @include('php_variables')
+    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
 </head>
 
 
@@ -32,7 +33,11 @@
                     @for ($i=1; $i<13; $i++)
                         <td class="{{ $seasons[intdiv($i, 3)] }}">{{ $total->{"month_{$i}_totals"} }}</td>
                     @endfor
-                    <td class="report-field-td">@if($is_cost_report) ₽ @else шт. @endif</td>
+                    <td class="report-field-td">@if($is_cost_report)
+                            ₽
+                        @else
+                            шт.
+                        @endif</td>
                 </tr>
             @endforeach
         </table>
