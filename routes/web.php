@@ -13,6 +13,8 @@ use App\Http\Controllers\ProfileController;
  */
 
 
+
+
 Route::middleware('auth')->group(function () use($post_to_get_route) {
     /*Home*/
     Route::get('', [HomeController::class, 'index'])->name('home');
@@ -44,8 +46,6 @@ Route::middleware('auth')->group(function () use($post_to_get_route) {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
 
 
 require __DIR__.'/auth.php';
