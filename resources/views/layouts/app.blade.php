@@ -29,7 +29,9 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <template shadowrootmode="open">
+                    {{ $slot }}
+                </template>
             </main>
         </div>
     </body>

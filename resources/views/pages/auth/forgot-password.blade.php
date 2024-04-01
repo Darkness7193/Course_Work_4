@@ -3,6 +3,8 @@
 
 
 <x-guest-layout>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Забыли пароль? Не проблема.
             Просто введите эл. почту на которую мы отправим письмо со сбросом пароля.
