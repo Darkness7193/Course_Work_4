@@ -12,50 +12,53 @@
 
 
 <body>
-<table class="crud-table" data-max-id="{{ $ProductMove::max('id') }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $ProductMove }}">
-    <tr>
-        @foreach($headers as $header)
-            <th>{{ mb_strtoupper($header) }}</th>
-        @endforeach
+<x-app-layout>
+    <x-card>
+        <table class="crud-table" data-max-id="{{ $ProductMove::max('id') }}" data-view-fields="{{ implode(',', $view_fields) }}" data-crud-model="{{ $ProductMove }}">
+            <tr>
+                @foreach($headers as $header)
+                    <th>{{ mb_strtoupper($header) }}</th>
+                @endforeach
 
-        <th>@include('crud-components.activate-delete-btns-btn')</th>
-    </tr>
+                <th>@include('crud-components.activate-delete-btns-btn')</th>
+            </tr>
 
-    @foreach (array_merge($paginator->items(), $filler_rows) as $purchase)
-        <tr data-row-id="{{ $purchase->id }}">
-            <td><input type="date" value="{{ $purchase->date->toDateString() }}" onfocusout="update_cell_of(this)"></td>
+            @foreach (array_merge($paginator->items(), $filler_rows) as $purchase)
+                <tr data-row-id="{{ $purchase->id }}">
+                    <td><input type="date" value="{{ $purchase->date->toDateString() }}" onfocusout="update_cell_of(this)"></td>
 
-            <td>
-                <select class="foreign-cell product-select" onfocusout="update_cell_of(this)">
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id ?? '' }}" data-purchase-price="{{ $product->purchase_price }}">
-                            {{ $product->name }}
-                        </option>
-                    @endforeach
+                    <td>
+                        <select class="foreign-cell product-select" onfocusout="update_cell_of(this)">
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id ?? '' }}" data-purchase-price="{{ $product->purchase_price }}">
+                                    {{ $product->name }}
+                                </option>
+                            @endforeach
 
-                    <option selected="selected" hidden="hidden" value="{{ $purchase->product->id ?? ''}}">{{ $purchase->product->name ?? '' }}</option>
-                </select>
-            </td>
+                            <option selected="selected" hidden="hidden" value="{{ $purchase->product->id ?? ''}}">{{ $purchase->product->name ?? '' }}</option>
+                        </select>
+                    </td>
 
-            <td><input type="number" value="{{ $purchase->quantity }}" onfocusout="update_cell_of(this)"></td>
-            <td><input class="purchase-price-input" type="number" step="0.01" value="{{ $purchase->price }}" onfocusout="update_cell_of(this)"></td>
+                    <td><input type="number" value="{{ $purchase->quantity }}" onfocusout="update_cell_of(this)"></td>
+                    <td><input class="purchase-price-input" type="number" step="0.01" value="{{ $purchase->price }}" onfocusout="update_cell_of(this)"></td>
 
-            <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $purchase->storage, 'foreign_rows' => $storages])</td>
-            <td class="comment-td"><input type="text" value="{{ $purchase->comment }}" onfocusout="update_cell_of(this)"></td>
+                    <td>@include('crud-components.foreign-cell', ['selected_foreign_row' => $purchase->storage, 'foreign_rows' => $storages])</td>
+                    <td class="comment-td"><input type="text" value="{{ $purchase->comment }}" onfocusout="update_cell_of(this)"></td>
 
-            <td>@include('crud-components.delete-btn')</td>
-        </tr>
-    @endforeach
-</table>
+                    <td>@include('crud-components.delete-btn')</td>
+                </tr>
+            @endforeach
+        </table>
 
 
-<div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
-@include('crud-components.save-btn', ['no_view_fields' => [
-    'product_move_type' => 'purchasing',
-    'new_storage_id' => null
-]])
-@include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
-@include('table-tools.ordering-menu', compact('view_fields', 'headers'))
-
+        <div>{{ $paginator->links('pagination::my-pagination-links') }}</div>
+        @include('crud-components.save-btn', ['no_view_fields' => [
+            'product_move_type' => 'purchasing',
+            'new_storage_id' => null
+        ]])
+        @include('table-tools.search-bar', compact('search_targets', 'view_fields', 'headers'))
+        @include('table-tools.ordering-menu', compact('view_fields', 'headers'))
+    </x-card>
+</x-app-layout>
 </body>
 </html>
