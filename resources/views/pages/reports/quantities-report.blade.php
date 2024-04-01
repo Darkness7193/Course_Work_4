@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">@include('global-head')
+<!DOCTYPE html><html lang="ru">
 
 
-<!-- imports: -->
-    @include('another.php_variables')
-    <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
+<head>
+    <title> Помесячный отчет </title>
+    @include('global-head')
+
+    <!-- imports: -->
+        @include('another.php_variables')
+        <link rel="stylesheet" href="{{ asset('css/abstract/tile-table.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/abstract/report-table.css') }}">
+</head>
 
 
 <body>
