@@ -1,11 +1,13 @@
-<!DOCTYPE html><html lang="ru">@include('global-head')
-
-
-<!-- imports: -->
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+<!DOCTYPE html>
+<html lang="ru">@include('global-head')
 
 
 <body>
+<x-app-layout>
+    <!-- imports: -->
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+
+
     <button onclick="window.location='{{ route('product_moves.purchases_crud') }}'"> Покупки </button>
     <button onclick="window.location='{{ route('product_moves.sales_crud') }}'"> Продажи </button>
     <button onclick="window.location='{{ route('product_moves.inner_moves_crud') }}'"> Внутренние движения </button>
@@ -15,4 +17,5 @@
 
     <button onclick="window.location='{{ route('products.crud') }}'"> products_crud </button>
     <button onclick="window.location='{{ route('storages.crud') }}'"> storages_crud </button>
+</x-app-layout>
 </body>
