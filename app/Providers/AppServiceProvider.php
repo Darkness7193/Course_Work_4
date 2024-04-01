@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -43,5 +44,7 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        Blade::anonymousComponentPath(__DIR__. '/../../resources/views/components/breeze-components');
     }
 }
