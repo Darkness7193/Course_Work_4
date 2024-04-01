@@ -3,7 +3,7 @@
 
 
 <head>
-    <title> Общий отчет </title>
+    <title> Отчет по типам движений </title>
     @include('global-head')
 
     <!-- imports: -->

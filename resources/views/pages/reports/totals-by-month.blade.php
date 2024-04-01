@@ -3,7 +3,7 @@
 
 
 <head>
-    <title> Помесячный отчет </title>
+    <title> Отчет по месяцам </title>
     @include('global-head')
 
     <!-- imports: -->

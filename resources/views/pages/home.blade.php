@@ -16,11 +16,11 @@
                     <button onclick="window.location='{{ route('product_moves.sales_crud') }}'"> Продажи </button>
                     <button onclick="window.location='{{ route('product_moves.inner_moves_crud') }}'"> Внутренние движения </button>
 
-                    <button onclick="window.location='{{ route('product_moves.totals_by_move_type') }}'"> Общий отчет </button>
-                    <button onclick="window.location='{{ route('product_moves.totals_by_month') }}'"> Отчет количеств </button>
+                    <button onclick="window.location='{{ route('product_moves.totals_by_move_type') }}'"> Отчет по типам движений </button>
+                    <button onclick="window.location='{{ route('product_moves.totals_by_month') }}'"> Отчет по месяцам </button>
 
-                    <button onclick="window.location='{{ route('products.crud') }}'"> products_crud </button>
-                    <button onclick="window.location='{{ route('storages.crud') }}'"> storages_crud </button>
+                    <button onclick="window.location='{{ route('products.crud') }}'"> Товары </button>
+                    <button onclick="window.location='{{ route('storages.crud') }}'"> Склады </button>
                 </div>
             </div>
         </div>
