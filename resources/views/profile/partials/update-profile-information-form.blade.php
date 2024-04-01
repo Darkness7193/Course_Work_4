@@ -34,13 +34,13 @@
                         {{ __('Ваша эл. почта не подтверждена.') }}
 
                         <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Кликните сюда, чтобы переотправить подверждающее письмо.') }}
+                            {{ __('Кликните сюда, чтобы отправить письмо для подтвержения эл. почты.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
                         <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ __('Новая подтверждающая ссылка была отправлена на вашу эл. почту') }}
+                            {{ __('Новое письмо для подверждения эл. почты была отправлено на вашу эл. почту') }}
                         </p>
                     @endif
                 </div>
