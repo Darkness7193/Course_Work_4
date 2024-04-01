@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () use($post_to_get_route) {
         Route::get('product_moves/purchases_crud', 'cruds\PurchasesCrud')->name('product_moves.purchases_crud');
         Route::get('product_moves/sales_crud', 'cruds\SalesCrud')->name('product_moves.sales_crud');
         Route::get('product_moves/inner_moves_crud', 'cruds\InnerMovesCrud')->name('product_moves.inner_moves_crud');
-        Route::get('product_moves/general_totals_report', 'reports\GeneralTotalsReport')->name('product_moves.general_totals_report');
-        Route::get('product_moves/quantities_report', 'reports\QuantitiesReport')->name('product_moves.quantities_report');
+        Route::get('product_moves/totals_by_move_type', 'reports\TotalsByMoveType')->name('product_moves.totals_by_move_type');
+        Route::get('product_moves/totals_by_month', 'reports\TotalsByMonth')->name('product_moves.totals_by_month');
     });
 
     /*Catalogs*/

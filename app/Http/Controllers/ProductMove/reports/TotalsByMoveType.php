@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 
-class GeneralTotalsReport extends Controller
+class TotalsByMoveType extends Controller
 {
     public function __invoke(Request $request): View {
         [$view_fields, $headers] = get_columns([
@@ -53,7 +53,7 @@ class GeneralTotalsReport extends Controller
 
         $totals = general_totals(session()->get('report_storage')->id, session('report_year'), session('is_cost_report'));
 
-        return view('pages/reports/totals-report', [
+        return view('pages/reports/totals-by-move-type', [
             'paginator' => filter_order_paginate($totals, $view_fields),
             'used_years' => $used_years,
             'Storage' => Storage::class,

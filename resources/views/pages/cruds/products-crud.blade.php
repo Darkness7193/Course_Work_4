@@ -33,13 +33,10 @@
                 <tr data-row-id="{{ $product->id }}">
                     <td><input type="text" value="{{ $product->name }}" onfocusout="update_cell_of(this)"></td>
                     <td><input type="text" value="{{ $product->manufactor }}" onfocusout="update_cell_of(this)"></td>
-                    <td><input type="number" step="0.01" value="{{ $product->purchase_price }}"
-                               onfocusout="update_cell_of(this)"></td>
-                    <td><input type="number" step="0.01" value="{{ $product->selling_price }}"
-                               onfocusout="update_cell_of(this)"></td>
+                    <td><input type="number" step="0.01" value="{{ $product->purchase_price }}" onfocusout="update_cell_of(this)"></td>
+                    <td><input type="number" step="0.01" value="{{ $product->selling_price }}" onfocusout="update_cell_of(this)"></td>
 
-                    <td class="comment-td"><input type="text" value="{{ $product->comment }}"
-                                                  onfocusout="update_cell_of(this)"></td>
+                    <td class="comment-td"><input type="text" value="{{ $product->comment }}" onfocusout="update_cell_of(this)"></td>
 
                     <td>@include('crud-components.delete-btn')</td>
                 </tr>

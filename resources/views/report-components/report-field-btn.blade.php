@@ -1,5 +1,5 @@
 <!-- import: -->
-    <link rel="stylesheet" href="{{ asset('css/report-components.css') }}">
+<link rel="stylesheet" href="{{ asset('css/report-components.css') }}">
 
 
 <!-- f($is_cost_report): -->

@@ -15,7 +15,7 @@ use App\Models\Storage;
 use Illuminate\Support\Facades\Session;
 
 
-class QuantitiesReport extends Controller
+class TotalsByMonth extends Controller
 {
     public function __invoke(Request $request) {
         [$view_fields, $headers] = get_columns([
@@ -59,7 +59,7 @@ class QuantitiesReport extends Controller
 
         $totals = product_totals(...session_get(['current_report_type', 'report_storage', 'report_year', 'is_cost_report']));
 
-        return view('pages/reports/quantities-report', [
+        return view('pages/reports/totals-by-month', [
             'paginator' => filter_order_paginate($totals, $view_fields),
             'used_years' => get_used_years_of(session()->get('report_storage')->id),
             'Storage' => Storage::class,
