@@ -3,6 +3,8 @@
 
 
 <x-guest-layout>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Thanks for signing up!
             Before getting started, could you verify your email address by clicking on the link we just emailed to you?
